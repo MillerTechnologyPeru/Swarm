@@ -1,3 +1,4 @@
+import Foundation
 import XCTest
 @testable import Swarm
 
@@ -54,11 +55,19 @@ final class SwarmTests: XCTestCase {
     
     func testConfiguration() {
         
-        guard let message = SerialMessage(rawValue: #"$CS DI=0x006c0e,DN=M138*2"#, validateChecksum: false),
-              let configuration = SerialMessage.DeviceConfiguration(message: message)
+        guard let configuration = SerialMessage.DeviceConfiguration(rawValue: #"$CS DI=0x006c0e,DN=M138*24"#)
             else { XCTFail(); return }
         
         XCTAssertEqual(configuration.id, 0x006c0e)
         XCTAssertEqual(configuration.type, .m138)
+    }
+    
+    func testDateTime() {
+        
+        let date = SerialMessage.DateTimeResponse.dateFormatter.date(from: "20190408195123")!
+        XCTAssertEqual(date.description, "2019-04-08 19:51:23 +0000")
+        XCTAssertEqual(SerialMessage.DateTimeCommand.repeat.rawValue, "$DT @*70")
+        XCTAssertEqual(SerialMessage.DateTimeResponse.dateTime(date, .valid),
+                       SerialMessage.DateTimeResponse(rawValue: "$DT 20190408195123,V*41"))
     }
 }
