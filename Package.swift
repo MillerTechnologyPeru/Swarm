@@ -3,6 +3,10 @@ import PackageDescription
 
 let package = Package(
     name: "Swarm",
+    platforms: [
+        .macOS(.v13),
+        .iOS(.v16)
+    ],
     products: [
         .library(
             name: "Swarm",
