@@ -34,3 +34,71 @@ extension SerialMessageType: ExpressibleByStringLiteral {
         self.init(rawValue: value)
     }
 }
+
+// MARK: - Definitions
+
+public extension SerialMessageType {
+    
+    /// Swarm Boot Message for the specified device
+    static func boot(_ deviceType: DeviceType) -> SerialMessageType {
+        return .init(rawValue: deviceType.rawValue)
+    }
+    
+    /// Swarm Tile Boot Message
+    static var tile: SerialMessageType { "TILE" }
+    
+    /// Swatm M138 Boot Message
+    static var m138: SerialMessageType { "M138" }
+    
+    /// Configuration Settings
+    static var configuration: SerialMessageType { "CS" }
+    
+    /// Date/Time Status
+    static var dateTimeStatus: SerialMessageType { "DT" }
+    
+    /// Retrieve Firmware Version
+    static var firmwareVersion: SerialMessageType { "FV" }
+    
+    /// GPS Jamming/Spoofing Indication
+    static var gpsJammingSpoofing: SerialMessageType { "GJ" }
+    
+    /// Geospatial Information
+    static var geospatial: SerialMessageType { "GN" }
+    
+    /// GPIO1 Control
+    static var gpio1Control: SerialMessageType { "GP" }
+    
+    /// GPS Fix Quality
+    static var gpsFixQuality: SerialMessageType { "GS" }
+    
+    /// Messages Received Management
+    static var messagesReceived: SerialMessageType { "MM" }
+    
+    /// Messages to Transmit Management
+    static var messagesToTransmit: SerialMessageType { "MT" }
+    
+    /// Power Off
+    static var powerOff: SerialMessageType { "PO" }
+    
+    /// Power Status
+    static var powerStatus: SerialMessageType { "PW" }
+    
+    /// Receive Data Message
+    static var receiveData: SerialMessageType { "RD" }
+    
+    /// Restart Device
+    static var restartDevice: SerialMessageType { "RS" }
+    
+    /// Receive Test
+    static var receiveTest: SerialMessageType { "RT" }
+    
+    /// Sleep Mode
+    static var sleepMode: SerialMessageType { "SL" }
+    
+    /// Tile Status
+    static var tileStatus: SerialMessageType { "TILE" }
+    
+    /// Transmit Data
+    static var transmitData: SerialMessageType { "TD" }
+    
+}
