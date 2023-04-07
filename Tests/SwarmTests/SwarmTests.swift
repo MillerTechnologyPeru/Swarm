@@ -5,7 +5,7 @@ final class SwarmTests: XCTestCase {
     
     func testChecksum() {
         XCTAssertEqual(NMEAChecksum(calculate: "M138 BOOT,RUNNING"), 0x2a)
-        XCTAssertEqual(SerialMessage(type: "M138", body: "BOOT,RUNNING").rawValue, "$M138 BOOT,RUNNING*2a")
+        XCTAssertEqual(SerialMessage(type: .m138, body: "BOOT,RUNNING").rawValue, "$M138 BOOT,RUNNING*2a")
     }
     
     func testSerialMessage() {
@@ -19,6 +19,7 @@ final class SwarmTests: XCTestCase {
             "$M138 BOOT,RUNNING*2a",
             "$TD OK,4862137892975*2d",
             "$M138 DATETIME*56",
+            "$CS*10"
         ]
         
         for string in messages {
@@ -28,5 +29,15 @@ final class SwarmTests: XCTestCase {
             }
             XCTAssertEqual(message.rawValue, string)
         }
+    }
+    
+    func testConfiguration() {
+        
+        guard let message = SerialMessage(rawValue: #"$CS DI=0x000e57,DN=TILE*10"#, validateChecksum: false),
+              let configuration = SerialMessage.DeviceConfiguration(message: message)
+            else { XCTFail(); return }
+        
+        XCTAssertEqual(configuration.id, 0x000e57)
+        XCTAssertEqual(configuration.type, .tile)
     }
 }
