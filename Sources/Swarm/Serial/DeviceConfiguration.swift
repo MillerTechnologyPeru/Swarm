@@ -17,7 +17,7 @@ public extension SerialMessage {
     struct DeviceConfiguration: Equatable, Hashable, Identifiable {
         
         /// Device ID that identifies this device on the Swarm network
-        public let id: UInt32
+        public let id: DeviceID
         
         /// Device type name
         public let type: DeviceType
@@ -33,7 +33,10 @@ extension SerialMessage.DeviceConfiguration: SwarmDecodableMessage {
               let id = result.1, let deviceType = result.2 else {
             return nil
         }
-        self.init(id: id, type: deviceType)
+        self.init(
+            id: id,
+            type: deviceType
+        )
     }
 }
 
@@ -44,7 +47,7 @@ internal extension SerialMessage.DeviceConfiguration {
         Capture {
             OneOrMore(.any)
         } transform: {
-            UInt32($0, radix: 16)
+            UInt32($0, radix: 16).flatMap { DeviceID(rawValue: $0) }
         }
         ","
         "DN="

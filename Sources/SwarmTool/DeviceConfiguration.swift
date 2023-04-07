@@ -20,8 +20,8 @@ extension SwarmTool {
             let device = try Swarm.SerialDevice(path: device)
             try device.send(SerialMessage(type: .configuration))
             let response = try device.recieve(SerialMessage.DeviceConfiguration.self)
-            print("ID: 0x\(String(response.id, radix: 16).uppercased())")
-            print("Type: \(response.type.rawValue)")
+            print("ID: \(response.id)")
+            print("Type: \(response.type)")
         }
     }
 }
