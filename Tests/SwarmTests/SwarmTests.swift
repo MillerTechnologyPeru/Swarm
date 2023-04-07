@@ -70,4 +70,12 @@ final class SwarmTests: XCTestCase {
         XCTAssertEqual(SerialMessage.DateTimeResponse.dateTime(date, .valid),
                        SerialMessage.DateTimeResponse(rawValue: "$DT 20190408195123,V*41"))
     }
+    
+    func testFirmwareVersion() {
+        
+        let rawValue = "$FV 2022-10-18T22:38:36,v3.0.1*08"
+        XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.rawValue, rawValue)
+        XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.date.description, "2022-10-18 22:38:36 +0000")
+        XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.version, "3.0.1")
+    }
 }
