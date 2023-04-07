@@ -62,6 +62,10 @@ extension SerialMessage: CustomStringConvertible {
 extension SerialMessage: RawRepresentable {
     
     public init?(rawValue: String) {
+        self.init(rawValue: rawValue, validateChecksum: true)
+    }
+    
+    internal init?(rawValue: String, validateChecksum: Bool) {
         guard let result = try? SerialMessage.regex.wholeMatch(in: rawValue) else {
             return nil
         }
@@ -72,8 +76,10 @@ extension SerialMessage: RawRepresentable {
         }
         self.init(type: type, body: body)
         // validate checksum
-        guard validate(checksum: checksum) else {
-            return nil
+        if validateChecksum {
+            guard validate(checksum: checksum) else {
+                return nil
+            }
         }
     }
     
@@ -121,5 +127,42 @@ internal extension SerialMessage {
             return nil
         }
         return (type, body, checksum)
+    }
+}
+
+// MARK: - Supporting Types
+
+/// Swarm Encodable Message
+public protocol SwarmEncodableMessage {
+    
+    static var messageType: SerialMessageType { get }
+    
+    var body: String { get }
+}
+
+/// Swarm Decodable Message
+public protocol SwarmDecodableMessage {
+    
+    static var messageType: SerialMessageType { get }
+    
+    init?(body: String)
+}
+
+public typealias SwarmCodableMessage = SwarmEncodableMessage & SwarmDecodableMessage
+
+public extension SwarmEncodableMessage {
+    
+    var message: SerialMessage {
+        SerialMessage(type: Self.messageType, body: body)
+    }
+}
+
+public extension SwarmDecodableMessage {
+    
+    init?(message: SerialMessage) {
+        guard message.type == Self.messageType, let body = message.body else {
+            return nil
+        }
+        self.init(body: body)
     }
 }
