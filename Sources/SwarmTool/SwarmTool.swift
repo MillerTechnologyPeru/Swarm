@@ -16,8 +16,10 @@ struct SwarmTool: ParsableCommand {
         abstract: "A command line tool for controlling an Swarm device via serial interface.",
         version: "1.0.0",
         subcommands: [
-            SwarmTool.DeviceConfiguration.self
+            DeviceConfiguration.self,
+            FirmwareVersion.self,
+            
         ],
-        defaultSubcommand: SwarmTool.DeviceConfiguration.self
+        defaultSubcommand: DeviceConfiguration.self
     )
 }

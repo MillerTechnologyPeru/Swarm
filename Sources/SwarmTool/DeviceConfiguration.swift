@@ -13,6 +13,11 @@ extension SwarmTool {
     
     struct DeviceConfiguration: ParsableCommand {
         
+        static let configuration = CommandConfiguration(
+            commandName: "configuration",
+            abstract: "Read the device configuration."
+        )
+        
         @Option(help: "The path to the Swarm device serial interface.")
         var device: String = "/dev/ttyUSB0"
         
