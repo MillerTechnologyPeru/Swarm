@@ -155,14 +155,26 @@ public extension SwarmEncodableMessage {
     var message: SerialMessage {
         SerialMessage(type: Self.messageType, body: body)
     }
+    
+    var rawValue: String {
+        message.rawValue
+    }
 }
 
 public extension SwarmDecodableMessage {
     
     init?(message: SerialMessage) {
-        guard message.type == Self.messageType, let body = message.body else {
+        guard message.type == Self.messageType,
+            let body = message.body else {
             return nil
         }
         self.init(body: body)
+    }
+    
+    init?(rawValue: String) {
+        guard let message = SerialMessage(rawValue: rawValue) else {
+            return nil
+        }
+        self.init(message: message)
     }
 }
