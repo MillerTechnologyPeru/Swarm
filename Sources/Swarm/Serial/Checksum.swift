@@ -51,9 +51,9 @@ public extension NMEAChecksum {
 internal extension NMEAChecksum {
     
     static func calculate<S>(_ sequence: S) -> NMEAChecksum where S: Sequence, S.Element == UInt8 {
-        let cs = sequence.reduce(into: UInt8(0), {
+        let rawValue = sequence.reduce(into: UInt8(0), {
             $0 ^= $1
         })
-        return NMEAChecksum(rawValue: cs)
+        return NMEAChecksum(rawValue: rawValue)
     }
 }
