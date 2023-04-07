@@ -54,7 +54,7 @@ public extension SerialMessageType {
     static var configuration: SerialMessageType { "CS" }
     
     /// Date/Time Status
-    static var dateTimeStatus: SerialMessageType { "DT" }
+    static var dateTime: SerialMessageType { "DT" }
     
     /// Retrieve Firmware Version
     static var firmwareVersion: SerialMessageType { "FV" }
@@ -83,9 +83,6 @@ public extension SerialMessageType {
     /// Power Status
     static var powerStatus: SerialMessageType { "PW" }
     
-    /// Receive Data Message
-    static var receiveData: SerialMessageType { "RD" }
-    
     /// Restart Device
     static var restartDevice: SerialMessageType { "RS" }
     
@@ -95,10 +92,9 @@ public extension SerialMessageType {
     /// Sleep Mode
     static var sleepMode: SerialMessageType { "SL" }
     
-    /// Tile Status
-    static var tileStatus: SerialMessageType { "TILE" }
-    
     /// Transmit Data
     static var transmitData: SerialMessageType { "TD" }
     
+    /// Receive Data Message
+    static var receiveData: SerialMessageType { "RD" }
 }
