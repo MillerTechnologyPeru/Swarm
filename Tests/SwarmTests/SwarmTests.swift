@@ -2,11 +2,9 @@ import XCTest
 @testable import Swarm
 
 final class SwarmTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documenation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+    
+    func testChecksum() {
+        XCTAssertEqual(NMEAChecksum(calculate: "M138 BOOT,RUNNING"), 0x2a)
+        
     }
 }
