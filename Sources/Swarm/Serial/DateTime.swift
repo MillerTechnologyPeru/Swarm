@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import RegexBuilder
 
 public extension SerialMessage {
-        
+    
     /// Set or query the rate for $DT unsolicited report messages for date and time.
     ///
     /// Also can retrieve the most current $DT message.

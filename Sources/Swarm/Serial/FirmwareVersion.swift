@@ -18,6 +18,7 @@ public extension SerialMessage {
     }
 }
 
+@available(macOS 13.0, iOS 16.0, *)
 extension SerialMessage.FirmwareVersion: SwarmCodableMessage {
     
     public static var messageType: SerialMessageType { .firmwareVersion }
@@ -45,4 +46,5 @@ extension SerialMessage.FirmwareVersion: SwarmCodableMessage {
     }
 }
 
+@available(macOS 13.0, iOS 16, *)
 extension SerialMessage.FirmwareVersion: RawRepresentable { }

@@ -9,8 +9,21 @@ import Foundation
 import ArgumentParser
 import Swarm
 
+
 @main
-struct SwarmTool: ParsableCommand {
+struct SwarmTool {
+    
+    func run() throws {
+        if #available(macOS 13, *) {
+            throw CleanExit.helpRequest(self)
+        } else {
+            print("Need macOS 13 to run")
+        }
+    }
+}
+
+@available(macOS 13.0, *)
+extension SwarmTool: ParsableCommand {
     
     static let configuration = CommandConfiguration(
         abstract: "A command line tool for controlling an Swarm device via serial interface.",
@@ -23,3 +36,4 @@ struct SwarmTool: ParsableCommand {
         defaultSubcommand: DeviceConfiguration.self
     )
 }
+

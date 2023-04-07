@@ -9,6 +9,7 @@ import Foundation
 import ArgumentParser
 import Swarm
 
+@available(macOS 13.0, *)
 extension SwarmTool {
     
     struct FirmwareVersion: ParsableCommand {
@@ -26,6 +27,8 @@ extension SwarmTool {
             try device.send(SerialMessage(type: .firmwareVersion))
             let response = try device.recieve(SerialMessage.FirmwareVersion.self)
             let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .medium
             print("v\(response.version)")
             print("\(formatter.string(from: response.date))")
         }

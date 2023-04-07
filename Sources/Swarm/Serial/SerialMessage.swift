@@ -59,6 +59,7 @@ extension SerialMessage: CustomStringConvertible {
 
 // MARK: - RawRepresentable
 
+@available(macOS 13.0, iOS 16, *)
 extension SerialMessage: RawRepresentable {
     
     public init?(rawValue: String) {
@@ -82,8 +83,11 @@ extension SerialMessage: RawRepresentable {
             }
         }
     }
+}
+
+public extension SerialMessage {
     
-    public var rawValue: String {
+    var rawValue: String {
         "$"
         + type.rawValue
         + rawBody
@@ -92,6 +96,7 @@ extension SerialMessage: RawRepresentable {
     }
 }
 
+@available(macOS 13.0, iOS 16, *)
 internal extension SerialMessage {
     
     static let regex = Regex {
@@ -171,6 +176,7 @@ public extension SwarmDecodableMessage {
         self.init(body: body)
     }
     
+    @available(macOS 13.0, iOS 16, *)
     init?(rawValue: String) {
         guard let message = SerialMessage(rawValue: rawValue) else {
             return nil

@@ -2,6 +2,7 @@ import Foundation
 import XCTest
 @testable import Swarm
 
+@available(macOS 13.0, *)
 final class SwarmTests: XCTestCase {
     
     func testChecksum() {
@@ -77,5 +78,18 @@ final class SwarmTests: XCTestCase {
         XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.rawValue, rawValue)
         XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.date.description, "2022-10-18 22:38:36 +0000")
         XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.version, "3.0.1")
+    }
+    
+    func testGeospatialInformation() {
+        
+        let rawValue = "$GN 37.8921,-122.0155,77,89,2*01"
+        let information = GeospatialInformation(
+            latitude: 37.8921,
+            longitude: -122.0155,
+            altitude: 77,
+            course: 89,
+            speed: 2
+        )
+        XCTAssertEqual(SerialMessage.GeospatialResponse(rawValue: rawValue), .information(information))
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import ArgumentParser
 import Swarm
 
+@available(macOS 13.0, *)
 extension SwarmTool {
     
     struct DeviceConfiguration: ParsableCommand {

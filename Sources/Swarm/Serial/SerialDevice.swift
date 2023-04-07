@@ -33,6 +33,7 @@ public final class SerialDevice {
         try send(message.message)
     }
     
+    @available(macOS 13.0, iOS 16, *)
     public func recieve() throws -> SerialMessage {
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
         defer { buffer.deallocate() }
@@ -56,6 +57,7 @@ public final class SerialDevice {
         return message
     }
     
+    @available(macOS 13.0, iOS 16, *)
     public func recieve<T>(_ type: T.Type) throws -> T where T: SwarmDecodableMessage {
         let message = try recieve()
         guard let decodable = T.init(message: message) else {
