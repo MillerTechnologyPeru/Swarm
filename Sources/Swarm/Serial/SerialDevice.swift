@@ -29,5 +29,38 @@ public final class SerialDevice {
         assert(writtenBytes == message.description.utf8.count + 2)
     }
     
+    public func send<T>(_ message: T) throws where T: SwarmEncodableMessage {
+        try send(message.message)
+    }
     
+    public func recieve() throws -> SerialMessage {
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
+        defer { buffer.deallocate() }
+        var data = Data(capacity: 256)
+        
+        while true {
+            let bytesRead = try serialPort.readBytes(into: buffer, size: 1)
+            guard bytesRead > 0 else {
+                break
+            }
+            guard buffer[0] != "\n".utf8.first else {
+                break
+            }
+            data.append(buffer[0])
+        }
+        
+        guard let response = String(data: data, encoding: .utf8)
+            else { throw PortError.stringsMustBeUTF8 }
+        guard let message = SerialMessage(rawValue: response)
+            else { throw CocoaError(.coderReadCorrupt) }
+        return message
+    }
+    
+    public func recieve<T>(_ type: T.Type) throws -> T where T: SwarmDecodableMessage {
+        let message = try recieve()
+        guard let decodable = T.init(message: message) else {
+            throw CocoaError(.coderReadCorrupt)
+        }
+        return decodable
+    }
 }
