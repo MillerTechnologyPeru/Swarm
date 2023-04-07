@@ -33,11 +33,11 @@ final class SwarmTests: XCTestCase {
     
     func testConfiguration() {
         
-        guard let message = SerialMessage(rawValue: #"$CS DI=0x000e57,DN=TILE*10"#, validateChecksum: false),
+        guard let message = SerialMessage(rawValue: #"$CS DI=0x006c0e,DN=M138*2"#, validateChecksum: false),
               let configuration = SerialMessage.DeviceConfiguration(message: message)
             else { XCTFail(); return }
         
-        XCTAssertEqual(configuration.id, 0x000e57)
-        XCTAssertEqual(configuration.type, .tile)
+        XCTAssertEqual(configuration.id, 0x006c0e)
+        XCTAssertEqual(configuration.type, .m138)
     }
 }
