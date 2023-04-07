@@ -8,12 +8,32 @@ let package = Package(
         .iOS(.v16)
     ],
     products: [
+        .executable(
+            name: "swarm",
+            targets: ["SwarmTool"]
+        ),
         .library(
             name: "Swarm",
             targets: ["Swarm"]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/apple/swift-argument-parser",
+            from: "1.2.0"
+        )
+    ],
     targets: [
+        .executableTarget(
+            name: "SwarmTool",
+            dependencies: [
+                "Swarm",
+                .product(
+                    name: "ArgumentParser",
+                    package: "swift-argument-parser"
+                )
+            ]
+        ),
         .target(
             name: "Swarm"
         ),
