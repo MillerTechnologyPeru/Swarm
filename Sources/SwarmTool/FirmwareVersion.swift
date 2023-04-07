@@ -25,8 +25,9 @@ extension SwarmTool {
             let device = try Swarm.SerialDevice(path: device)
             try device.send(SerialMessage(type: .firmwareVersion))
             let response = try device.recieve(SerialMessage.FirmwareVersion.self)
+            let formatter = DateFormatter()
             print("v\(response.version)")
-            print("\(response.date.formatted())")
+            print("\(formatter.string(from: response.date))")
         }
     }
 }
