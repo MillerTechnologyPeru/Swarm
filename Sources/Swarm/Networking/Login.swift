@@ -7,9 +7,11 @@
 
 import Foundation
 
+/// Swarm Login Request
+///
 /// Use username and password to log in.
 public struct LoginRequest: Equatable, Hashable {
-        
+    
     public var username: String
     
     public var password: String
@@ -28,7 +30,7 @@ extension LoginRequest: SwarmURLRequest {
         
     public var body: Data? { nil }
     
-    public func url(for server: SwarmServer = .production) -> URL {
+    public func url(for server: SwarmServer) -> URL {
         let queryItems = [
             URLQueryItem(name: "username", value: username),
             URLQueryItem(name: "password", value: password)
@@ -44,5 +46,27 @@ extension LoginRequest: SwarmURLRequest {
             url = components.url!
         }
         return url
+    }
+}
+
+/// Swarm Login Response
+public struct LoginResponse: Equatable, Hashable, Codable, SwarmURLResponse {
+    
+    public let token: AuthorizationToken
+}
+
+public extension HTTPClient {
+    
+    func login(
+        username: String,
+        password: String,
+        server: SwarmServer = .production
+    ) async throws -> AuthorizationToken {
+        let request = LoginRequest(
+            username: username,
+            password: password
+        )
+        let response = try await self.response(LoginResponse.self, for: request, server: server)
+        return response.token
     }
 }
