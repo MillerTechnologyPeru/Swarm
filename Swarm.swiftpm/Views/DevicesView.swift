@@ -68,6 +68,7 @@ extension DevicesView {
                         Text("Retry")
                     })
                 }
+                .padding(20)
             )
         } else if store.username != nil {
             return AnyView(
