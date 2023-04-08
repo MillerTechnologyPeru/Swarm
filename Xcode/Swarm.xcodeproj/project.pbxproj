@@ -112,11 +112,11 @@
 			isa = PBXGroup;
 			children = (
 				6E045CEE29E1A9880061C241 /* Preferences.swift */,
-				6E045CEF29E1A9880061C241 /* StorePreferences.swift */,
-				6E045CF029E1A9880061C241 /* StoreLog.swift */,
-				6E045CF129E1A9880061C241 /* StoreNetworking.swift */,
 				6E045CF229E1A9880061C241 /* Store.swift */,
 				6E045CF329E1A9880061C241 /* StoreKeychain.swift */,
+				6E045CF029E1A9880061C241 /* StoreLog.swift */,
+				6E045CF129E1A9880061C241 /* StoreNetworking.swift */,
+				6E045CEF29E1A9880061C241 /* StorePreferences.swift */,
 			);
 			name = Model;
 			path = ../../Swarm.swiftpm/Model;
@@ -143,12 +143,12 @@
 		6E045CFA29E1A9880061C241 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6E045CFD29E1A9880061C241 /* ContentView.swift */,
+				6E045D1729E1AD1C0061C241 /* DeviceInformationView.swift */,
+				6E045CFE29E1A9880061C241 /* DeviceRow.swift */,
+				6E045CFC29E1A9880061C241 /* DevicesView.swift */,
 				6E045CFB29E1A9880061C241 /* LoginView.swift */,
 				6E045D1929E1ADD60061C241 /* SubtitleRow.swift */,
-				6E045CFC29E1A9880061C241 /* DevicesView.swift */,
-				6E045CFD29E1A9880061C241 /* ContentView.swift */,
-				6E045CFE29E1A9880061C241 /* DeviceRow.swift */,
-				6E045D1729E1AD1C0061C241 /* DeviceInformationView.swift */,
 			);
 			name = Views;
 			path = ../../Swarm.swiftpm/Views;

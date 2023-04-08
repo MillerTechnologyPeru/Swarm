@@ -16,14 +16,27 @@ struct DeviceInformationView: View {
     var body: some View {
         List {
             SubtitleRow(
-                title: Text(verbatim: "Identifier"),
+                title: Text("Identifier"),
                 subtitle: Text(verbatim: device.id.description)
             )
-            Text(verbatim: device.comments)
-                .font(.subheadline)
+            if device.comments.isEmpty == false {
+                Text(verbatim: device.comments)
+            }
             SubtitleRow(
-                title: Text(verbatim: "Firmware Version"),
+                title: Text("Firmware Version"),
                 subtitle: Text(verbatim: device.firmwareVersion.description)
+            )
+            SubtitleRow(
+                title: Text("Created"),
+                subtitle: Text(verbatim: device.hiveCreationTime.formatted())
+            )
+            SubtitleRow(
+                title: Text("First Heard"),
+                subtitle: Text(verbatim: device.hiveFirstheardTime.formatted())
+            )
+            SubtitleRow(
+                title: Text("Last Heard"),
+                subtitle: Text(verbatim: device.hiveLastheardTime.formatted())
             )
         }
         .navigationTitle(device.deviceName)
