@@ -28,22 +28,10 @@ public extension HTTPClient {
         _ response: Response.Type,
         for request: Request,
         server: SwarmServer = .production,
-        authorization authorizationToken: AuthorizationToken? = nil
+        authorization authorizationToken: AuthorizationToken? = nil,
+        statusCode: Int = 200
     ) async throws -> Response where Request: SwarmURLRequest, Response: SwarmURLResponse {
-        var urlRequest = URLRequest(
-            request: request,
-            server: server
-        )
-        if let token = authorizationToken {
-            urlRequest.setAuthorization(token)
-        }
-        let (data, urlResponse) = try await self.data(for: urlRequest)
-        guard let httpResponse = urlResponse as? HTTPURLResponse else {
-            fatalError("Invalid response type \(urlResponse)")
-        }
-        guard httpResponse.statusCode == 200 else {
-            throw SwarmNetworkingError.invalidStatusCode(httpResponse.statusCode)
-        }
+        let data = try await self.request(request, server: server, authorization: authorizationToken, statusCode: statusCode)
         guard let response = try? Response.decoder.decode(Response.self, from: data) else {
             throw SwarmNetworkingError.invalidResponse(data)
         }
