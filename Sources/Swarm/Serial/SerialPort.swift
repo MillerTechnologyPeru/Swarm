@@ -1,7 +1,7 @@
 import Foundation
 
 #if os(Linux)
-public enum BaudRate {
+internal enum BaudRate {
     case baud0
     case baud50
     case baud75
@@ -99,7 +99,7 @@ public enum BaudRate {
     }
 }
 #elseif canImport(Darwin)
-public enum BaudRate {
+internal enum BaudRate {
     case baud0
     case baud50
     case baud75
@@ -165,7 +165,7 @@ public enum BaudRate {
 }
 #endif
 
-public enum DataBitsSize {
+internal enum DataBitsSize {
     case bits5
     case bits6
     case bits7
@@ -186,7 +186,7 @@ public enum DataBitsSize {
 
 }
 
-public enum ParityType {
+internal enum ParityType {
     case none
     case even
     case odd
@@ -203,17 +203,9 @@ public enum ParityType {
     }
 }
 
-public enum PortError: Int32, Error {
-    case failedToOpen = -1 // refer to open()
-    case invalidPath
-    case mustReceiveOrTransmit
-    case mustBeOpen
-    case stringsMustBeUTF8
-    case unableToConvertByteToCharacter
-    case deviceNotConnected
-}
+internal typealias PortError = SerialDevice.Error
 
-public class SerialPort {
+internal class SerialPort {
 
     var path: String
     var fileDescriptor: Int32?
@@ -254,7 +246,7 @@ public class SerialPort {
     #endif
 
         // Throw error if open() failed
-        if fileDescriptor == PortError.failedToOpen.rawValue {
+        if fileDescriptor == -1 {
             throw PortError.failedToOpen
         }
     }
@@ -451,7 +443,7 @@ extension SerialPort {
         if let string = String(data: data, encoding: String.Encoding.utf8) {
             return string
         } else {
-            throw PortError.stringsMustBeUTF8
+            throw PortError.invalidData(data)
         }
     }
 
@@ -511,13 +503,10 @@ extension SerialPort {
     }
 
     public func writeString(_ string: String) throws -> Int {
-        guard let data = string.data(using: String.Encoding.utf8) else {
-            throw PortError.stringsMustBeUTF8
-        }
-
+        let data = Data(string.utf8)
         return try writeData(data)
     }
-
+    
     public func writeChar(_ character: UnicodeScalar) throws -> Int{
         let stringEquiv = String(character)
         let bytesWritten = try writeString(stringEquiv)
