@@ -40,6 +40,6 @@ extension AuthorizationToken: ExpressibleByStringLiteral {
 public extension URLRequest {
     
     mutating func setAuthorization(_ token: AuthorizationToken) {
-        self.setValue("Authorization: Bearer " + token.rawValue, forHTTPHeaderField: "Authorization")
+        self.setValue("Bearer " + token.rawValue, forHTTPHeaderField: "Authorization")
     }
 }
