@@ -12,7 +12,7 @@ struct LogoutRequest: SwarmURLRequest {
     public static var method: HTTPMethod { .get }
     
     public static var contentType: String? { nil }
-        
+    
     public var body: Data? { nil }
     
     public func url(for server: SwarmServer) -> URL {

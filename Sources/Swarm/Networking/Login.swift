@@ -27,21 +27,15 @@ extension LoginRequest: SwarmURLRequest {
     public static var method: HTTPMethod { .post }
     
     public static var contentType: String? { "application/x-www-form-urlencoded" }
-        
-    public var body: Data? { nil }
     
     public func url(for server: SwarmServer) -> URL {
-        let queryItems = [
-            URLQueryItem(name: "username", value: username),
-            URLQueryItem(name: "password", value: password)
-        ]
-        var url = URL(server: server)
+        URL(server: server)
             .appendingPathComponent("hive")
             .appendingPathComponent("login")
-        var components = URLComponents(string: url.absoluteString)!
-        components.queryItems = queryItems
-        url = components.url!
-        return url
+            .appending(
+                URLQueryItem(name: "username", value: username),
+                URLQueryItem(name: "password", value: password)
+            )
     }
 }
 
