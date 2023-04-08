@@ -79,7 +79,7 @@ final class SerialTests: XCTestCase {
         let rawValue = "$FV 2022-10-18T22:38:36,v3.0.1*08"
         XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.rawValue, rawValue)
         XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.date.description, "2022-10-18 22:38:36 +0000")
-        XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.version, "3.0.1")
+        XCTAssertEqual(SerialMessage.FirmwareVersion(rawValue: rawValue)?.version.rawValue, "v3.0.1")
     }
     
     func _testGeospatialInformation() {

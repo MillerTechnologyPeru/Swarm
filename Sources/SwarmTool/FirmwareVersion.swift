@@ -29,7 +29,7 @@ extension SwarmTool {
             let formatter = DateFormatter()
             formatter.dateStyle = .long
             formatter.timeStyle = .medium
-            print("v\(response.version)")
+            print("\(response.version)")
             print("\(formatter.string(from: response.date))")
         }
     }

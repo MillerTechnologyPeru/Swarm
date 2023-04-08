@@ -14,7 +14,7 @@ public extension SerialMessage {
         
         public let date: Date
         
-        public let version: String
+        public let version: Swarm.FirmwareVersion
     }
 }
 
@@ -32,17 +32,17 @@ extension SerialMessage.FirmwareVersion: SwarmCodableMessage {
     }()
     
     public init?(body: String) {
-        let components = body.split(separator: ",v")
+        let components = body.split(separator: ",")
         guard components.count == 2,
             let date = Self.dateFormatter.date(from: String(components[0]))
             else { return nil }
         
         self.date = date
-        self.version = String(components[1])
+        self.version = Swarm.FirmwareVersion(rawValue: String(components[1]))
     }
     
     public var body: String {
-        Self.dateFormatter.string(from: date) + ",v" + version
+        Self.dateFormatter.string(from: date) + "," + version.rawValue
     }
 }
 
