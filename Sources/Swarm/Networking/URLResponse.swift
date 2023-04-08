@@ -17,9 +17,18 @@ public extension HTTPClient {
         for request: Request,
         server: SwarmServer = .production,
         authorization authorizationToken: AuthorizationToken? = nil,
-        statusCode: Int = 200
+        statusCode: Int = 200,
+        headers: [String: String] = [:]
     ) async throws -> Response where Request: SwarmURLRequest, Response: SwarmURLResponse {
-        let data = try await self.request(request, server: server, authorization: authorizationToken, statusCode: statusCode)
+        var headers = headers
+        headers["accept"] = "application/json"
+        let data = try await self.request(
+            request,
+            server: server,
+            authorization: authorizationToken,
+            statusCode: statusCode,
+            headers: headers
+        )
         guard let response = try? JSONDecoder.swarm.decode(Response.self, from: data) else {
             throw SwarmNetworkingError.invalidResponse(data)
         }

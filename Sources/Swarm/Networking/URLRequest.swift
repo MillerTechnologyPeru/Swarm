@@ -49,7 +49,8 @@ public extension HTTPClient {
         _ request: Request,
         server: SwarmServer = .production,
         authorization authorizationToken: AuthorizationToken? = nil,
-        statusCode: Int = 200
+        statusCode: Int = 200,
+        headers: [String: String] = [:]
     ) async throws -> Data where Request: SwarmURLRequest {
         var urlRequest = URLRequest(
             request: request,
@@ -57,6 +58,12 @@ public extension HTTPClient {
         )
         if let token = authorizationToken {
             urlRequest.setAuthorization(token)
+        }
+        if let contentType = Request.contentType {
+            urlRequest.addValue(contentType, forHTTPHeaderField: "Content-Type")
+        }
+        for (header, value) in headers.sorted(by: { $0.key < $1.key }) {
+            urlRequest.addValue(value, forHTTPHeaderField: header)
         }
         let (data, urlResponse) = try await self.data(for: urlRequest)
         guard let httpResponse = urlResponse as? HTTPURLResponse else {
