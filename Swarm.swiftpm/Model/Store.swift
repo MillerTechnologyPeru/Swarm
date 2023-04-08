@@ -6,26 +6,31 @@
 //
 
 import Foundation
+import Combine
 import SwiftUI
 import Swarm
+import KeychainAccess
 
 @MainActor
 public final class Store: ObservableObject {
     
     // MARK: - Properties
     
-    @Published
-    public private(set) var isScanning = false
+    public let server = SwarmServer.production
+    
+    internal lazy var fileManager = FileManager()
+    
+    internal lazy var preferences = loadPreferences()
+    
+    internal var preferencesObserver: AnyCancellable?
+    
+    internal lazy var keychain = loadKeychain()
+    
+    internal lazy var urlSession = loadURLSession()
     
     // MARK: - Initialization
-        
-    public init() {
-        
-    }
     
-    // MARK: - Methods
-    
-    public func log(_ message: String) {
-        print(message)
+    deinit {
+        preferencesObserver?.cancel()
     }
 }
