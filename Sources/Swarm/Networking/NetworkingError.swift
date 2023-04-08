@@ -9,6 +9,7 @@ import Foundation
 
 public enum SwarmNetworkingError: Error {
     
+    case authenticationRequired
     case invalidStatusCode(Int)
     case invalidResponse(Data)
 }
