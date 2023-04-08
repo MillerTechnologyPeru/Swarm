@@ -48,4 +48,12 @@ public extension Store {
         // invalidate token for server
         try await urlSession.logout(authorization: token, server: server)
     }
+    
+    /// Get an array of devices visible to the user, filtered by the parameters.
+    func devices(
+        sortDescending: Bool = false
+    ) async throws -> [DeviceInformation] {
+        let token = try authorizationToken()
+        return try await urlSession.devices(sortDescending: sortDescending, authorization: token, server: server)
+    }
 }
