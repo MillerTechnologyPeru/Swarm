@@ -37,7 +37,7 @@ extension LoginRequest: SwarmURLRequest {
         ]
         var url = URL(server: server)
             .appendingPathComponent("hive")
-            .appendingPathExtension("login")
+            .appendingPathComponent("login")
         if #available(macOS 13, iOS 16, *) {
             url.append(queryItems: queryItems)
         } else {
