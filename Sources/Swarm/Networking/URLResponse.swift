@@ -8,19 +8,7 @@
 import Foundation
 
 /// Swarm URL Response
-public protocol SwarmURLResponse: Decodable {
-    
-    
-}
-
-internal extension SwarmURLResponse {
-    
-    static var decoder: JSONDecoder {
-        let decoder = JSONDecoder()
-        
-        return decoder
-    }
-}
+public protocol SwarmURLResponse: Decodable { }
 
 public extension HTTPClient {
     
@@ -32,7 +20,7 @@ public extension HTTPClient {
         statusCode: Int = 200
     ) async throws -> Response where Request: SwarmURLRequest, Response: SwarmURLResponse {
         let data = try await self.request(request, server: server, authorization: authorizationToken, statusCode: statusCode)
-        guard let response = try? Response.decoder.decode(Response.self, from: data) else {
+        guard let response = try? JSONDecoder.swarm.decode(Response.self, from: data) else {
             throw SwarmNetworkingError.invalidResponse(data)
         }
         return response
