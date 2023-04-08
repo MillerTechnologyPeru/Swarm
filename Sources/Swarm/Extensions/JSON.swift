@@ -11,6 +11,7 @@ public extension JSONDecoder {
     
     static var swarm: JSONDecoder {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(.swarm)
         return decoder
     }
 }
