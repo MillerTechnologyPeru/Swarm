@@ -63,9 +63,9 @@ final class NetworkingTests: XCTestCase {
         try await client.logout(authorization: token)
     }
     
-    func testDeviceInformation() throws {
+    func testDeviceInformation() async throws {
         
-        let jsonString = #"""
+        let responseJSON = #"""
             [
               {
                 "deviceType": 1,
@@ -95,8 +95,25 @@ final class NetworkingTests: XCTestCase {
             ]
             """#
         
-        let devices = try JSONDecoder.swarm.decode([DeviceInformation].self, from: Data(jsonString.utf8))
+        let request = DevicesRequest(sortDescending: false)
+        let devices = try JSONDecoder.swarm.decode([DeviceInformation].self, from: Data(responseJSON.utf8))
         XCTAssertEqual(devices.first?.id, 0x00006c0e)
+        
+        let url = URL(string: "https://bumblebee.hive.swarm.space/hive/api/v1/devices?sortDesc=false")!
+        XCTAssertEqual(request.url(for: .production), url)
+        
+        let client: MockClient = {
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+            urlRequest.setValue("Bearer 1234", forHTTPHeaderField: "Authorization")
+            let urlResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            var client = MockClient()
+            client.responses[urlRequest] = (Data(responseJSON.utf8), urlResponse)
+            return client
+        }()
+        
+        let response = try await client.devices(sortDescending: false, authorization: "1234", server: .production)
+        XCTAssertEqual(response, devices)
     }
 }
 

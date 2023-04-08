@@ -32,3 +32,33 @@ extension DevicesRequest: SwarmURLRequest {
             )
     }
 }
+
+// MARK: - Response
+
+public struct DevicesResponse: Equatable, Hashable, SwarmURLResponse {
+    
+    public let devices: [DeviceInformation]
+}
+
+extension DevicesResponse: Decodable {
+    
+    public init(from decoder: Decoder) throws {
+        self.devices = try [DeviceInformation].init(from: decoder)
+    }
+}
+
+// MARK: - HTTP Client
+
+public extension HTTPClient {
+    
+    /// Get an array of devices visible to the user, filtered by the parameters.
+    func devices(
+        sortDescending: Bool = false,
+        authorization token: AuthorizationToken,
+        server: SwarmServer = .production
+    ) async throws -> [DeviceInformation] {
+        let request = DevicesRequest(sortDescending: sortDescending)
+        let response = try await self.response(DevicesResponse.self, for: request, server: server, authorization: token, statusCode: 200)
+        return response.devices
+    }
+}
