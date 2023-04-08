@@ -59,6 +59,53 @@ final class NetworkingTests: XCTestCase {
         
         try await client.logout(authorization: token)
     }
+    
+    func testDeviceInformation() throws {
+        
+        var devices = [String]()
+        devices.append(
+            #"""
+            [
+              {
+                "deviceType": 0,
+                "deviceId": 0,
+                "deviceName": "",
+                "organizationId": 0,
+                "authCode": "string",
+                "comments": "",
+                "hiveCreationTime": "2023-04-08T07:54:22.287Z",
+                "hiveFirstheardTime": "2023-04-08T07:54:22.287Z",
+                "hiveLastheardTime": "2023-04-08T07:54:22.287Z",
+                "firmwareVersion": "",
+                "hardwareVersion": "",
+                "lastTelemetryReportPacketId": 0,
+                "lastHeardByDeviceType": 0,
+                "lastHeardByDeviceId": 0,
+                "lastHeardTime": "2023-04-08T07:54:22.287Z",
+                "counter": 0,
+                "dayofyear": 0,
+                "lastHeardCounter": 0,
+                "lastHeardDayofyear": 0,
+                "lastHeardByGroundstationId": 0,
+                "uptime": 0,
+                "status": 0,
+                "twoWayEnabled": false,
+                "dataEncryptionEnabled": false,
+                "metadata": {
+                  "additionalProp1": "string",
+                  "additionalProp2": "string",
+                  "additionalProp3": "string"
+                }
+              }
+            ]
+            """#
+        )
+        
+        for jsonString in devices {
+            let devices = try JSONDecoder.swarm.decode([DeviceInformation].self, from: Data(jsonString.utf8))
+            XCTAssertFalse(devices.isEmpty)
+        }
+    }
 }
 
 // MARK: - Supporting Types
