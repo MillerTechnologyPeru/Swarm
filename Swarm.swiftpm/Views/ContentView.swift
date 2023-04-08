@@ -8,8 +8,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            EmptyView()
-                .navigationTitle("Swarm")
+            DevicesView()
         }
     }
 }
