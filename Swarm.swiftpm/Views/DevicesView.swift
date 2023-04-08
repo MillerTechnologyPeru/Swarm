@@ -99,7 +99,7 @@ extension DevicesView {
             List {
                 ForEach(devices) { device in
                     NavigationLink(destination: {
-                        Text(verbatim: "\(device)")
+                        DeviceInformationView(device: device)
                     }, label: {
                         DeviceRow(device: device)
                     })

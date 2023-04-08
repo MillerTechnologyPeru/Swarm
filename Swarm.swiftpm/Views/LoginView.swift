@@ -45,7 +45,11 @@ struct LoginView <Content: View>: View {
         content
         .alert("Login", isPresented: _isPresented) {
             TextField("Username", text: $username)
+                //.keyboardType(.asciiCapable)
+                .textContentType(.username)
             SecureField("Password", text: $password)
+                //.keyboardType(.asciiCapable)
+                .textContentType(.password)
             Button("OK") {
                 self.task = Task { await login() }
             }
