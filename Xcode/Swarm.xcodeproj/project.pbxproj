@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6E045CE729E1A8980061C241 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E045CE629E1A8980061C241 /* Preview Assets.xcassets */; };
+		6E045D0029E1A9880061C241 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CEE29E1A9880061C241 /* Preferences.swift */; };
+		6E045D0129E1A9880061C241 /* StorePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CEF29E1A9880061C241 /* StorePreferences.swift */; };
+		6E045D0229E1A9880061C241 /* StoreLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF029E1A9880061C241 /* StoreLog.swift */; };
+		6E045D0329E1A9880061C241 /* StoreNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF129E1A9880061C241 /* StoreNetworking.swift */; };
+		6E045D0429E1A9880061C241 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF229E1A9880061C241 /* Store.swift */; };
+		6E045D0529E1A9880061C241 /* StoreKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF329E1A9880061C241 /* StoreKeychain.swift */; };
+		6E045D0629E1A9880061C241 /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF529E1A9880061C241 /* AppIntents.swift */; };
+		6E045D0729E1A9880061C241 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF729E1A9880061C241 /* Task.swift */; };
+		6E045D0829E1A9880061C241 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E045CF829E1A9880061C241 /* Assets.xcassets */; };
+		6E045D0929E1A9880061C241 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF929E1A9880061C241 /* App.swift */; };
+		6E045D0A29E1A9880061C241 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFB29E1A9880061C241 /* LoginView.swift */; };
+		6E045D0B29E1A9880061C241 /* DevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFC29E1A9880061C241 /* DevicesView.swift */; };
+		6E045D0C29E1A9880061C241 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFD29E1A9880061C241 /* ContentView.swift */; };
+		6E045D0D29E1A9880061C241 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFE29E1A9880061C241 /* DeviceRow.swift */; };
+		6E045D0E29E1A9880061C241 /* InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFF29E1A9880061C241 /* InfoPlist.swift */; };
+		6E045D1329E1AA8C0061C241 /* Swarm in Frameworks */ = {isa = PBXBuildFile; productRef = 6E045D1229E1AA8C0061C241 /* Swarm */; };
+		6E045D1629E1AAD30061C241 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 6E045D1529E1AAD30061C241 /* KeychainAccess */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6E045CDB29E1A8970061C241 /* SwarmApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwarmApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E045CE429E1A8980061C241 /* Swarm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Swarm.entitlements; sourceTree = "<group>"; };
+		6E045CE629E1A8980061C241 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6E045CEE29E1A9880061C241 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		6E045CEF29E1A9880061C241 /* StorePreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePreferences.swift; sourceTree = "<group>"; };
+		6E045CF029E1A9880061C241 /* StoreLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLog.swift; sourceTree = "<group>"; };
+		6E045CF129E1A9880061C241 /* StoreNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreNetworking.swift; sourceTree = "<group>"; };
+		6E045CF229E1A9880061C241 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		6E045CF329E1A9880061C241 /* StoreKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKeychain.swift; sourceTree = "<group>"; };
+		6E045CF529E1A9880061C241 /* AppIntents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
+		6E045CF729E1A9880061C241 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		6E045CF829E1A9880061C241 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Swarm.swiftpm/Assets.xcassets; sourceTree = "<group>"; };
+		6E045CF929E1A9880061C241 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = ../../Swarm.swiftpm/App.swift; sourceTree = "<group>"; };
+		6E045CFB29E1A9880061C241 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		6E045CFC29E1A9880061C241 /* DevicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesView.swift; sourceTree = "<group>"; };
+		6E045CFD29E1A9880061C241 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6E045CFE29E1A9880061C241 /* DeviceRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRow.swift; sourceTree = "<group>"; };
+		6E045CFF29E1A9880061C241 /* InfoPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoPlist.swift; path = ../../Swarm.swiftpm/InfoPlist.swift; sourceTree = "<group>"; };
+		6E045D1029E1AA6F0061C241 /* Swarm */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Swarm; path = ..; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E045CD829E1A8970061C241 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E045D1629E1AAD30061C241 /* KeychainAccess in Frameworks */,
+				6E045D1329E1AA8C0061C241 /* Swarm in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E045CD229E1A8970061C241 = {
+			isa = PBXGroup;
+			children = (
+				6E045D0F29E1AA6F0061C241 /* Packages */,
+				6E045CDD29E1A8970061C241 /* Swarm */,
+				6E045CDC29E1A8970061C241 /* Products */,
+				6E045D1129E1AA8C0061C241 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6E045CDC29E1A8970061C241 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CDB29E1A8970061C241 /* SwarmApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E045CDD29E1A8970061C241 /* Swarm */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CF929E1A9880061C241 /* App.swift */,
+				6E045CFF29E1A9880061C241 /* InfoPlist.swift */,
+				6E045CF829E1A9880061C241 /* Assets.xcassets */,
+				6E045CF629E1A9880061C241 /* Extensions */,
+				6E045CF429E1A9880061C241 /* Intents */,
+				6E045CED29E1A9880061C241 /* Model */,
+				6E045CFA29E1A9880061C241 /* Views */,
+				6E045CE429E1A8980061C241 /* Swarm.entitlements */,
+				6E045CE529E1A8980061C241 /* Preview Content */,
+			);
+			path = Swarm;
+			sourceTree = "<group>";
+		};
+		6E045CE529E1A8980061C241 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CE629E1A8980061C241 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6E045CED29E1A9880061C241 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CEE29E1A9880061C241 /* Preferences.swift */,
+				6E045CEF29E1A9880061C241 /* StorePreferences.swift */,
+				6E045CF029E1A9880061C241 /* StoreLog.swift */,
+				6E045CF129E1A9880061C241 /* StoreNetworking.swift */,
+				6E045CF229E1A9880061C241 /* Store.swift */,
+				6E045CF329E1A9880061C241 /* StoreKeychain.swift */,
+			);
+			name = Model;
+			path = ../../Swarm.swiftpm/Model;
+			sourceTree = "<group>";
+		};
+		6E045CF429E1A9880061C241 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CF529E1A9880061C241 /* AppIntents.swift */,
+			);
+			name = Intents;
+			path = ../../Swarm.swiftpm/Intents;
+			sourceTree = "<group>";
+		};
+		6E045CF629E1A9880061C241 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CF729E1A9880061C241 /* Task.swift */,
+			);
+			name = Extensions;
+			path = ../../Swarm.swiftpm/Extensions;
+			sourceTree = "<group>";
+		};
+		6E045CFA29E1A9880061C241 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CFB29E1A9880061C241 /* LoginView.swift */,
+				6E045CFC29E1A9880061C241 /* DevicesView.swift */,
+				6E045CFD29E1A9880061C241 /* ContentView.swift */,
+				6E045CFE29E1A9880061C241 /* DeviceRow.swift */,
+			);
+			name = Views;
+			path = ../../Swarm.swiftpm/Views;
+			sourceTree = "<group>";
+		};
+		6E045D0F29E1AA6F0061C241 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				6E045D1029E1AA6F0061C241 /* Swarm */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		6E045D1129E1AA8C0061C241 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E045CDA29E1A8970061C241 /* SwarmApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E045CEA29E1A8980061C241 /* Build configuration list for PBXNativeTarget "SwarmApp" */;
+			buildPhases = (
+				6E045CD729E1A8970061C241 /* Sources */,
+				6E045CD829E1A8970061C241 /* Frameworks */,
+				6E045CD929E1A8970061C241 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwarmApp;
+			packageProductDependencies = (
+				6E045D1229E1AA8C0061C241 /* Swarm */,
+				6E045D1529E1AAD30061C241 /* KeychainAccess */,
+			);
+			productName = Swarm;
+			productReference = 6E045CDB29E1A8970061C241 /* SwarmApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E045CD329E1A8970061C241 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					6E045CDA29E1A8970061C241 = {
+						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
+					};
+				};
+			};
+			buildConfigurationList = 6E045CD629E1A8970061C241 /* Build configuration list for PBXProject "Swarm" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6E045CD229E1A8970061C241;
+			packageReferences = (
+				6E045D1429E1AAD30061C241 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
+			productRefGroup = 6E045CDC29E1A8970061C241 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E045CDA29E1A8970061C241 /* SwarmApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6E045CD929E1A8970061C241 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E045D0829E1A9880061C241 /* Assets.xcassets in Resources */,
+				6E045CE729E1A8980061C241 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E045CD729E1A8970061C241 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E045D0B29E1A9880061C241 /* DevicesView.swift in Sources */,
+				6E045D0929E1A9880061C241 /* App.swift in Sources */,
+				6E045D0C29E1A9880061C241 /* ContentView.swift in Sources */,
+				6E045D0729E1A9880061C241 /* Task.swift in Sources */,
+				6E045D0629E1A9880061C241 /* AppIntents.swift in Sources */,
+				6E045D0429E1A9880061C241 /* Store.swift in Sources */,
+				6E045D0E29E1A9880061C241 /* InfoPlist.swift in Sources */,
+				6E045D0229E1A9880061C241 /* StoreLog.swift in Sources */,
+				6E045D0329E1A9880061C241 /* StoreNetworking.swift in Sources */,
+				6E045D0D29E1A9880061C241 /* DeviceRow.swift in Sources */,
+				6E045D0529E1A9880061C241 /* StoreKeychain.swift in Sources */,
+				6E045D0129E1A9880061C241 /* StorePreferences.swift in Sources */,
+				6E045D0A29E1A9880061C241 /* LoginView.swift in Sources */,
+				6E045D0029E1A9880061C241 /* Preferences.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6E045CE829E1A8980061C241 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6E045CE929E1A8980061C241 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		6E045CEB29E1A8980061C241 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Swarm/Swarm.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Swarm/Preview Content\"";
+				DEVELOPMENT_TEAM = 4W79SG34MW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Swarm;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colemancda.Swarm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG KEYCHAIN";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6E045CEC29E1A8980061C241 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Swarm/Swarm.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Swarm/Preview Content\"";
+				DEVELOPMENT_TEAM = 4W79SG34MW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Swarm;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colemancda.Swarm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = KEYCHAIN;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E045CD629E1A8970061C241 /* Build configuration list for PBXProject "Swarm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E045CE829E1A8980061C241 /* Debug */,
+				6E045CE929E1A8980061C241 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E045CEA29E1A8980061C241 /* Build configuration list for PBXNativeTarget "SwarmApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E045CEB29E1A8980061C241 /* Debug */,
+				6E045CEC29E1A8980061C241 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6E045D1429E1AAD30061C241 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E045D1229E1AA8C0061C241 /* Swarm */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Swarm;
+		};
+		6E045D1529E1AAD30061C241 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E045D1429E1AAD30061C241 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6E045CD329E1A8970061C241 /* Project object */;
+}
