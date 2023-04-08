@@ -62,44 +62,37 @@ final class NetworkingTests: XCTestCase {
     
     func testDeviceInformation() throws {
         
-        var devices = [String]()
-        devices.append(
+        let devices = [
             #"""
             [
               {
-                "deviceType": 0,
-                "deviceId": 0,
-                "deviceName": "",
-                "organizationId": 0,
-                "authCode": "string",
-                "comments": "",
-                "hiveCreationTime": "2023-04-08T07:54:22.287Z",
-                "hiveFirstheardTime": "2023-04-08T07:54:22.287Z",
-                "hiveLastheardTime": "2023-04-08T07:54:22.287Z",
-                "firmwareVersion": "",
+                "deviceType": 1,
+                "deviceId": 27662,
+                "deviceName": "My Swarm Device",
+                "comments": "Tracker",
+                "hiveCreationTime": "2022-10-04T18:46:02",
+                "hiveFirstheardTime": "2023-03-26T14:30:51",
+                "hiveLastheardTime": "2023-04-06T20:00:35",
+                "firmwareVersion": "v3.0.1",
                 "hardwareVersion": "",
-                "lastTelemetryReportPacketId": 0,
-                "lastHeardByDeviceType": 0,
-                "lastHeardByDeviceId": 0,
-                "lastHeardTime": "2023-04-08T07:54:22.287Z",
+                "lastTelemetryReportPacketId": 53906350,
+                "lastHeardByDeviceType": 3,
+                "lastHeardByDeviceId": 1530,
                 "counter": 0,
                 "dayofyear": 0,
-                "lastHeardCounter": 0,
-                "lastHeardDayofyear": 0,
-                "lastHeardByGroundstationId": 0,
-                "uptime": 0,
+                "lastHeardCounter": 98,
+                "lastHeardDayofyear": 96,
+                "lastHeardByGroundstationId": 248872,
                 "status": 0,
                 "twoWayEnabled": false,
-                "dataEncryptionEnabled": false,
+                "dataEncryptionEnabled": true,
                 "metadata": {
-                  "additionalProp1": "string",
-                  "additionalProp2": "string",
-                  "additionalProp3": "string"
+                  "device:type": "Other"
                 }
               }
             ]
             """#
-        )
+        ]
         
         for jsonString in devices {
             let devices = try JSONDecoder.swarm.decode([DeviceInformation].self, from: Data(jsonString.utf8))
