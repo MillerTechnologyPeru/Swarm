@@ -49,22 +49,22 @@ public struct DeviceInformation: Equatable, Hashable, Codable, Identifiable {
     public let deviceName: String
     
     /// The ID of the organization that owns the device.
-    public let organizationId: Int
+    public let organizationId: Int?
     
     /// The authentication code for the device.
-    public let authCode: String
+    public let authCode: String?
     
     /// Additional comments about the device.
-    public let comments: String
+    public let comments: String?
     
     /// The creation time of the device.
-    public let hiveCreationTime: String
+    public let hiveCreationTime: Date
     
     /// The time the device was first heard by the system.
-    public let hiveFirstheardTime: String
+    public let hiveFirstheardTime: Date
     
     /// The most recent time the device was heard by the system.
-    public let hiveLastheardTime: String
+    public let hiveLastheardTime: Date
     
     /// The version of the device's firmware.
     public let firmwareVersion: FirmwareVersion
@@ -82,7 +82,7 @@ public struct DeviceInformation: Equatable, Hashable, Codable, Identifiable {
     public let lastHeardByDeviceId: Int
     
     /// The most recent time the device was heard by any device.
-    public let lastHeardTime: String
+    public let lastHeardTime: Date?
     
     /// The most recent counter value reported by the device.
     public let counter: Int
@@ -100,7 +100,7 @@ public struct DeviceInformation: Equatable, Hashable, Codable, Identifiable {
     public let lastHeardByGroundstationId: Int
     
     /// The uptime of the device, in seconds.
-    public let uptime: Int
+    public let uptime: Int?
     
     /// The status of the device.
     public let status: Int
