@@ -41,12 +41,17 @@ var package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/MillerTechnologyPeru/Swarm.git", "0.1.0"..<"1.0.0"),
+        .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", "4.2.2"..<"5.0.0")
     ],
     targets: [
         .executableTarget(
             name: "AppModule",
             dependencies: [
                 .product(name: "Swarm", package: "Swarm"),
+                .product(
+                    name: "KeychainAccess",
+                    package: "KeychainAccess"
+                )
             ],
             path: "."
         )
