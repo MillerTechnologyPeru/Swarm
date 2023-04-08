@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /// Swarm Authorization Token
 public struct AuthorizationToken: Equatable, Hashable, RawRepresentable, Codable {
