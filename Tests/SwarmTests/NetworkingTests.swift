@@ -65,8 +65,7 @@ final class NetworkingTests: XCTestCase {
     
     func testDeviceInformation() throws {
         
-        let devices = [
-            #"""
+        let jsonString = #"""
             [
               {
                 "deviceType": 1,
@@ -95,12 +94,9 @@ final class NetworkingTests: XCTestCase {
               }
             ]
             """#
-        ]
         
-        for jsonString in devices {
-            let devices = try JSONDecoder.swarm.decode([DeviceInformation].self, from: Data(jsonString.utf8))
-            XCTAssertFalse(devices.isEmpty)
-        }
+        let devices = try JSONDecoder.swarm.decode([DeviceInformation].self, from: Data(jsonString.utf8))
+        XCTAssertEqual(devices.first?.id, 0x00006c0e)
     }
 }
 

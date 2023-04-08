@@ -55,7 +55,7 @@ public struct DeviceInformation: Equatable, Hashable, Codable, Identifiable {
     public let authCode: String?
     
     /// Additional comments about the device.
-    public let comments: String?
+    public let comments: String
     
     /// The creation time of the device.
     public let hiveCreationTime: Date
