@@ -28,6 +28,8 @@ public final class Store: ObservableObject {
     
     internal lazy var urlSession = loadURLSession()
     
+    internal var token: AuthorizationToken?
+    
     // MARK: - Initialization
     
     deinit {

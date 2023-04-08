@@ -18,6 +18,12 @@ internal extension Store {
         return keychain
     }
     
+    // FIXME: Fix keychain
+    subscript (token username: String) -> AuthorizationToken? {
+        get { self.token }
+        set { self.token = newValue }
+    }
+    /*
     subscript (token username: String) -> AuthorizationToken? {
         get {
             do {
@@ -51,7 +57,7 @@ internal extension Store {
                 assertionFailure("Unable store value in keychain: \(error)")
             }
         }
-    }
+    }*/
 }
 
 private extension Store {
@@ -65,7 +71,7 @@ private extension Store {
             catch {
                 log("⚠️ Unable to clear keychain: \(error.localizedDescription)")
                 // TODO: Flush logs
-                assertionFailure("Unable to clear keychain")
+                //assertionFailure("Unable to clear keychain")
             }
         }
     }
