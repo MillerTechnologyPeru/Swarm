@@ -11,7 +11,7 @@ import Foundation
 public struct AssetTrackerMessage: Equatable, Hashable, Codable {
     
     /// Timestamp of the data in Unix time (seconds since January 1, 1970).
-    public let timestamp: Int
+    public let timestamp: Date
     
     /// Latitude of the location in degrees.
     public let latitude: Double
@@ -32,7 +32,7 @@ public struct AssetTrackerMessage: Equatable, Hashable, Codable {
     public let satelliteCount: Int
 
     /// GPS status, where 1 means GPS fix is available and 0 means GPS fix is not available.
-    public let gpsStatus: Int
+    public let gpsStatus: GPSStatus
 
     /// Battery voltage of the device in millivolts.
     public let batteryVoltage: Int
@@ -82,6 +82,31 @@ public struct AssetTrackerMessage: Equatable, Hashable, Codable {
     }
 }
 
+// MARK: - JSON
+
+public extension AssetTrackerMessage {
+    
+    internal static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        return decoder
+    }()
+    
+    init(from data: Data) throws {
+        self = try Self.decoder.decode(AssetTrackerMessage.self, from: data)
+    }
+}
+
 // MARK: - Supporting Types
 
-
+public extension AssetTrackerMessage {
+    
+    enum GPSStatus: UInt8, Codable {
+        
+        /// GPS fix is not available
+        case notAvailable   = 0
+        
+        /// GPS fix is available
+        case available      = 1
+    }
+}
