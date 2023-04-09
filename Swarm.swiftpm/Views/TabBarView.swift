@@ -24,6 +24,15 @@ struct TabBarView: View {
             }
             .navigationViewStyle(.automatic)
             
+            // Messages
+            NavigationView {
+                MessagesView()
+            }
+            .tabItem {
+                Label("Messages", systemSymbol: .mailFill)
+            }
+            .navigationViewStyle(.automatic)
+            
             // Settings
             NavigationView {
                 SettingsView()

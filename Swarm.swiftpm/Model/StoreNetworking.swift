@@ -71,4 +71,22 @@ public extension Store {
             server: server
         )
     }
+    
+    /// This endpoint requests a JSON formatted array of messages which are filtered by the parameters.
+    ///
+    /// Only returns messages from the last 30 days.
+    func messages(
+        packet: Packet.ID? = nil,
+        device: DeviceID? = nil,
+        count: UInt? = nil
+    ) async throws -> [Packet] {
+        let token = try authorizationToken()
+        return try await urlSession.messages(
+            packet: packet,
+            device: device,
+            count: count,
+            authorization: token,
+            server: server
+        )
+    }
 }
