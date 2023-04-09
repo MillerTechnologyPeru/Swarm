@@ -12,7 +12,7 @@ struct ContentView: View {
         #elseif os(macOS)
         NavigationView {
             DevicesView()
-        }()
+        }
         #endif
     }
 }
