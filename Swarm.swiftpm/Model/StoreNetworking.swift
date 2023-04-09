@@ -51,9 +51,15 @@ public extension Store {
     
     /// Get an array of devices visible to the user, filtered by the parameters.
     func devices(
-        sortDescending: Bool = false
+        sortDescending: Bool = false,
+        deviceID: DeviceID? = nil
     ) async throws -> [DeviceInformation] {
         let token = try authorizationToken()
-        return try await urlSession.devices(sortDescending: sortDescending, authorization: token, server: server)
+        return try await urlSession.devices(
+            sortDescending: sortDescending,
+            deviceID: deviceID,
+            authorization: token,
+            server: server
+        )
     }
 }
