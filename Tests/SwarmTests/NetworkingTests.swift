@@ -140,6 +140,7 @@ final class NetworkingTests: XCTestCase {
         }
         """#
         
+        let request = UserProfileRequest()
         let profile = try JSONDecoder.swarm.decode(UserProfile.self, from: Data(responseJSON.utf8))
         XCTAssertEqual(profile.id, 4543)
         XCTAssertEqual(profile.username, "colemancda")
@@ -148,7 +149,21 @@ final class NetworkingTests: XCTestCase {
         XCTAssertEqual(profile.email, "alseycmiller@gmail.com")
         
         let url = URL(string: "https://bumblebee.hive.swarm.space/hive/api/v1/usercontext")!
+        XCTAssertEqual(request.url(for: .production), url)
         
+        let client: MockClient = {
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+            urlRequest.setValue("Bearer 1234", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
+            let urlResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            var client = MockClient()
+            client.responses[urlRequest] = (Data(responseJSON.utf8), urlResponse)
+            return client
+        }()
+        
+        let response = try await client.userProfile(authorization: "1234", server: .production)
+        XCTAssertEqual(response, profile)
     }
     
     func testAssetTracker() throws {
@@ -160,6 +175,35 @@ final class NetworkingTests: XCTestCase {
         let message = try AssetTrackerMessage(from: Data(responseJSON.utf8))
         XCTAssertEqual(message.timestamp.description, "2023-04-06 19:24:05 +0000")
         XCTAssertEqual(message.batteryVoltage, 4060)
+    }
+    
+    func testMessage() async throws {
+        
+        let responseJSON = #"""
+        [
+          {
+            "packetId": 54189236,
+            "messageId": 54189236,
+            "deviceType": 1,
+            "deviceId": 27662,
+            "direction": 1,
+            "dataType": 6,
+            "userApplicationId": 65002,
+            "organizationId": 67028,
+            "len": 173,
+            "data": "eyJkdCI6MTY4MDgwOTA0NSwibHQiOjMyLjA3MzcsImxuIjotMTE2Ljg3ODMsImFsIjoxNSwic3AiOjAsImhkIjowLCJnaiI6ODMsImdzIjoxLCJidiI6NDA2MCwidHAiOjQwLCJycyI6LTEwNCwidHIiOi0xMTIsInRzIjotOSwidGQiOjE2ODA4MDg5MjcsImhwIjoxNjUsInZwIjoxOTgsInRmIjo5NjY4Mn0=",
+            "ackPacketId": 0,
+            "status": 0,
+            "hiveRxTime": "2023-04-09T01:06:00"
+          }
+        ]
+        """#
+        
+        let messages = try JSONDecoder.swarm.decode([Packet].self, from: Data(responseJSON.utf8))
+        XCTAssertEqual(messages.count, 1)
+        XCTAssertEqual(messages.first?.id, 54189236)
+        XCTAssertEqual(messages.first?.device, 0x00006c0e)
+        XCTAssertEqual(messages.first?.hiveRxTime.description, "2023-04-09 01:06:00 +0000")
     }
 }
 
