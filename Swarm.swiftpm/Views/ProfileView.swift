@@ -191,7 +191,9 @@ struct ProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            ProfileView.StateView(value: .result(profile), reload: { }, logout: { })
+            NavigationView {
+                ProfileView.StateView(value: .result(profile), reload: { }, logout: { })
+            }
         }
     }
 }

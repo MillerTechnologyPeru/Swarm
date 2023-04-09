@@ -15,35 +15,41 @@ struct SettingsView: View {
     @EnvironmentObject
     private var store: Store
     
+    @State
+    private var error: String?
+    
+    @State
+    private var showLogin = false
+    
     var body: some View {
-        List {
-            Section {
-                if store.username == nil {
-                    SettingsButtonRow(
-                        title: "Login",
-                        icon: Image(systemSymbol: .personFill),
-                        action: {
-                            
-                        }
-                    )
-                } else {
-                    SettingsNavigationLink(
-                        title: "Profile",
-                        icon: Image(systemSymbol: .personFill),
-                        destination: {
-                            ProfileView()
-                        }
-                    )
+        LoginView(isPresented: $showLogin, error: $error) {
+            List {
+                Section {
+                    if store.username == nil {
+                        SettingsButtonRow(
+                            title: "Login",
+                            icon: Image(systemSymbol: .personFill),
+                            action: {
+                                showLogin = true
+                            }
+                        )
+                    } else {
+                        SettingsNavigationLink(
+                            title: "Profile",
+                            icon: Image(systemSymbol: .personFill),
+                            destination: {
+                                ProfileView()
+                            }
+                        )
+                    }
+                } footer: {
+                    Text(verbatim: "\nv\(Bundle.InfoPlist.shortVersion) (\(Bundle.InfoPlist.version))")
                 }
-            } footer: {
-                Text(verbatim: "\nv\(Bundle.InfoPlist.shortVersion) (\(Bundle.InfoPlist.version))")
             }
         }
-        //.listStyle(.grouped)
         .navigationTitle("Settings")
     }
 }
-
 
 #if DEBUG
 struct SettingsView_Previews: PreviewProvider {
