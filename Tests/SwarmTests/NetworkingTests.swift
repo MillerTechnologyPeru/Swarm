@@ -204,6 +204,7 @@ final class NetworkingTests: XCTestCase {
         XCTAssertEqual(messages.first?.id, 54189236)
         XCTAssertEqual(messages.first?.device, 0x00006c0e)
         XCTAssertEqual(messages.first?.hiveRxTime.description, "2023-04-09 01:06:00 +0000")
+        XCTAssertEqual(messages.first?.status, .incoming)
     }
 }
 
