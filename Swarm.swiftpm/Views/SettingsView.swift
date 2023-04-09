@@ -31,7 +31,7 @@ struct SettingsView: View {
                         title: "Profile",
                         icon: Image(systemSymbol: .personFill),
                         destination: {
-                            Text("Profile")
+                            ProfileView()
                         }
                     )
                 }
