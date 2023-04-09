@@ -74,6 +74,24 @@ public enum UserRole: String, CaseIterable, Codable {
     case tools          = "TOOLS"
 }
 
+extension UserRole: CustomStringConvertible {
+    
+    public var description: String {
+        switch self {
+        case .user:
+            return "User"
+        case .admin:
+            return "Admin"
+        case .superAdmin:
+            return "Super Admin"
+        case .groundStation:
+            return "Ground Station"
+        case .tools:
+            return "Tools"
+        }
+    }
+}
+
 /// Swarm Billing Type
 public enum BillingType: String, CaseIterable, Codable {
     
@@ -81,4 +99,20 @@ public enum BillingType: String, CaseIterable, Codable {
     case automaticallyBilledManuallyFinalized = "AUTOMATICALLY_BILLED_MANUALLY_FINALIZED"
     case automaticallyBilledAndFinalized = "AUTOMATICALLY_BILLED_AND_FINALIZED"
     case externallyBilled = "EXTERNALLY_BILLED"
+}
+
+extension BillingType: CustomStringConvertible {
+    
+    public var description: String {
+        switch self {
+        case .unbilled:
+            return "Unbilled"
+        case .automaticallyBilledManuallyFinalized:
+            return "Automatically Billed and Manually Finalized"
+        case .automaticallyBilledAndFinalized:
+            return "Automatically Billed and Finalized"
+        case .externallyBilled:
+            return "Externally Billed"
+        }
+    }
 }
