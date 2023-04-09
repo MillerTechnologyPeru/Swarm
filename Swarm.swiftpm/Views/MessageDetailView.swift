@@ -32,7 +32,7 @@ public struct MessageDetailView: View {
             if let location = try? AssetTrackerMessage(from: message.payload) {
                 LocationSection(location: location)
             }
-            if let string = String(data: message.payload, encoding: .utf8) {
+            if let string = String(data: message.payload, encoding: .utf8), string.isEmpty == false {
                 Section {
                     Text(verbatim: string)
                 } header: {
@@ -57,34 +57,9 @@ extension MessageDetailView {
         
         var body: some View {
             Section {
-                SubtitleRow(
-                    title: Text("Timestamp"),
-                    subtitle: Text(verbatim: location.timestamp.formatted(date: .long, time: .standard))
-                )
-                SubtitleRow(
-                    title: Text("Latitude"),
-                    subtitle: Text(verbatim: location.latitude.description)
-                )
-                SubtitleRow(
-                    title: Text("Longitude"),
-                    subtitle: Text(verbatim: location.longitude.description)
-                )
-                SubtitleRow(
-                    title: Text("Altitude"),
-                    subtitle: Text("\(location.altitude.description)m")
-                )
-                SubtitleRow(
-                    title: Text("Speed"),
-                    subtitle: Text("\(location.speed.description)m/s")
-                )
-                SubtitleRow(
-                    title: Text("Heading"),
-                    subtitle: Text("\(location.heading.description)°")
-                )
-                SubtitleRow(
-                    title: Text("Satellite Count"),
-                    subtitle: Text("\(location.satelliteCount.description)°")
-                )
+                ForEach(rows.enumerated().map { (index: $0.offset, view: $0.element) }, id: \.index) {
+                    AnyView($0.view)
+                }
             } header: {
                 Text("Location")
             }
@@ -92,6 +67,53 @@ extension MessageDetailView {
     }
 }
 
+internal extension MessageDetailView.LocationSection {
+    
+    var rows: [any View] {
+        [
+            SubtitleRow(
+                title: Text("Timestamp"),
+                subtitle: Text(verbatim: location.timestamp.formatted(date: .long, time: .standard))
+            ),
+            SubtitleRow(
+                title: Text("Longitude"),
+                subtitle: Text(verbatim: location.longitude.description)
+            ),
+            SubtitleRow(
+                title: Text("Latitude"),
+                subtitle: Text(verbatim: location.latitude.description)
+            ),
+            SubtitleRow(
+                title: Text("Altitude"),
+                subtitle: Text("\(location.altitude.description)m")
+            ),
+            SubtitleRow(
+                title: Text("Speed"),
+                subtitle: Text("\(location.speed.description)m/s")
+            ),
+            SubtitleRow(
+                title: Text("Heading"),
+                subtitle: Text("\(location.heading.description)°")
+            ),
+            SubtitleRow(
+                title: Text("Satellites"),
+                subtitle: Text(verbatim: location.satelliteCount.description)
+            ),
+            SubtitleRow(
+                title: Text("GPS Status"),
+                subtitle: Text(verbatim: location.gpsStatus.description)
+            ),
+            SubtitleRow(
+                title: Text("Battery"),
+                subtitle: Text(verbatim: String(format: "%.3fV", Float(location.batteryVoltage) / 1000))
+            ),
+            SubtitleRow(
+                title: Text("Signal Strength"),
+                subtitle: Text("\(location.signalStrength.description)dBm")
+            ),
+        ]
+    }
+}
 
 #if DEBUG
 struct MessageDetailView_Previews: PreviewProvider {
