@@ -17,10 +17,10 @@ struct SettingsNavigationLink <Destination: View, Image: View> : View {
     
     let icon: Image
     
-    let destination: Destination
+    let destination: () -> Destination
     
     var body: some View {
-        NavigationLink(destination: { destination }, label: {
+        NavigationLink(destination: destination, label: {
             SettingsRowLabelView(
                 title: title,
                 icon: icon
@@ -81,7 +81,7 @@ struct SettingsRowView_Previews: PreviewProvider {
                         title: "Profile",
                         icon: Image(systemSymbol: .personFill)
                             .symbolRenderingMode(.multicolor),
-                        destination: Text("Profile")
+                        destination: { Text("Profile") }
                     )
                     SettingsButtonRow(
                         title: "Scan",
@@ -97,16 +97,17 @@ struct SettingsRowView_Previews: PreviewProvider {
                         icon: Image(systemSymbol: .wave3ForwardCircleFill)
                             .symbolRenderingMode(.palette)
                             .foregroundStyle(.white, .blue),
-                        destination: Text("Bluetooth Settings")
+                        destination: { Text("Bluetooth Settings") }
                     )
                     SettingsNavigationLink(
                         title: "iCloud",
                         icon: Image(systemSymbol: .cloud)
                             .symbolRenderingMode(.multicolor),
-                        destination: Text("iCloud Settings")
+                        destination: { Text("iCloud Settings") }
                     )
                 }
             }
+            //.listStyle(.grouped)
         }
     }
 }
