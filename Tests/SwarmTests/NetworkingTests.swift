@@ -158,6 +158,7 @@ final class NetworkingTests: XCTestCase {
         """#
         
         let message = try AssetTrackerMessage(from: Data(responseJSON.utf8))
+        XCTAssertEqual(message.timestamp.description, "2023-04-06 19:24:05 +0000")
         XCTAssertEqual(message.batteryVoltage, 4060)
     }
 }
