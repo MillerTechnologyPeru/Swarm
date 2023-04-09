@@ -25,6 +25,8 @@ final class NetworkingTests: XCTestCase {
         let client: MockClient = {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
+            urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
             let responseJSON = #"""
             {
               "token": "Very1Long_random.L00King2String"
@@ -106,6 +108,7 @@ final class NetworkingTests: XCTestCase {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "GET"
             urlRequest.setValue("Bearer 1234", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
             let urlResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
             var client = MockClient()
             client.responses[urlRequest] = (Data(responseJSON.utf8), urlResponse)
@@ -114,6 +117,38 @@ final class NetworkingTests: XCTestCase {
         
         let response = try await client.devices(sortDescending: false, authorization: "1234", server: .production)
         XCTAssertEqual(response, devices)
+    }
+    
+    func testUserProfile() async throws {
+        
+        let responseJSON = #"""
+        {
+          "userId": 4543,
+          "username": "colemancda",
+          "organizationId": 67028,
+          "billingType": "AUTOMATICALLY_BILLED_MANUALLY_FINALIZED",
+          "enabled": true,
+          "registered": true,
+          "email": "alseycmiller@gmail.com",
+          "country": "US",
+          "role": "USER",
+          "featureFlags": {
+            "billing-manual-bill-pay": false
+          },
+          "twoWayEnabled": false,
+          "userApplicationId": 67028
+        }
+        """#
+        
+        let profile = try JSONDecoder.swarm.decode(UserProfile.self, from: Data(responseJSON.utf8))
+        XCTAssertEqual(profile.id, 4543)
+        XCTAssertEqual(profile.username, "colemancda")
+        XCTAssertEqual(profile.billingType, .automaticallyBilledManuallyFinalized)
+        XCTAssert(profile.isEnabled)
+        XCTAssertEqual(profile.email, "alseycmiller@gmail.com")
+        
+        let url = URL(string: "https://bumblebee.hive.swarm.space/hive/api/v1/usercontext")!
+        
     }
 }
 
