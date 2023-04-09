@@ -62,4 +62,13 @@ public extension Store {
             server: server
         )
     }
+    
+    /// Get a the user context for the current user.
+    func userProfile() async throws -> UserProfile {
+        let token = try authorizationToken()
+        return try await urlSession.userProfile(
+            authorization: token,
+            server: server
+        )
+    }
 }
