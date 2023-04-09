@@ -150,6 +150,16 @@ final class NetworkingTests: XCTestCase {
         let url = URL(string: "https://bumblebee.hive.swarm.space/hive/api/v1/usercontext")!
         
     }
+    
+    func testAssetTracker() throws {
+        
+        let responseJSON = #"""
+        {"dt":1680809045,"lt":31.0737,"ln":-115.8783,"al":15,"sp":0,"hd":0,"gj":83,"gs":1,"bv":4060,"tp":40,"rs":-104,"tr":-112,"ts":-9,"td":1680808927,"hp":165,"vp":198,"tf":96682}
+        """#
+        
+        let message = try AssetTrackerMessage(from: Data(responseJSON.utf8))
+        XCTAssertEqual(message.batteryVoltage, 4060)
+    }
 }
 
 // MARK: - Supporting Types
