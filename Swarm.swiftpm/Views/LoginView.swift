@@ -50,6 +50,10 @@ struct LoginView <Content: View>: View {
             SecureField("Password", text: $password)
                 //.keyboardType(.asciiCapable)
                 .textContentType(.password)
+            Button("Cancel", role: .cancel) {
+                self.task?.cancel()
+                self.isPresented = false
+            }
             Button("OK") {
                 self.task = Task { await login() }
             }
@@ -63,6 +67,7 @@ struct LoginView <Content: View>: View {
 extension LoginView {
     
     func login() async {
+        defer { self.password = "" }
         do {
             try await store.login(username: username.lowercased(), password: password)
         }
