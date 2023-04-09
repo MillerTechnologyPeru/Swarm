@@ -75,14 +75,12 @@ internal extension MessageDetailView.LocationSection {
                 title: Text("Timestamp"),
                 subtitle: Text(verbatim: location.timestamp.formatted(date: .long, time: .standard))
             ),
-            SubtitleRow(
-                title: Text("Longitude"),
-                subtitle: Text(verbatim: location.longitude.description)
-            ),
-            SubtitleRow(
-                title: Text("Latitude"),
-                subtitle: Text(verbatim: location.latitude.description)
-            ),
+            NavigationLink(destination: { AssetTrackerMapView(location: location) }) {
+                SubtitleRow(
+                    title: Text("Position"),
+                    subtitle: Text("\(location.latitude.description),\(location.longitude.description)")
+                )
+            },
             SubtitleRow(
                 title: Text("Altitude"),
                 subtitle: Text("\(location.altitude.description)m")

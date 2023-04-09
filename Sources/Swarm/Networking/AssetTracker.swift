@@ -82,6 +82,15 @@ public struct AssetTrackerMessage: Equatable, Hashable, Codable {
     }
 }
 
+// MARK: - Identifiable
+
+extension AssetTrackerMessage: Identifiable {
+    
+    public var id: String {
+        Int(timestamp.timeIntervalSince1970).description
+    }
+}
+
 // MARK: - JSON
 
 public extension AssetTrackerMessage {
