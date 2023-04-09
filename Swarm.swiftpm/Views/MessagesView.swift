@@ -96,7 +96,7 @@ extension MessagesView {
             List {
                 ForEach(messages) { message in
                     NavigationLink(destination: {
-                        Text(verbatim: "\(message)")
+                        MessageDetailView(message: message)
                     }, label: {
                         MessageRow(message: message)
                     })
