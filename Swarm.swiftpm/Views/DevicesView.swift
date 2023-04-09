@@ -43,9 +43,6 @@ extension DevicesView {
             if store.username != nil {
                 // load devices
                 self.devices = try await store.devices(sortDescending: sortDescending)
-            } else {
-                // force login
-                presentLogin = true
             }
         }
         catch {
