@@ -110,3 +110,15 @@ public extension AssetTrackerMessage {
         case available      = 1
     }
 }
+
+public extension AssetTrackerMessage.GPSStatus {
+    
+    var description: String {
+        switch self {
+        case .notAvailable:
+            return "GPS fix not available"
+        case .available:
+            return "GPS fix available"
+        }
+    }
+}
