@@ -23,7 +23,8 @@ struct ProfileView: View {
     var body: some View {
         StateView(
             value: value,
-            reload: reload
+            reload: reload,
+            logout: logout
         )
         .onAppear {
             reload()
@@ -58,6 +59,20 @@ extension ProfileView {
             }
         }
     }
+    
+    func logout() {
+        self.value = .loading
+        let oldTask = self.task
+        Task {
+            await oldTask?.value
+            do {
+                try await store.logout()
+            }
+            catch {
+                store.log("Unable to logout")
+            }
+        }
+    }
 }
 
 extension ProfileView {
@@ -67,6 +82,8 @@ extension ProfileView {
         let value: Value
         
         let reload: () -> ()
+        
+        let logout: () -> ()
         
         var body: some View {
             content
@@ -85,7 +102,7 @@ extension ProfileView {
                 )
             case .result(let userProfile):
                 return AnyView(
-                    ResultView(result: userProfile)
+                    ResultView(result: userProfile, logout: logout)
                 )
             }
         }
@@ -94,6 +111,8 @@ extension ProfileView {
     struct ResultView: View {
         
         let result: UserProfile
+        
+        let logout: () -> ()
         
         var body: some View {
             List {
@@ -122,6 +141,14 @@ extension ProfileView {
                         title: Text("Billing"),
                         subtitle: Text(verbatim: result.billingType.description)
                     )
+                }
+                Section {
+                    Button(action: logout) {
+                        VStack(alignment: .center) {
+                            Text("Logout")
+                                .foregroundColor(.red)
+                        }
+                    }
                 }
             }
         }
@@ -157,3 +184,15 @@ extension ProfileView {
     }
 }
 
+#if DEBUG
+struct ProfileView_Previews: PreviewProvider {
+    
+    static let profile = try! JSONDecoder.swarm.decode(UserProfile.self, from: Data(#"{"dt":1680809045,"lt":31.0737,"ln":-115.8783,"al":15,"sp":0,"hd":0,"gj":83,"gs":1,"bv":4060,"tp":40,"rs":-104,"tr":-112,"ts":-9,"td":1680808927,"hp":165,"vp":198,"tf":96682}"#.utf8))
+    
+    static var previews: some View {
+        Group {
+            ProfileView.StateView(value: .result(profile), reload: { }, logout: { })
+        }
+    }
+}
+#endif
