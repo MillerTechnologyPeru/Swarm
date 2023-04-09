@@ -30,6 +30,7 @@
 		6E045D1C29E1B67D0061C241 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D1B29E1B67D0061C241 /* TabBarView.swift */; };
 		6E045D1F29E1B6FD0061C241 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 6E045D1E29E1B6FD0061C241 /* SFSafeSymbols */; };
 		6E045D2129E1B7300061C241 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2029E1B7300061C241 /* SettingsView.swift */; };
+		6E045D2329E2428F0061C241 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2229E2428F0061C241 /* SettingsRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		6E045D1929E1ADD60061C241 /* SubtitleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleRow.swift; sourceTree = "<group>"; };
 		6E045D1B29E1B67D0061C241 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		6E045D2029E1B7300061C241 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		6E045D2229E2428F0061C241 /* SettingsRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				6E045CFC29E1A9880061C241 /* DevicesView.swift */,
 				6E045CFB29E1A9880061C241 /* LoginView.swift */,
 				6E045D2029E1B7300061C241 /* SettingsView.swift */,
+				6E045D2229E2428F0061C241 /* SettingsRowView.swift */,
 				6E045D1929E1ADD60061C241 /* SubtitleRow.swift */,
 				6E045D1B29E1B67D0061C241 /* TabBarView.swift */,
 			);
@@ -273,6 +276,7 @@
 				6E045D0D29E1A9880061C241 /* DeviceRow.swift in Sources */,
 				6E045D0529E1A9880061C241 /* StoreKeychain.swift in Sources */,
 				6E045D0129E1A9880061C241 /* StorePreferences.swift in Sources */,
+				6E045D2329E2428F0061C241 /* SettingsRowView.swift in Sources */,
 				6E045D0A29E1A9880061C241 /* LoginView.swift in Sources */,
 				6E045D0029E1A9880061C241 /* Preferences.swift in Sources */,
 			);
