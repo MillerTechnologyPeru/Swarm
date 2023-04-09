@@ -18,6 +18,9 @@ internal extension URL {
         return _appending(items)
         #else
         if #available(macOS 13, iOS 16, *) {
+            guard items.isEmpty == false else {
+                return self
+            }
             return appending(queryItems: items)
         } else {
             return _appending(items)
@@ -29,6 +32,9 @@ internal extension URL {
 private extension URL {
     
     func _appending(_ queryItems: [URLQueryItem]) -> URL {
+        guard queryItems.isEmpty == false else {
+            return self
+        }
         var components = URLComponents(string: self.absoluteString)!
         components.queryItems = queryItems
         return components.url!
