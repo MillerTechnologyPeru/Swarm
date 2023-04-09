@@ -215,7 +215,24 @@ final class NetworkingTests: XCTestCase {
         XCTAssertEqual(message.payload, Data(messageJSON.utf8))
         XCTAssertEqual(Int(message.length), message.payload.count)
         
+        let request = MessagesRequest()
         
+        let url = URL(string: "https://bumblebee.hive.swarm.space/hive/api/v1/messages")!
+        XCTAssertEqual(request.url(for: .production), url)
+        
+        let client: MockClient = {
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+            urlRequest.setValue("Bearer 1234", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
+            let urlResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            var client = MockClient()
+            client.responses[urlRequest] = (Data(responseJSON.utf8), urlResponse)
+            return client
+        }()
+        
+        let response = try await client.messages(authorization: "1234", server: .production)
+        XCTAssertEqual(response, messages)
     }
 }
 
