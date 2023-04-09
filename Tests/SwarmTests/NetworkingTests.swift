@@ -199,12 +199,23 @@ final class NetworkingTests: XCTestCase {
         ]
         """#
         
+        let messageJSON = #"{"dt":1680809045,"lt":32.0737,"ln":-116.8783,"al":15,"sp":0,"hd":0,"gj":83,"gs":1,"bv":4060,"tp":40,"rs":-104,"tr":-112,"ts":-9,"td":1680808927,"hp":165,"vp":198,"tf":96682}"#
+        
         let messages = try JSONDecoder.swarm.decode([Packet].self, from: Data(responseJSON.utf8))
         XCTAssertEqual(messages.count, 1)
-        XCTAssertEqual(messages.first?.id, 54189236)
-        XCTAssertEqual(messages.first?.device, 0x00006c0e)
-        XCTAssertEqual(messages.first?.hiveRxTime.description, "2023-04-09 01:06:00 +0000")
-        XCTAssertEqual(messages.first?.status, .incoming)
+        guard let message = messages.first else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(message.id, 54189236)
+        XCTAssertEqual(message.device, 0x00006c0e)
+        XCTAssertEqual(message.hiveRxTime.description, "2023-04-09 01:06:00 +0000")
+        XCTAssertEqual(message.status, .incoming)
+        XCTAssertEqual(String(data: message.payload, encoding: .utf8), messageJSON)
+        XCTAssertEqual(message.payload, Data(messageJSON.utf8))
+        XCTAssertEqual(Int(message.length), message.payload.count)
+        
+        
     }
 }
 
