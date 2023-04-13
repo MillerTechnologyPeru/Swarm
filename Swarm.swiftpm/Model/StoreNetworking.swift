@@ -24,6 +24,19 @@ internal extension Store {
         }
         return token
     }
+    
+    func authorized<T>(
+        _ block: (AuthorizationToken) async throws -> T
+    ) async throws -> T {
+        let token = try authorizationToken()
+        do {
+            return try await block(token)
+        }
+        catch {
+            try? await logout()
+            throw error
+        }
+    }
 }
 
 public extension Store {
@@ -32,7 +45,11 @@ public extension Store {
         username: String,
         password: String
     ) async throws {
-        let token = try await urlSession.login(username: username, password: password, server: server)
+        let token = try await urlSession.login(
+            username: username,
+            password: password,
+            server: server
+        )
         // store username in preferences and token in keychain
         self[token: username] = token
         self.username = username
@@ -54,22 +71,24 @@ public extension Store {
         sortDescending: Bool = false,
         deviceID: DeviceID? = nil
     ) async throws -> [DeviceInformation] {
-        let token = try authorizationToken()
-        return try await urlSession.devices(
-            sortDescending: sortDescending,
-            deviceID: deviceID,
-            authorization: token,
-            server: server
-        )
+        try await authorized { token in
+            try await urlSession.devices(
+                sortDescending: sortDescending,
+                deviceID: deviceID,
+                authorization: token,
+                server: server
+            )
+        }
     }
     
     /// Get a the user context for the current user.
     func userProfile() async throws -> UserProfile {
-        let token = try authorizationToken()
-        return try await urlSession.userProfile(
-            authorization: token,
-            server: server
-        )
+        try await authorized { token in
+            try await urlSession.userProfile(
+                authorization: token,
+                server: server
+            )
+        }
     }
     
     /// This endpoint requests a JSON formatted array of messages which are filtered by the parameters.
@@ -80,13 +99,14 @@ public extension Store {
         device: DeviceID? = nil,
         count: UInt? = nil
     ) async throws -> [Packet] {
-        let token = try authorizationToken()
-        return try await urlSession.messages(
-            packet: packet,
-            device: device,
-            count: count,
-            authorization: token,
-            server: server
-        )
+        try await authorized { token in
+            try await urlSession.messages(
+                packet: packet,
+                device: device,
+                count: count,
+                authorization: token,
+                server: server
+            )
+        }
     }
 }
