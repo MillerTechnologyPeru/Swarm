@@ -34,6 +34,14 @@ struct FetchMessagesIntent: AppIntent {
     )
     var limit: Int
     
+    init() { }
+    
+    init(device: DeviceEntity? = nil, limit: Int = 100) {
+        self.init()
+        self.device = device
+        self.limit = limit
+    }
+    
     func perform() async throws -> some IntentResult {
         let results = try await store
             .messages(device: device?.id, count: UInt(limit))
