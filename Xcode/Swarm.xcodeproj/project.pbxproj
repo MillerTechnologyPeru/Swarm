@@ -190,20 +190,11 @@
 		6E045CFA29E1A9880061C241 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6E045CFD29E1A9880061C241 /* ContentView.swift */,
-				6E045D1729E1AD1C0061C241 /* DeviceInformationView.swift */,
-				6E045CFE29E1A9880061C241 /* DeviceRow.swift */,
-				6E045CFC29E1A9880061C241 /* DevicesView.swift */,
+				6EAF8ED92A08025C00F44AEC /* Detail */,
+				6EAF8ED82A08025700F44AEC /* List */,
+				6EAF8ED72A08023400F44AEC /* Navigation */,
+				6EAF8ED62A08021B00F44AEC /* Row */,
 				6E045CFB29E1A9880061C241 /* LoginView.swift */,
-				6E045D2429E24CCE0061C241 /* ProfileView.swift */,
-				6E045D2229E2428F0061C241 /* SettingsRowView.swift */,
-				6E045D2029E1B7300061C241 /* SettingsView.swift */,
-				6E045D1929E1ADD60061C241 /* SubtitleRow.swift */,
-				6E045D1B29E1B67D0061C241 /* TabBarView.swift */,
-				6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */,
-				6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */,
-				6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */,
-				6EFAFD3B29E2A56500DE7BB8 /* AssetTrackerMapView.swift */,
 			);
 			name = Views;
 			path = ../../Swarm.swiftpm/Views;
@@ -267,6 +258,47 @@
 			);
 			name = Localization;
 			path = ../../Swarm.swiftpm/Localization;
+			sourceTree = "<group>";
+		};
+		6EAF8ED62A08021B00F44AEC /* Row */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CFE29E1A9880061C241 /* DeviceRow.swift */,
+				6E045D2229E2428F0061C241 /* SettingsRowView.swift */,
+				6E045D1929E1ADD60061C241 /* SubtitleRow.swift */,
+				6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */,
+			);
+			path = Row;
+			sourceTree = "<group>";
+		};
+		6EAF8ED72A08023400F44AEC /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CFD29E1A9880061C241 /* ContentView.swift */,
+				6E045D1B29E1B67D0061C241 /* TabBarView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		6EAF8ED82A08025700F44AEC /* List */ = {
+			isa = PBXGroup;
+			children = (
+				6E045CFC29E1A9880061C241 /* DevicesView.swift */,
+				6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */,
+				6E045D2029E1B7300061C241 /* SettingsView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		6EAF8ED92A08025C00F44AEC /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				6EFAFD3B29E2A56500DE7BB8 /* AssetTrackerMapView.swift */,
+				6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */,
+				6E045D1729E1AD1C0061C241 /* DeviceInformationView.swift */,
+				6E045D2429E24CCE0061C241 /* ProfileView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
