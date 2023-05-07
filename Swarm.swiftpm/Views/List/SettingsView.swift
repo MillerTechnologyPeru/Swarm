@@ -18,33 +18,31 @@ struct SettingsView: View {
     @State
     private var error: String?
     
-    @State
-    private var showLogin = false
+    @Binding
+    var showLogin: Bool
     
     var body: some View {
-        LoginView(isPresented: $showLogin, error: $error) {
-            List {
-                Section {
-                    if store.username == nil {
-                        SettingsButtonRow(
-                            title: "Login",
-                            icon: Image(systemSymbol: .personFill),
-                            action: {
-                                showLogin = true
-                            }
-                        )
-                    } else {
-                        SettingsNavigationLink(
-                            title: "Profile",
-                            icon: Image(systemSymbol: .personFill),
-                            destination: {
-                                ProfileView()
-                            }
-                        )
-                    }
-                } footer: {
-                    Text(verbatim: "\nv\(Bundle.InfoPlist.shortVersion) (\(Bundle.InfoPlist.version))")
+        List {
+            Section {
+                if let username = store.username {
+                    SettingsNavigationLink(
+                        title: "Profile",
+                        icon: Image(systemSymbol: .personFill),
+                        destination: {
+                            ProfileView(email: username)
+                        }
+                    )
+                } else {
+                    SettingsButtonRow(
+                        title: "Login",
+                        icon: Image(systemSymbol: .personFill),
+                        action: {
+                            showLogin = true
+                        }
+                    )
                 }
+            } footer: {
+                Text(verbatim: "\nv\(Bundle.InfoPlist.shortVersion) (\(Bundle.InfoPlist.version))")
             }
         }
         .navigationTitle("Settings")
