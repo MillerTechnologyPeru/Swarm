@@ -30,7 +30,7 @@ public struct DeviceInformation: Equatable, Hashable, Codable, Identifiable {
         case counter
         case dayOfYear = "dayofyear"
         case lastHeardCounter
-        case lastHeardDayofyear
+        case lastHeardDayOfYear = "lastHeardDayofyear"
         case lastHeardByGroundstationId
         case uptime
         case status
@@ -94,7 +94,7 @@ public struct DeviceInformation: Equatable, Hashable, Codable, Identifiable {
     public let lastHeardCounter: Int
     
     /// The day of the year on which the most recent counter value was heard by any device.
-    public let lastHeardDayofyear: Int
+    public let lastHeardDayOfYear: Int
     
     /// The ID of the most recent ground station that heard the device.
     public let lastHeardByGroundstationId: Int
