@@ -36,6 +36,10 @@
 		6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */; };
 		6EAF8EC42A07267000F44AEC /* DeviceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBF2A07267000F44AEC /* DeviceQuery.swift */; };
 		6EAF8EC72A07267A00F44AEC /* LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EC62A07267A00F44AEC /* LocalizedError.swift */; };
+		6EAF8ECB2A07319C00F44AEC /* PacketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECA2A07319C00F44AEC /* PacketEntity.swift */; };
+		6EAF8ECD2A07329C00F44AEC /* MessageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECC2A07329C00F44AEC /* MessageEntity.swift */; };
+		6EAF8ECF2A07376F00F44AEC /* PacketStatusAppEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */; };
+		6EAF8ED12A073F9300F44AEC /* PacketQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */; };
 		6EFAFD3429E2974500DE7BB8 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */; };
 		6EFAFD3629E2981D00DE7BB8 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */; };
 		6EFAFD3829E29C7000DE7BB8 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */; };
@@ -73,6 +77,10 @@
 		6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		6EAF8EBF2A07267000F44AEC /* DeviceQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceQuery.swift; sourceTree = "<group>"; };
 		6EAF8EC62A07267A00F44AEC /* LocalizedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedError.swift; sourceTree = "<group>"; };
+		6EAF8ECA2A07319C00F44AEC /* PacketEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketEntity.swift; sourceTree = "<group>"; };
+		6EAF8ECC2A07329C00F44AEC /* MessageEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEntity.swift; sourceTree = "<group>"; };
+		6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketStatusAppEnum.swift; sourceTree = "<group>"; };
+		6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketQuery.swift; sourceTree = "<group>"; };
 		6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
@@ -223,6 +231,8 @@
 			children = (
 				6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */,
 				6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */,
+				6EAF8ECC2A07329C00F44AEC /* MessageEntity.swift */,
+				6EAF8ECA2A07319C00F44AEC /* PacketEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -231,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				6EAF8EBF2A07267000F44AEC /* DeviceQuery.swift */,
+				6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */,
 			);
 			path = EntityQuery;
 			sourceTree = "<group>";
@@ -238,6 +249,7 @@
 		6EAF8EC02A07267000F44AEC /* AppEnum */ = {
 			isa = PBXGroup;
 			children = (
+				6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */,
 			);
 			path = AppEnum;
 			sourceTree = "<group>";
@@ -337,17 +349,21 @@
 				6E045D0B29E1A9880061C241 /* DevicesView.swift in Sources */,
 				6E045D2129E1B7300061C241 /* SettingsView.swift in Sources */,
 				6EAF8EC72A07267A00F44AEC /* LocalizedError.swift in Sources */,
+				6EAF8ECF2A07376F00F44AEC /* PacketStatusAppEnum.swift in Sources */,
 				6E045D0929E1A9880061C241 /* App.swift in Sources */,
 				6EAF8EC12A07267000F44AEC /* DeviceMetadataEntity.swift in Sources */,
 				6E045D0C29E1A9880061C241 /* ContentView.swift in Sources */,
 				6E045D0729E1A9880061C241 /* Task.swift in Sources */,
 				6EFAFD3A29E29D7B00DE7BB8 /* Hexadecimal.swift in Sources */,
 				6EAF8EC42A07267000F44AEC /* DeviceQuery.swift in Sources */,
+				6EAF8ECD2A07329C00F44AEC /* MessageEntity.swift in Sources */,
 				6E045D0429E1A9880061C241 /* Store.swift in Sources */,
 				6E045D1829E1AD1C0061C241 /* DeviceInformationView.swift in Sources */,
 				6EFAFD3C29E2A56500DE7BB8 /* AssetTrackerMapView.swift in Sources */,
+				6EAF8ECB2A07319C00F44AEC /* PacketEntity.swift in Sources */,
 				6E045D0E29E1A9880061C241 /* InfoPlist.swift in Sources */,
 				6EFAFD3429E2974500DE7BB8 /* MessagesView.swift in Sources */,
+				6EAF8ED12A073F9300F44AEC /* PacketQuery.swift in Sources */,
 				6EFAFD3629E2981D00DE7BB8 /* MessageRow.swift in Sources */,
 				6E045D0229E1A9880061C241 /* StoreLog.swift in Sources */,
 				6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */,
