@@ -7,9 +7,10 @@
 
 import Foundation
 
+/// Swarm REST API Error
 public enum SwarmNetworkingError: Error {
     
     case authenticationRequired
-    case invalidStatusCode(Int)
+    case invalidStatusCode(Int, Swarm.ErrorResponse? = nil)
     case invalidResponse(Data)
 }
