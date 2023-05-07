@@ -65,6 +65,28 @@ final class NetworkingTests: XCTestCase {
         try await client.logout(authorization: token)
     }
     
+    func testErrorResponse() throws {
+        
+        let jsonResponse = #"""
+        {
+          "status": "BAD_REQUEST",
+          "message": "Device already registered",
+          "debugMessage": "",
+          "timestamp": "2023-05-07 19:51:03"
+        }
+        """#
+        
+        let response = ErrorResponse(
+            status: "BAD_REQUEST",
+            message: "Device already registered",
+            debugMessage: "",
+            timestamp: Date(timeIntervalSinceReferenceDate: 705181863)
+        )
+        
+        let decodedResponse = try ErrorResponse(from: Data(jsonResponse.utf8))
+        XCTAssertEqual(decodedResponse, response)
+    }
+    
     func testDeviceInformation() async throws {
         
         let responseJSON = #"""
