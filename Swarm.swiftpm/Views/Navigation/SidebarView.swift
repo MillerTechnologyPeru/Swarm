@@ -18,7 +18,6 @@ struct SidebarView: View {
     var body: some View {
         NavigationView {
             DevicesView()
-                .frame(minWidth: 250)
             Text("Select a device")
         }
     }

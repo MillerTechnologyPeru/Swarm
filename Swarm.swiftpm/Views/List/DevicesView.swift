@@ -36,11 +36,15 @@ struct DevicesView: View {
             await reload()
         }
         .toolbar {
+            #if os(iOS)
             progressIndicator
-            #if os(macOS)
+            #elseif os(macOS)
+            Spacer()
+            progressIndicator
             refreshButton
             #endif
         }
+        .frame(minWidth: 250)
     }
 }
 
