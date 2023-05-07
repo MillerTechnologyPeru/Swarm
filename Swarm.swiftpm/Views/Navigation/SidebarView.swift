@@ -18,8 +18,10 @@ struct SidebarView: View {
     var body: some View {
         NavigationView {
             DevicesView()
+                .listStyle(.sidebar)
             Text("Select a device")
         }
+        .navigationViewStyle(.columns)
     }
 }
 #endif

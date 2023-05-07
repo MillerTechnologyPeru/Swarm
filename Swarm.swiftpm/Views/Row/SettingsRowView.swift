@@ -107,7 +107,6 @@ struct SettingsRowView_Previews: PreviewProvider {
                     )
                 }
             }
-            //.listStyle(.grouped)
         }
     }
 }

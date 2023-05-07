@@ -24,25 +24,28 @@ struct TabBarView: View {
             // Devices
             NavigationView {
                 DevicesView()
+                Text("Select a device")
             }
             .tabItem {
                 Label("Devices", systemSymbol: .antennaRadiowavesLeftAndRight)
             }
-            .navigationViewStyle(.automatic)
             
             // Messages
             NavigationView {
                 MessagesView()
+                Text("Select a message")
             }
             .tabItem {
                 Label("Messages", systemSymbol: .mailFill)
             }
-            .navigationViewStyle(.automatic)
             
             // Settings
             NavigationView {
                 SettingsView(showLogin: $showLogin)
-                Text("Settings detail")
+                
+                Image(systemSymbol: .gearshapeFill)
+                    .font(.system(size: 25))
+                    .foregroundColor(.gray)
             }
             .tabItem {
                 Label("Settings", systemSymbol: .gearshapeFill)

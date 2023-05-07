@@ -45,6 +45,7 @@ struct SettingsView: View {
                 Text(verbatim: "\nv\(Bundle.InfoPlist.shortVersion) (\(Bundle.InfoPlist.version))")
             }
         }
+        .listStyle(.automatic)
         .navigationTitle("Settings")
     }
 }
@@ -56,6 +57,11 @@ struct SettingsView_Previews: PreviewProvider {
             SettingsView(showLogin: .constant(false))
                 .environmentObject(Store())
         }
+        .previewDisplayName("Settings View")
+        
+        TabBarView()
+            .environmentObject(Store())
+            .previewDisplayName("Tab Bar")
     }
 }
 #endif
