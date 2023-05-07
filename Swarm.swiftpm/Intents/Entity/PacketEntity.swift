@@ -87,6 +87,7 @@ extension PacketEntity {
     var displayRepresentation: DisplayRepresentation {
         return DisplayRepresentation(
             title: "Packet \(id.description)",
+            subtitle: "\(hiveRxTime.formatted(.dateTime))",
             image: .init(systemName: "envelope.fill")
         )
     }
