@@ -234,6 +234,36 @@ final class NetworkingTests: XCTestCase {
         let response = try await client.messages(authorization: "1234", server: .production)
         XCTAssertEqual(response, messages)
     }
+    
+    func testTelemetryData() async throws {
+        let jsonResponse = #"""
+        [{
+            "packetId": 57469052,
+            "telemetryVersion": 1,
+            "telemetryAt": "2023-05-05T06:45:54",
+            "telemetryLatitude": 31.07475662231445,
+            "telemetryLongitude": -115.87932586669922,
+            "telemetryAltitude": -16,
+            "telemetryCourse": 0,
+            "telemetrySpeed": 0,
+            "telemetryBatteryVoltage": 32,
+            "telemetryBatteryCurrent": 0,
+            "telemetryTemperatureK": 30114,
+            "deviceType": 1,
+            "deviceId": 27662
+        }]
+        """#
+        
+        let messages = try JSONDecoder.swarm.decode([TelemetryData].self, from: Data(jsonResponse.utf8))
+        XCTAssertEqual(messages.count, 1)
+        guard let telemetryData = messages.first else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(telemetryData.device, 27662)
+        XCTAssertEqual(telemetryData.id, 57469052)
+        XCTAssertEqual(telemetryData.version, 1)
+    }
 }
 
 // MARK: - Supporting Types
