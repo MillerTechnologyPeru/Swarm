@@ -46,7 +46,10 @@ extension KeychainAccess.Keychain: CredentialStorage {
     
     func set(_ newValue: String, key: String) async throws {
         try await Task(priority: .utility) {
-            try set(newValue, key: key, ignoringAttributeSynchronizable: true)
+            do {
+                try set(newValue, key: key, ignoringAttributeSynchronizable: true)
+            }
+            catch KeychainAccess.Status.duplicateItem { } // ignore duplicate item error
         }.value
     }
 }
@@ -84,9 +87,6 @@ internal extension Store {
         let keychain: CredentialStorage
         if isKeychainEnabled {
             keychain = Keychain(service: "com.colemancda.Swarm.AuthorizationToken")
-            // discard all auth tokens for debug builds on launch
-            #if DEBUG
-            #endif
         } else {
             keychain = InMemoryCredentialStorage()
         }
