@@ -13,7 +13,6 @@ import Swarm
 struct DeviceQuery: EntityQuery {
     
     func entities(for identifiers: [DeviceEntity.ID]) async throws -> [DeviceEntity] {
-        let store = SwarmApp.store
         // fetch from server
         let devices = try await store.devices()
         // filter locally
@@ -24,7 +23,6 @@ struct DeviceQuery: EntityQuery {
     }
     
     func suggestedEntities() async throws -> [DeviceEntity] {
-        let store = SwarmApp.store
         let devices = try await store.devices()
         return devices
             .map { .init($0) }
