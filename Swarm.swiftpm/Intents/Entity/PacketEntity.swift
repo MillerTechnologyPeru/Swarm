@@ -7,6 +7,7 @@
 
 import Foundation
 import AppIntents
+import CoreLocation
 import Swarm
 
 @available(macOS 13.0, iOS 16.0, *)
@@ -70,6 +71,9 @@ struct PacketEntity: AppEntity {
     /// The time at which the packet was received by the server (in UTC timezone).
     @Property(title: "Recieved")
     var hiveRxTime: Date
+    
+    @Property(title: "Location")
+    var location: CLPlacemark?
 }
 
 @available(macOS 13.0, iOS 16.0, *)
@@ -125,5 +129,7 @@ extension PacketEntity {
         self.dataType = value.dataType
         self.organization = value.organization
         self.payload = IntentFile(data: value.payload, filename: "message.json", type: .json)
+        self.location = (try? AssetTrackerMessage(from: value.payload))
+            .flatMap { .init(message: $0, name: "Packet \(id.description)") }
     }
 }
