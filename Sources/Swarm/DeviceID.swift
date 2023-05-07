@@ -6,7 +6,7 @@
 //
 
 /// Swarm Device ID
-public struct DeviceID: Equatable, Hashable, Codable, RawRepresentable {
+public struct DeviceID: Equatable, Hashable, Codable, RawRepresentable, Sendable {
     
     public let rawValue: UInt32
     
