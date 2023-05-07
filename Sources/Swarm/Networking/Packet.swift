@@ -56,7 +56,7 @@ public struct Packet: Equatable, Hashable, Codable, Identifiable {
     
     public enum CodingKeys: String, CodingKey {
         case id = "packetId"
-        case message
+        case message = "messageId"
         case deviceType
         case device = "deviceId"
         case direction
