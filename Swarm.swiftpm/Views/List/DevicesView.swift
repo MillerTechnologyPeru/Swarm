@@ -32,6 +32,9 @@ struct DevicesView: View {
     var body: some View {
         content
         .navigationTitle("Swarm")
+        .task {
+            await reload()
+        }
         .toolbar {
             progressIndicator
             #if os(macOS)
@@ -96,9 +99,6 @@ extension DevicesView {
                 )
                 .refreshable {
                     await refresh()
-                }
-                .task {
-                    await reload()
                 }
             )
         } else {
