@@ -14,6 +14,9 @@ internal extension Store {
         let urlSession = URLSession(configuration: .ephemeral)
         return urlSession
     }
+}
+
+private extension Store {
     
     func authorizationToken() throws -> AuthorizationToken {
         guard let user = self.username,
@@ -43,9 +46,6 @@ internal extension Store {
             return try await block(token)
         }
     }
-}
-
-private extension Store {
     
     func refreshAuthorizationToken() async throws {
         guard let username = self.username else {
