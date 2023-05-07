@@ -29,9 +29,13 @@ public extension HTTPClient {
             statusCode: statusCode,
             headers: headers
         )
-        guard let response = try? JSONDecoder.swarm.decode(Response.self, from: data) else {
+        do {
+            return try JSONDecoder.swarm.decode(Response.self, from: data)
+        } catch {
+            #if DEBUG
+            print(error)
+            #endif
             throw SwarmNetworkingError.invalidResponse(data)
         }
-        return response
     }
 }
