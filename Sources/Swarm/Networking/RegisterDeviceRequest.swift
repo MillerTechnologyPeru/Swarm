@@ -9,9 +9,9 @@ import Foundation
 
 public struct RegisterDeviceRequest: Equatable, Hashable {
     
-    public let authCode: String
+    public let authCode: DeviceAuthenticationCode
     
-    public init(authCode: String) {
+    public init(authCode: DeviceAuthenticationCode) {
         self.authCode = authCode
     }
 }
@@ -27,7 +27,7 @@ extension RegisterDeviceRequest: SwarmURLRequest {
             .appendingPathComponent("devices")
             .appendingPathComponent("register")
             .appending(
-                URLQueryItem(name: "authCode", value: authCode)
+                URLQueryItem(name: "authCode", value: authCode.rawValue)
             )
     }
 }
@@ -51,15 +51,21 @@ extension RegisterDeviceResponse: Decodable {
 public extension HTTPClient {
     
     /// Register a field device using its auth code. Returns the registered device.
-    func register(
-        authCode: String,
+    func register(_ 
+        authCode: DeviceAuthenticationCode,
         authorization token: AuthorizationToken,
         server: SwarmServer = .production
     ) async throws -> DeviceInformation {
         let request = RegisterDeviceRequest(
             authCode: authCode
         )
-        let response = try await self.response(RegisterDeviceResponse.self, for: request, server: server, authorization: token, statusCode: 200)
+        let response = try await self.response(
+            RegisterDeviceResponse.self,
+            for: request,
+            server: server,
+            authorization: token,
+            statusCode: 200
+        )
         return response.device
     }
 }
