@@ -12,32 +12,54 @@ import Swarm
 struct DevicesView: View {
     
     @EnvironmentObject
-    var store: Store
+    private var store: Store
     
     @State
-    var devices = [DeviceInformation]()
+    private var devices = [DeviceInformation]()
     
     @State
-    var sortDescending = false
+    private var sortDescending = false
     
     @State
-    var error: String?
+    private var error: String?
     
     @State
-    var presentLogin = false
+    private var isReloading = false
+    
+    @State
+    private var isRefreshing = false
     
     var body: some View {
-        LoginView(isPresented: $presentLogin, error: $error) {
-            content
-        }
+        content
         .navigationTitle("Swarm")
-        .task { await reload() }
+        .toolbar {
+            progressIndicator
+            #if os(macOS)
+            refreshButton
+            #endif
+        }
     }
 }
 
 extension DevicesView {
     
+    func refresh() async {
+        // reload
+        self.isRefreshing = true
+        defer { isRefreshing = false }
+        await reload()
+    }
+    
     func reload() async {
+        // do nothing if not logged in
+        guard store.username != nil else {
+            return
+        }
+        
+        // reload
+        self.isReloading = true
+        defer { isReloading = false }
+        
         self.error = nil
         do {
             if store.username != nil {
@@ -73,16 +95,47 @@ extension DevicesView {
                     devices: devices
                 )
                 .refreshable {
+                    await refresh()
+                }
+                .task {
                     await reload()
                 }
             )
         } else {
             return AnyView(
-                Button("Login") {
-                    presentLogin = true
-                }
+                Text("Login to view devices")
             )
         }
+    }
+    
+    var progressIndicator: some View {
+        HStack {
+            if isReloading, !isRefreshing {
+                #if os(macOS)
+                AnyView(
+                    ProgressIndicatorView(style: .spinning, controlSize: .small)
+                )
+                #else
+                AnyView(
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                )
+                #endif
+            } else {
+                EmptyView()
+            }
+        }
+    }
+    
+    var refreshButton: some View {
+        Button(action: {
+            Task {
+                await reload()
+            }
+        }, label: {
+            Image(systemSymbol: .arrowClockwise)
+        })
+        .disabled(isReloading)
     }
 }
 
