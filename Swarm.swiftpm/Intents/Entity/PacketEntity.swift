@@ -61,8 +61,8 @@ struct PacketEntity: AppEntity {
     var payload: IntentFile
     
     /// A unique identifier for the acknowledgment packet associated with this packet.
-    @Property(title: "Recieved")
-    var ackPacketId: String
+    @Property(title: "Acknowledgment Packet")
+    var ackPacket: String
     
     /// The status of the packet.
     @Property(title: "Status")
@@ -124,7 +124,7 @@ extension PacketEntity {
         self.userApplicationId = value.userApplicationId
         self.hiveRxTime = value.hiveRxTime
         self.status = .init(value.status)
-        self.ackPacketId = value.ackPacketId.description
+        self.ackPacket = value.ackPacketId.description
         self.length = Int(value.length)
         self.dataType = value.dataType
         self.organization = value.organization
