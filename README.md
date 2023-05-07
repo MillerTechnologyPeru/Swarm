@@ -1,6 +1,27 @@
 # Swarm
-Swift library and SwiftUI app for Swarm IoT devices
+Swift library and SwiftUI app for Swarm IoT devices.
 
-![Simulator Screenshot - iPad mini (6th generation) - 2023-04-12 at 23 14 21](https://user-images.githubusercontent.com/3419766/231669953-2c79b81b-02b5-45d9-b301-f6807fba96a5.png)
+## Features
 
-![Simulator Screenshot - iPad mini (6th generation) - 2023-04-12 at 23 14 33](https://user-images.githubusercontent.com/3419766/231669943-4d7c263b-469a-4afa-b4b8-2763ebab16f6.png)
+- Swarm REST API
+- Serial UART communication (macOS and Linux only)
+- Fetch Devices
+- Fetch Messages
+- Asset Tracker Messages
+- Siri Shortcuts
+
+## Screenshots
+
+![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 05 33](https://user-images.githubusercontent.com/3419766/236698004-9b15a958-5e31-428d-a2fb-817defeb7a7a.png)
+
+![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 06 13](https://user-images.githubusercontent.com/3419766/236698011-6c54cf88-989f-460b-9c8e-793c3192cb1c.png)
+
+![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 06 37](https://user-images.githubusercontent.com/3419766/236698015-fd04582a-506b-4b43-9cd9-7d8be4d3105d.png)
+
+### Siri Shortcuts
+
+![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 07 47](https://user-images.githubusercontent.com/3419766/236698038-ffa683a6-1e86-4dfc-9796-c96cdc5c47e3.png)
+
+![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 14 39](https://user-images.githubusercontent.com/3419766/236698110-69da0eb6-7e22-496b-a029-5740bc6fafc6.png)
+
+![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 14 53](https://user-images.githubusercontent.com/3419766/236698044-14db34cf-38bb-404e-a28f-7197f689852c.png)
