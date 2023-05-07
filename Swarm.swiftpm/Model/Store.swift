@@ -24,7 +24,9 @@ public final class Store: ObservableObject {
     
     internal var preferencesObserver: AnyCancellable?
     
-    internal lazy var keychain = loadKeychain()
+    internal lazy var passwordKeychain = loadPasswordKeychain()
+    
+    internal lazy var tokenKeychain = loadTokenKeychain()
     
     internal lazy var urlSession = loadURLSession()
     
