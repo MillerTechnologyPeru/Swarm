@@ -11,18 +11,17 @@ import Swarm
 internal extension Store {
     
     func loadURLSession() -> URLSession {
-        let urlSession = URLSession(configuration: .ephemeral)
-        return urlSession
+        URLSession(configuration: .ephemeral)
     }
 }
 
 private extension Store {
     
-    func authorizationToken() throws -> AuthorizationToken {
+    func authorizationToken() async throws -> AuthorizationToken {
         guard let user = self.username,
             let token = self[token: user] else {
             self.username = nil
-            try self.tokenKeychain.removeAll()
+            try await self.tokenKeychain.removeAll()
             throw SwarmNetworkingError.authenticationRequired
         }
         return token
@@ -35,14 +34,14 @@ private extension Store {
         if let username = self.username, self[token: username] == nil {
             try await refreshAuthorizationToken()
         }
-        let token = try authorizationToken()
+        let token = try await authorizationToken()
         do {
             return try await block(token)
         }
         catch SwarmNetworkingError.invalidStatusCode(401) {
             try await refreshAuthorizationToken()
             // retry once
-            let token = try authorizationToken()
+            let token = try await authorizationToken()
             return try await block(token)
         }
     }
@@ -52,7 +51,7 @@ private extension Store {
             throw SwarmNetworkingError.authenticationRequired
         }
         // remove invalid token
-        self[token: username] = nil
+        await setToken(nil, for: username)
         guard let password = self[password: username] else {
             throw SwarmNetworkingError.authenticationRequired
         }
@@ -73,17 +72,18 @@ public extension Store {
             server: server
         )
         // store username in preferences and token and password in keychain
-        self[token: username] = token
-        self[password: username] = password
         self.username = username
+        await self.setToken(token, for: username)
+        await self.setPassword(password, for: username)
     }
     
     func logout() async throws {
-        let token = try authorizationToken()
+        let token = try await authorizationToken()
         // remove from preferences and keychain
         if let username = self.username {
             self.username = nil
-            self[token: username] = nil
+            await self.setPassword(nil, for: username)
+            await self.setToken(nil, for: username)
         }
         // invalidate token for server
         try await urlSession.logout(authorization: token, server: server)

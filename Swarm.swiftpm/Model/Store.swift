@@ -18,6 +18,8 @@ public final class Store: ObservableObject {
     
     public let server = SwarmServer.production
     
+    internal let isKeychainEnabled: Bool
+    
     internal lazy var fileManager = FileManager()
     
     internal lazy var preferences = loadPreferences()
@@ -33,6 +35,14 @@ public final class Store: ObservableObject {
     internal var token: AuthorizationToken?
     
     // MARK: - Initialization
+    
+    public init() {
+        #if KEYCHAIN
+        self.isKeychainEnabled = true
+        #else
+        self.isKeychainEnabled = false
+        #endif
+    }
     
     deinit {
         preferencesObserver?.cancel()

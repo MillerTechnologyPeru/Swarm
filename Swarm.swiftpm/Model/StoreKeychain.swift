@@ -10,34 +10,44 @@ import Swarm
 import KeychainAccess
 
 internal protocol CredentialStorage: AnyObject {
-    
-    func removeAll() throws
-    
+        
     func get(_ key: String) throws -> String?
-    
-    func remove(_ key: String) throws
     
     func contains(_ key: String) throws -> Bool
     
-    func set(_ newValue: String, key: String) throws
+    func set(_ newValue: String, key: String) async throws
+
+    func remove(_ key: String) async throws
+        
+    func removeAll() async throws
 }
 
 extension KeychainAccess.Keychain: CredentialStorage {
     
-    func get(_ key: String) throws -> String? {
-        try getString(key, ignoringAttributeSynchronizable: true)
+    func removeAll() async throws {
+        try await Task(priority: .utility) {
+            try self.removeAll()
+        }.value
     }
     
-    func remove(_ key: String) throws {
-        try remove(key, ignoringAttributeSynchronizable: true)
+    func get(_ key: String) throws -> String? {
+        try getString(key, ignoringAttributeSynchronizable: true)
     }
     
     func contains(_ key: String) throws -> Bool {
         try contains(key, withoutAuthenticationUI: true)
     }
     
-    func set(_ newValue: String, key: String) throws {
-        try set(newValue, key: key, ignoringAttributeSynchronizable: true)
+    func remove(_ key: String) async throws {
+        try await Task(priority: .utility) {
+            try remove(key, ignoringAttributeSynchronizable: true)
+        }.value
+    }
+    
+    func set(_ newValue: String, key: String) async throws {
+        try await Task(priority: .utility) {
+            try set(newValue, key: key, ignoringAttributeSynchronizable: true)
+        }.value
     }
 }
 
@@ -71,33 +81,43 @@ final class InMemoryCredentialStorage: CredentialStorage {
 internal extension Store {
     
     func loadTokenKeychain() -> CredentialStorage {
-        #if KEYCHAIN
-        let keychain = Keychain(service: "com.colemancda.Swarm.AuthorizationToken")
-        // discard all auth tokens for debug builds on launch
-        #if DEBUG
-        try? keychain.removeAll()
-        #endif
-        #else
-        let keychain = InMemoryCredentialStorage()
-        #endif
-        // reset if new installation
-        clearKeychainNewInstall(keychain)
+        let keychain: CredentialStorage
+        if isKeychainEnabled {
+            keychain = Keychain(service: "com.colemancda.Swarm.AuthorizationToken")
+            // discard all auth tokens for debug builds on launch
+            #if DEBUG
+            #endif
+        } else {
+            keychain = InMemoryCredentialStorage()
+        }
+        // async remove items
+        Task {
+            #if DEBUG
+            try? await keychain.removeAll()
+            #else
+            // reset if new installation
+            await clearKeychainNewInstall(keychain)
+            #endif
+        }
         return keychain
     }
     
     func loadPasswordKeychain() -> CredentialStorage {
-        #if KEYCHAIN
-        let keychain = Keychain(
-            server: self.server.rawValue,
-            protocolType: .https,
-            accessGroup: nil,
-            authenticationType: .default
-        )
-        #else
-        let keychain = InMemoryCredentialStorage()
-        #endif
-        // reset if new installation
-        clearKeychainNewInstall(keychain)
+        let keychain: CredentialStorage
+        if isKeychainEnabled {
+            keychain = Keychain(
+                server: self.server.rawValue,
+                protocolType: .https,
+                accessGroup: nil,
+                authenticationType: .default
+            )
+        } else {
+            keychain = InMemoryCredentialStorage()
+        }
+        Task {
+            // reset if new installation
+            await clearKeychainNewInstall(keychain)
+        }
         return keychain
     }
     
@@ -115,24 +135,24 @@ internal extension Store {
                 return nil
             }
         }
-        
-        set {
-            do {
-                guard let token = newValue else {
-                    try tokenKeychain.remove(username)
-                    return
-                }
-                if try tokenKeychain.contains(username) {
-                    try tokenKeychain.remove(username)
-                }
-                try tokenKeychain.set(token.rawValue, key: username)
+    }
+    
+    func setToken(_ newValue: AuthorizationToken?, for username: String) async {
+        do {
+            guard let token = newValue else {
+                try await tokenKeychain.remove(username)
+                return
             }
-            catch {
-                #if DEBUG
-                log("Unable retrieve value from keychain. " + error.localizedDescription)
-                #endif
-                assertionFailure("Unable store value in keychain: \(error)")
+            if try tokenKeychain.contains(username) {
+                try await tokenKeychain.remove(username)
             }
+            try await tokenKeychain.set(token.rawValue, key: username)
+        }
+        catch {
+            #if DEBUG
+            log("Unable retrieve value from keychain. " + error.localizedDescription)
+            #endif
+            assertionFailure("Unable store value in keychain: \(error)")
         }
     }
     
@@ -150,24 +170,24 @@ internal extension Store {
                 return nil
             }
         }
-        
-        set {
-            do {
-                guard let password = newValue else {
-                    try passwordKeychain.remove(username)
-                    return
-                }
-                if try passwordKeychain.contains(username) {
-                    try passwordKeychain.remove(username)
-                }
-                try passwordKeychain.set(password, key: username)
+    }
+    
+    func setPassword(_ newValue: String?, for username: String) async {
+        do {
+            guard let password = newValue else {
+                try await passwordKeychain.remove(username)
+                return
             }
-            catch {
-                #if DEBUG
-                log("Unable retrieve value from keychain. " + error.localizedDescription)
-                #endif
-                assertionFailure("Unable store value in keychain: \(error)")
+            if try passwordKeychain.contains(username) {
+                try await passwordKeychain.remove(username)
             }
+            try await passwordKeychain.set(password, key: username)
+        }
+        catch {
+            #if DEBUG
+            log("Unable to store value in keychain. " + error.localizedDescription)
+            #endif
+            assertionFailure("Unable store value in keychain: \(error)")
         }
     }
 }
@@ -175,11 +195,13 @@ internal extension Store {
 private extension Store {
     
     /// Clear keychain on newly installed app.
-    func clearKeychainNewInstall(_ keychain: CredentialStorage) {
+    func clearKeychainNewInstall(_ keychain: CredentialStorage) async {
         
         if preferences.isAppInstalled == false {
             preferences.isAppInstalled = true
-            do { try keychain.removeAll() }
+            do {
+                try await keychain.removeAll()
+            }
             catch {
                 log("⚠️ Unable to clear keychain: \(error.localizedDescription)")
                 // TODO: Flush logs
