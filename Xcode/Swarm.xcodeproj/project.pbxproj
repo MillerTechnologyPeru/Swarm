@@ -41,6 +41,7 @@
 		6EAF8ECF2A07376F00F44AEC /* PacketStatusAppEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */; };
 		6EAF8ED12A073F9300F44AEC /* PacketQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */; };
 		6EAF8ED32A07493E00F44AEC /* FetchMessagesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED22A07493E00F44AEC /* FetchMessagesIntent.swift */; };
+		6EAF8ED52A0759F100F44AEC /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED42A0759F100F44AEC /* CoreLocation.swift */; };
 		6EFAFD3429E2974500DE7BB8 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */; };
 		6EFAFD3629E2981D00DE7BB8 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */; };
 		6EFAFD3829E29C7000DE7BB8 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */; };
@@ -83,6 +84,7 @@
 		6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketStatusAppEnum.swift; sourceTree = "<group>"; };
 		6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketQuery.swift; sourceTree = "<group>"; };
 		6EAF8ED22A07493E00F44AEC /* FetchMessagesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMessagesIntent.swift; sourceTree = "<group>"; };
+		6EAF8ED42A0759F100F44AEC /* CoreLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocation.swift; sourceTree = "<group>"; };
 		6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		6E045CF629E1A9880061C241 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6EAF8ED42A0759F100F44AEC /* CoreLocation.swift */,
 				6EFAFD3929E29D7B00DE7BB8 /* Hexadecimal.swift */,
 				6E045CF729E1A9880061C241 /* Task.swift */,
 			);
@@ -372,6 +375,7 @@
 				6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */,
 				6E045D2529E24CCE0061C241 /* ProfileView.swift in Sources */,
 				6E045D0329E1A9880061C241 /* StoreNetworking.swift in Sources */,
+				6EAF8ED52A0759F100F44AEC /* CoreLocation.swift in Sources */,
 				6E045D0D29E1A9880061C241 /* DeviceRow.swift in Sources */,
 				6EAF8EC22A07267000F44AEC /* DeviceEntity.swift in Sources */,
 				6E045D0529E1A9880061C241 /* StoreKeychain.swift in Sources */,

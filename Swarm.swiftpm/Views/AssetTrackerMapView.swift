@@ -43,16 +43,6 @@ struct AssetTrackerMapView: View {
     }
 }
 
-extension AssetTrackerMessage {
-    
-    var coordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(
-            latitude: latitude,
-            longitude: longitude
-        )
-    }
-}
-
 struct AssetTrackerAnnotationView: View {
     
   @State private var showTitle = true
