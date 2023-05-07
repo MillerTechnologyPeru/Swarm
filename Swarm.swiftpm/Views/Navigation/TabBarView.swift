@@ -13,6 +13,9 @@ import SFSafeSymbols
 #if os(iOS)
 struct TabBarView: View {
     
+    @EnvironmentObject
+    private var store: Store
+    
     @State
     private var showLogin = false
     
@@ -38,7 +41,7 @@ struct TabBarView: View {
             
             // Settings
             NavigationView {
-                SettingsView()
+                SettingsView(showLogin: $showLogin)
                 Text("Settings detail")
             }
             .tabItem {
