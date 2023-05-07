@@ -24,12 +24,12 @@ struct SettingsView: View {
     var body: some View {
         List {
             Section {
-                if let username = store.username {
+                if let _ = store.username {
                     SettingsNavigationLink(
                         title: "Profile",
                         icon: Image(systemSymbol: .personFill),
                         destination: {
-                            ProfileView(email: username)
+                            ProfileView()
                         }
                     )
                 } else {
@@ -53,7 +53,7 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SettingsView()
+            SettingsView(showLogin: .constant(false))
                 .environmentObject(Store())
         }
     }
