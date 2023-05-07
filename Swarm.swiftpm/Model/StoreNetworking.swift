@@ -38,11 +38,16 @@ private extension Store {
         do {
             return try await block(token)
         }
-        catch SwarmNetworkingError.invalidStatusCode(401) {
-            try await refreshAuthorizationToken()
-            // retry once
-            let token = try await authorizationToken()
-            return try await block(token)
+        catch {
+            if let networkError = error as? SwarmNetworkingError,
+                case .invalidStatusCode(401, _) = networkError {
+                try await refreshAuthorizationToken()
+                // retry once
+                let token = try await authorizationToken()
+                return try await block(token)
+            } else {
+                throw error
+            }
         }
     }
     
