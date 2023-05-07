@@ -15,6 +15,9 @@ struct PacketEntity: AppEntity {
     /// A unique identifier for the packet.
     let id: Packet.ID
     
+    @Property(title: "Packet ID")
+    var packetID: String
+    
     /// Swarm message ID.
     ///
     /// There may be multiple messages for a single message ID.
@@ -110,6 +113,7 @@ extension PacketEntity {
     
     init(_ value: Swarm.Packet) {
         self.init(id: value.id, device: value.device)
+        self.packetID = value.id.description
         self.message = MessageEntity(id: value.message)
         self.deviceType = value.deviceType
         self.direction = value.direction
@@ -120,6 +124,6 @@ extension PacketEntity {
         self.length = Int(value.length)
         self.dataType = value.dataType
         self.organization = value.organization
-        self.payload = IntentFile(data: value.payload, filename: "message.json", type: nil)
+        self.payload = IntentFile(data: value.payload, filename: "message.json", type: .json)
     }
 }
