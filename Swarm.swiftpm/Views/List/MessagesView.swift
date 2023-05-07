@@ -12,24 +12,23 @@ import Swarm
 struct MessagesView: View {
     
     @EnvironmentObject
-    var store: Store
-    
-    @State
-    var messages = [Packet]()
+    private var store: Store
     
     @State
     var device: DeviceID?
     
     @State
-    var error: String?
+    private var messages = [Packet]()
     
     @State
-    var presentLogin = false
+    private var error: String?
+    
+    init(device: DeviceID? = nil) {
+        self._device = .init(initialValue: device)
+    }
     
     var body: some View {
-        LoginView(isPresented: $presentLogin, error: $error) {
-            content
-        }
+        content
         .navigationTitle("Messages")
         .task { await reload() }
     }
@@ -78,9 +77,7 @@ extension MessagesView {
             )
         } else {
             return AnyView(
-                Button("Login") {
-                    presentLogin = true
-                }
+                Text("Login to view messages")
             )
         }
     }
