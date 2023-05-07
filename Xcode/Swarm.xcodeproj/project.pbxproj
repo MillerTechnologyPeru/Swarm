@@ -40,6 +40,7 @@
 		6EAF8ECD2A07329C00F44AEC /* MessageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECC2A07329C00F44AEC /* MessageEntity.swift */; };
 		6EAF8ECF2A07376F00F44AEC /* PacketStatusAppEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */; };
 		6EAF8ED12A073F9300F44AEC /* PacketQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */; };
+		6EAF8ED32A07493E00F44AEC /* FetchMessagesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED22A07493E00F44AEC /* FetchMessagesIntent.swift */; };
 		6EFAFD3429E2974500DE7BB8 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */; };
 		6EFAFD3629E2981D00DE7BB8 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */; };
 		6EFAFD3829E29C7000DE7BB8 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */; };
@@ -81,6 +82,7 @@
 		6EAF8ECC2A07329C00F44AEC /* MessageEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEntity.swift; sourceTree = "<group>"; };
 		6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketStatusAppEnum.swift; sourceTree = "<group>"; };
 		6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketQuery.swift; sourceTree = "<group>"; };
+		6EAF8ED22A07493E00F44AEC /* FetchMessagesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMessagesIntent.swift; sourceTree = "<group>"; };
 		6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
@@ -162,11 +164,11 @@
 		6E045CF429E1A9880061C241 /* Intents */ = {
 			isa = PBXGroup;
 			children = (
+				6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */,
 				6EAF8EC02A07267000F44AEC /* AppEnum */,
 				6EAF8EBA2A07267000F44AEC /* Entity */,
 				6EAF8EBE2A07267000F44AEC /* EntityQuery */,
 				6EAF8EB92A07267000F44AEC /* Intent */,
-				6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */,
 			);
 			name = Intents;
 			path = ../../Swarm.swiftpm/Intents;
@@ -222,6 +224,7 @@
 		6EAF8EB92A07267000F44AEC /* Intent */ = {
 			isa = PBXGroup;
 			children = (
+				6EAF8ED22A07493E00F44AEC /* FetchMessagesIntent.swift */,
 			);
 			path = Intent;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				6E045D0129E1A9880061C241 /* StorePreferences.swift in Sources */,
 				6E045D2329E2428F0061C241 /* SettingsRowView.swift in Sources */,
 				6E045D0A29E1A9880061C241 /* LoginView.swift in Sources */,
+				6EAF8ED32A07493E00F44AEC /* FetchMessagesIntent.swift in Sources */,
 				6E045D0029E1A9880061C241 /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
