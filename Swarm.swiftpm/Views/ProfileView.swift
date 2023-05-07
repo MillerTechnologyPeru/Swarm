@@ -98,7 +98,7 @@ extension ProfileView {
                 )
             case .error(let error):
                 return AnyView(
-                    ErrorView(error: error, retry: reload)
+                    ErrorView(error: error, retry: reload, logout: logout)
                 )
             case .result(let userProfile):
                 return AnyView(
@@ -172,11 +172,20 @@ extension ProfileView {
         
         let retry: () -> ()
         
+        let logout: () -> ()
+        
         var body: some View {
             VStack(alignment: .center, spacing: 20) {
                 Text(verbatim: "⚠️ " + error)
                 Button(action: retry) {
                     Text("Retry")
+                }
+                Spacer()
+                Button(action: logout) {
+                    VStack(alignment: .center) {
+                        Text("Logout")
+                            .foregroundColor(.red)
+                    }
                 }
             }
             .padding(20)
