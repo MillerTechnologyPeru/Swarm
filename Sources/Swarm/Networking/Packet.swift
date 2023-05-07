@@ -11,7 +11,7 @@ import Foundation
 public struct Packet: Equatable, Hashable, Codable, Identifiable {
     
     /// A unique identifier for the packet.
-    public let id: UInt64
+    public let id: ID
     
     /// Swarm message ID.
     ///
@@ -19,10 +19,10 @@ public struct Packet: Equatable, Hashable, Codable, Identifiable {
     /// A message ID represents an intent to send a message, but there may be multiple Swarm packets that are required to fulfill that intent.
     ///
     /// For example, if a Hive -> device message fails to reach its destination, automatic retry attempts to send that message will have the same message ID.
-    public let messageId: UInt64
+    public let message: UInt64
     
     /// An identifier for the type of device that sent the packet.
-    public let deviceType: UInt
+    public let deviceType: Int
     
     /// A unique identifier for the device that sent the packet.
     public let device: DeviceID
@@ -56,7 +56,7 @@ public struct Packet: Equatable, Hashable, Codable, Identifiable {
     
     public enum CodingKeys: String, CodingKey {
         case id = "packetId"
-        case messageId
+        case message
         case deviceType
         case device = "deviceId"
         case direction
@@ -72,6 +72,33 @@ public struct Packet: Equatable, Hashable, Codable, Identifiable {
 }
 
 // MARK: - Supporting Types
+
+public extension Packet {
+    
+    /// Swarm Packet ID
+    struct ID: Equatable, Hashable, Codable, RawRepresentable, Sendable {
+        
+        public let rawValue: UInt64
+        
+        public init(rawValue: UInt64) {
+            self.rawValue = rawValue
+        }
+    }
+}
+
+extension Packet.ID: CustomStringConvertible {
+    
+    public var description: String {
+        rawValue.description
+    }
+}
+
+extension Packet.ID: ExpressibleByIntegerLiteral {
+    
+    public init(integerLiteral value: UInt64) {
+        self.init(rawValue: value)
+    }
+}
 
 public extension Packet {
     
