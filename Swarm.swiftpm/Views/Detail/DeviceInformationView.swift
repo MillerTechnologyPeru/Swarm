@@ -96,67 +96,91 @@ extension DeviceInformationView {
         var body: some View {
             List {
                 Section {
-                    SubtitleRow(
-                        title: Text("Identifier"),
-                        subtitle: Text(verbatim: device.id.description)
-                    )
-                    if device.comments.isEmpty == false {
-                        SubtitleRow(
-                            title: Text("Description"),
-                            subtitle: Text(verbatim: device.comments)
-                        )
+                    TitleRow(
+                        title: "Identifier"
+                    ) {
+                        Text(verbatim: device.id.description)
                     }
-                    SubtitleRow(
-                        title: Text("Device Type"),
-                        subtitle: Text(verbatim: device.deviceType.description)
-                    )
-                    SubtitleRow(
-                        title: Text("Firmware Version"),
-                        subtitle: Text(verbatim: device.firmwareVersion.description)
-                    )
+                    if device.comments.isEmpty == false {
+                        TitleRow(
+                            title: "Description"
+                        ) {
+                            Text(verbatim: device.comments)
+                        }
+                    }
+                    TitleRow(
+                        title: "Firmware Version"
+                    ) {
+                        Text(verbatim: device.firmwareVersion.description)
+                    }
                     if device.hardwareVersion.isEmpty == false {
-                        SubtitleRow(
-                            title: Text("Hardware Version"),
-                            subtitle: Text(verbatim: device.hardwareVersion)
-                        )
+                        TitleRow(
+                            title: "Hardware Version"
+                        ) {
+                            Text(verbatim: device.hardwareVersion)
+                        }
+                    }
+                    TitleRow(
+                        title: "Device Type"
+                    ) {
+                        Text(verbatim: device.deviceType.description)
                     }
                 }
                 
                 Section {
-                    SubtitleRow(
-                        title: Text("Created"),
-                        subtitle: Text(verbatim: device.hiveCreationTime.formatted())
-                    )
-                    SubtitleRow(
-                        title: Text("First Heard"),
-                        subtitle: Text(verbatim: device.hiveFirstheardTime.formatted())
-                    )
-                    SubtitleRow(
-                        title: Text("Last Heard"),
-                        subtitle: Text(verbatim: device.hiveLastheardTime.formatted())
-                    )
-                    if let uptime = device.uptime {
-                        SubtitleRow(
-                            title: Text("Uptime"),
-                            subtitle: Text("\(uptime)s")
-                        )
+                    NavigationLink("Messages") {
+                        MessagesView(device: device.id)
                     }
-                    SubtitleRow(
-                        title: Text("Status"),
-                        subtitle: Text(verbatim: device.status.description)
-                    )
-                    SubtitleRow(
-                        title: Text("Two Way Enabled"),
-                        subtitle: Text(verbatim: device.twoWayEnabled.description)
-                    )
-                    SubtitleRow(
-                        title: Text("Data Encryption Enabled"),
-                        subtitle: Text(verbatim: device.dataEncryptionEnabled.description)
-                    )
                 }
                 
-                NavigationLink("Messages") {
-                    MessagesView(device: device.id)
+                Section {
+                    TitleRow(
+                        title: "Created"
+                    ) {
+                        Text(verbatim: device.hiveCreationTime.formatted())
+                    }
+                    TitleRow(
+                        title: "First Heard"
+                    ) {
+                        Text(verbatim: device.hiveFirstheardTime.formatted())
+                    }
+                    TitleRow(
+                        title: "Last Heard"
+                    ) {
+                        Text(verbatim: device.hiveLastheardTime.formatted())
+                    }
+                    if let uptime = device.uptime {
+                        TitleRow(
+                            title: "Uptime"
+                        ) {
+                            Text("\(uptime)s")
+                        }
+                    }
+                    TitleRow(
+                        title: "Status"
+                    ) {
+                        Text(verbatim: device.status.description)
+                    }
+                    TitleRow(
+                        title: "Two Way Enabled"
+                    ) {
+                        Text(verbatim: device.twoWayEnabled.description)
+                    }
+                    TitleRow(
+                        title: "Data Encryption Enabled"
+                    ) {
+                        Text(verbatim: device.dataEncryptionEnabled.description)
+                    }
+                }
+                
+                if device.metadata.isEmpty == false {
+                    Section("Metadata") {
+                        ForEach(device.metadata.sorted(by: { $0.key < $1.key }), id: \.key) { metadata in
+                            TitleRow(title: "\(metadata.key)") {
+                                Text(verbatim: metadata.value)
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle(device.deviceName)
