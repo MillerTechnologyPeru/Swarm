@@ -10,9 +10,7 @@ struct ContentView: View {
         #if os(iOS)
         TabBarView()
         #elseif os(macOS)
-        NavigationView {
-            DevicesView()
-        }
+        SidebarView()
         #endif
     }
 }
