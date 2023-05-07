@@ -91,7 +91,7 @@ internal extension Store {
             keychain = InMemoryCredentialStorage()
         }
         // async remove items
-        Task {
+        Task(priority: .utility) {
             #if DEBUG
             try? await keychain.removeAll()
             #else
@@ -114,7 +114,7 @@ internal extension Store {
         } else {
             keychain = InMemoryCredentialStorage()
         }
-        Task {
+        Task(priority: .utility) {
             // reset if new installation
             await clearKeychainNewInstall(keychain)
         }
