@@ -13,6 +13,9 @@ import SFSafeSymbols
 #if os(iOS)
 struct TabBarView: View {
     
+    @State
+    private var showLogin = false
+    
     var body: some View {
         TabView {
             // Devices
@@ -42,6 +45,16 @@ struct TabBarView: View {
                 Label("Settings", systemSymbol: .gearshapeFill)
             }
             .navigationViewStyle(.stack)
+        }
+        .onAppear {
+            if store.username == nil {
+                showLogin = true
+            }
+        }
+        .sheet(isPresented: $showLogin) {
+            NavigationView {
+                LoginView()
+            }
         }
     }
 }
