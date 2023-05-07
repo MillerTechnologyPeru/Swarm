@@ -77,7 +77,7 @@ final class NetworkingTests: XCTestCase {
         """#
         
         let response = ErrorResponse(
-            status: "BAD_REQUEST",
+            status: .badRequest,
             message: "Device already registered",
             debugMessage: "",
             timestamp: Date(timeIntervalSinceReferenceDate: 705181863)
