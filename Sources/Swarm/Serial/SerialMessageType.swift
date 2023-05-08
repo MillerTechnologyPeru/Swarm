@@ -40,7 +40,7 @@ extension SerialMessageType: ExpressibleByStringLiteral {
 public extension SerialMessageType {
     
     /// Swarm Boot Message for the specified device
-    static func boot(_ deviceType: DeviceType) -> SerialMessageType {
+    static func boot(_ deviceType: SerialDeviceType) -> SerialMessageType {
         return .init(rawValue: deviceType.rawValue)
     }
     

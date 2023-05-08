@@ -160,7 +160,7 @@ extension DeviceEntity {
         self.serialNumber = value.id.description
         self.name = value.deviceName
         self.comments = value.comments
-        self.deviceType = value.deviceType
+        self.deviceType = Int(value.deviceType.rawValue) // TODO: Create AppEnum
         self.organization = value.organizationId
         self.firmwareVersion = value.firmwareVersion.rawValue
         self.hardwareVersion = value.hardwareVersion

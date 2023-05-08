@@ -20,7 +20,7 @@ public extension SerialMessage {
         public let id: DeviceID
         
         /// Device type name
-        public let type: DeviceType
+        public let type: SerialDeviceType
     }
 }
 
@@ -56,7 +56,7 @@ internal extension SerialMessage.DeviceConfiguration {
         Capture {
             OneOrMore(.any)
         } transform: {
-            DeviceType(rawValue: String($0))
+            SerialDeviceType(rawValue: String($0))
         }
     }
 }

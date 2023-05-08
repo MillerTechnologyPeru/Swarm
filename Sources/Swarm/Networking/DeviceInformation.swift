@@ -43,7 +43,7 @@ public struct DeviceInformation: Equatable, Hashable, Codable, Identifiable {
     public let id: DeviceID
     
     /// The type of device.
-    public let deviceType: Int
+    public let deviceType: DeviceType
     
     /// The name of the device.
     public let deviceName: String

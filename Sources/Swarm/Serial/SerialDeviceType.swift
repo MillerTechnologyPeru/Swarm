@@ -5,8 +5,8 @@
 //  Created by Alsey Coleman Miller on 4/6/23.
 //
 
-/// Swarm Device Type
-public enum DeviceType: String, Codable, CaseIterable {
+/// Swarm Serial Device Type
+public enum SerialDeviceType: String, Codable, CaseIterable {
     
     /// Tile
     case tile       = "TILE"
@@ -17,7 +17,7 @@ public enum DeviceType: String, Codable, CaseIterable {
 
 // MARK: - CustomStringConvertible
 
-extension DeviceType: CustomStringConvertible {
+extension SerialDeviceType: CustomStringConvertible {
     
     public var description: String {
         rawValue

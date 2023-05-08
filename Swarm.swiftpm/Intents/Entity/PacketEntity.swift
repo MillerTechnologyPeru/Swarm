@@ -120,7 +120,7 @@ extension PacketEntity {
         self.init(id: value.id, device: value.device)
         self.packetID = value.id.description
         self.message = MessageEntity(id: value.message)
-        self.deviceType = value.deviceType
+        self.deviceType = Int(value.deviceType.rawValue) // TODO: Create AppEnum
         self.direction = value.direction
         self.userApplicationId = value.userApplicationId
         self.hiveRxTime = value.hiveRxTime

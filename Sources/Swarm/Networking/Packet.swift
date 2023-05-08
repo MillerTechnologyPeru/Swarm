@@ -22,7 +22,7 @@ public struct Packet: Equatable, Hashable, Codable, Identifiable {
     public let message: UInt64
     
     /// An identifier for the type of device that sent the packet.
-    public let deviceType: Int
+    public let deviceType: DeviceType
     
     /// A unique identifier for the device that sent the packet.
     public let device: DeviceID
