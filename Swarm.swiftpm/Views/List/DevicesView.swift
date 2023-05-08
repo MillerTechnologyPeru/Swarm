@@ -97,6 +97,7 @@ extension DevicesView {
         }
     }
     
+    #if os(iOS)
     func scan() {
         self.showScanner = true
     }
@@ -109,6 +110,7 @@ extension DevicesView {
             self.selection = device.id
         }
     }
+    #endif
     
     var content: some View {
         if let error = self.error {
