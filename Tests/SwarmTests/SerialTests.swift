@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import Swarm
 
-@available(macOS 13.0, *)
+@available(macOS 13, iOS 16, *)
 final class SerialTests: XCTestCase {
     
     func testSerialMessage() {
