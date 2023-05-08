@@ -117,38 +117,48 @@ extension ProfileView {
         var body: some View {
             List {
                 Section {
-                    SubtitleRow(
-                        title: Text("Username"),
-                        subtitle: Text(verbatim: result.username)
-                    )
+                    TitleRow(
+                        title: "Username"
+                    ) {
+                        Text(verbatim: result.username)
+                    }
                 }
                 Section {
                     if result.role != .user {
-                        SubtitleRow(
-                            title: Text("Role"),
-                            subtitle: Text(verbatim: result.role.description)
-                        )
-                    }
-                    SubtitleRow(
-                        title: Text("Email"),
-                        subtitle: Text(verbatim: result.email)
-                    )
-                    SubtitleRow(
-                        title: Text("Country"),
-                        subtitle: Text(verbatim: result.country)
-                    )
-                    SubtitleRow(
-                        title: Text("Billing"),
-                        subtitle: Text(verbatim: result.billingType.description)
-                    )
-                }
-                Section {
-                    Button(action: logout) {
-                        VStack(alignment: .center) {
-                            Text("Logout")
-                                .foregroundColor(.red)
+                        TitleRow(
+                            title: "Role"
+                        ) {
+                            Text(verbatim: result.role.description)
                         }
                     }
+                    TitleRow(
+                        title: "Email"
+                    ) {
+                        Text(verbatim: result.email)
+                    }
+                    TitleRow(
+                        title: "Country"
+                    ) {
+                        Text(verbatim: result.country)
+                    }
+                    TitleRow(
+                        title: "Billing"
+                    ) {
+                        Text(verbatim: result.billingType.description)
+                    }
+                } footer: {
+                    VStack(alignment: .center) {
+                        Spacer()
+                        HStack(alignment: .center) {
+                            Spacer()
+                            Button(action: logout) {
+                                Text("Logout")
+                                    .foregroundColor(.red)
+                            }
+                            Spacer()
+                        }
+                    }
+                    .padding()
                 }
             }
         }
@@ -196,7 +206,26 @@ extension ProfileView {
 #if DEBUG
 struct ProfileView_Previews: PreviewProvider {
     
-    static let profile = try! JSONDecoder.swarm.decode(UserProfile.self, from: Data(#"{"dt":1680809045,"lt":31.0737,"ln":-115.8783,"al":15,"sp":0,"hd":0,"gj":83,"gs":1,"bv":4060,"tp":40,"rs":-104,"tr":-112,"ts":-9,"td":1680808927,"hp":165,"vp":198,"tf":96682}"#.utf8))
+    static let responseJSON = #"""
+    {
+      "userId": 4543,
+      "username": "colemancda",
+      "organizationId": 67028,
+      "billingType": "AUTOMATICALLY_BILLED_MANUALLY_FINALIZED",
+      "enabled": true,
+      "registered": true,
+      "email": "alseycmiller@gmail.com",
+      "country": "US",
+      "role": "USER",
+      "featureFlags": {
+        "billing-manual-bill-pay": false
+      },
+      "twoWayEnabled": false,
+      "userApplicationId": 67028
+    }
+    """#
+    
+    static let profile = try! JSONDecoder.swarm.decode(UserProfile.self, from: Data(responseJSON.utf8))
     
     static var previews: some View {
         Group {
