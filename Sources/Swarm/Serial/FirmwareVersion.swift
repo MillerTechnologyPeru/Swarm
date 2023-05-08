@@ -46,5 +46,5 @@ extension SerialMessage.FirmwareVersion: SwarmCodableMessage {
     }
 }
 
-@available(macOS 13.0, iOS 16, *)
+@available(macOS 13.0, iOS 16, watchOS 9.0, tvOS 16, *)
 extension SerialMessage.FirmwareVersion: RawRepresentable { }

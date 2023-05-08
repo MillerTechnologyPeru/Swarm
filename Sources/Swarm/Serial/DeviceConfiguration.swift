@@ -24,7 +24,7 @@ public extension SerialMessage {
     }
 }
 
-@available(macOS 13.0, iOS 16, *)
+@available(macOS 13.0, iOS 16, watchOS 9.0, tvOS 16, *)
 extension SerialMessage.DeviceConfiguration: SwarmDecodableMessage {
     
     public static var messageType: SerialMessageType { .configuration }
@@ -41,7 +41,7 @@ extension SerialMessage.DeviceConfiguration: SwarmDecodableMessage {
     }
 }
 
-@available(macOS 13.0, iOS 16, *)
+@available(macOS 13.0, iOS 16, watchOS 9.0, tvOS 16, *)
 internal extension SerialMessage.DeviceConfiguration {
     
     static let regex = Regex {

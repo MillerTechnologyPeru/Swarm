@@ -17,7 +17,7 @@ internal extension URL {
         #if canImport(FoundationNetworking)
         return _appending(items)
         #else
-        if #available(macOS 13, iOS 16, *) {
+        if #available(macOS 13, iOS 16, watchOS 9, tvOS 16, *) {
             guard items.isEmpty == false else {
                 return self
             }
