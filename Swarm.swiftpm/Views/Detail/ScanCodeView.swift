@@ -189,15 +189,15 @@ extension ScanCodeView {
         let retry: () -> ()
         
         var body: some View {
-            VStack(alignment: .center, spacing: 16) {
+            VStack(alignment: .center, spacing: 20) {
                 Image(systemSymbol: .exclamationmarkOctagonFill)
                     .symbolRenderingMode(.multicolor)
-                Text("Error")
                 Text(verbatim: error)
                 Button(action: retry) {
                     Text("Retry")
                 }
             }
+            .padding()
         }
     }
 }
