@@ -34,11 +34,46 @@
 		6E75D17C2A082288009A6C86 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17B2A082288009A6C86 /* TitleRow.swift */; };
 		6E75D17E2A086A2B009A6C86 /* ScanCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */; };
 		6E75D1812A08742A009A6C86 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 6E75D1802A08742A009A6C86 /* CodeScanner */; };
-		6E75D18A2A089C51009A6C86 /* SwarmWatchAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D1892A089C51009A6C86 /* SwarmWatchAppApp.swift */; };
-		6E75D18C2A089C51009A6C86 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D18B2A089C51009A6C86 /* ContentView.swift */; };
 		6E75D18E2A089C53009A6C86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E75D18D2A089C53009A6C86 /* Assets.xcassets */; };
 		6E75D1912A089C53009A6C86 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E75D1902A089C53009A6C86 /* Preview Assets.xcassets */; };
-		6E75D1942A089C53009A6C86 /* SwarmWatchApp Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6E75D1872A089C51009A6C86 /* SwarmWatchApp Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6E75D1942A089C53009A6C86 /* SwarmWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6E75D1872A089C51009A6C86 /* SwarmWatchApp.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6E75D1EC2A08A740009A6C86 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D1892A089C51009A6C86 /* App.swift */; };
+		6E75D1ED2A08A742009A6C86 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D18B2A089C51009A6C86 /* ContentView.swift */; };
+		6E75D1F12A08A869009A6C86 /* Swarm in Frameworks */ = {isa = PBXBuildFile; productRef = 6E75D1F02A08A869009A6C86 /* Swarm */; };
+		6E75D1F22A08A9DC009A6C86 /* InfoPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFF29E1A9880061C241 /* InfoPlist.swift */; };
+		6E75D1F32A08A9DC009A6C86 /* LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EC62A07267A00F44AEC /* LocalizedError.swift */; };
+		6E75D1F42A08A9DC009A6C86 /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED42A0759F100F44AEC /* CoreLocation.swift */; };
+		6E75D1F52A08A9DC009A6C86 /* Hexadecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3929E29D7B00DE7BB8 /* Hexadecimal.swift */; };
+		6E75D1F62A08A9DC009A6C86 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF729E1A9880061C241 /* Task.swift */; };
+		6E75D1F72A08A9DC009A6C86 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */; };
+		6E75D1F82A08A9DC009A6C86 /* PacketStatusAppEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECE2A07376F00F44AEC /* PacketStatusAppEnum.swift */; };
+		6E75D1F92A08A9DC009A6C86 /* DeviceMetadataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */; };
+		6E75D1FA2A08A9DC009A6C86 /* DeviceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */; };
+		6E75D1FB2A08A9DC009A6C86 /* MessageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECC2A07329C00F44AEC /* MessageEntity.swift */; };
+		6E75D1FC2A08A9DC009A6C86 /* PacketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ECA2A07319C00F44AEC /* PacketEntity.swift */; };
+		6E75D1FD2A08A9DC009A6C86 /* DeviceQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBF2A07267000F44AEC /* DeviceQuery.swift */; };
+		6E75D1FE2A08A9DC009A6C86 /* PacketQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED02A073F9300F44AEC /* PacketQuery.swift */; };
+		6E75D1FF2A08A9DC009A6C86 /* FetchMessagesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8ED22A07493E00F44AEC /* FetchMessagesIntent.swift */; };
+		6E75D2002A08A9DC009A6C86 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CEE29E1A9880061C241 /* Preferences.swift */; };
+		6E75D2012A08A9DC009A6C86 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF229E1A9880061C241 /* Store.swift */; };
+		6E75D2022A08A9DC009A6C86 /* StoreKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF329E1A9880061C241 /* StoreKeychain.swift */; };
+		6E75D2032A08A9DC009A6C86 /* StoreLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF029E1A9880061C241 /* StoreLog.swift */; };
+		6E75D2042A08A9DC009A6C86 /* StoreNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CF129E1A9880061C241 /* StoreNetworking.swift */; };
+		6E75D2052A08A9DC009A6C86 /* StorePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CEF29E1A9880061C241 /* StorePreferences.swift */; };
+		6E75D2062A08A9DC009A6C86 /* AssetTrackerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3B29E2A56500DE7BB8 /* AssetTrackerMapView.swift */; };
+		6E75D2072A08A9DC009A6C86 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3729E29C7000DE7BB8 /* MessageDetailView.swift */; };
+		6E75D2082A08A9DC009A6C86 /* DeviceInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D1729E1AD1C0061C241 /* DeviceInformationView.swift */; };
+		6E75D2092A08A9DC009A6C86 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2429E24CCE0061C241 /* ProfileView.swift */; };
+		6E75D20A2A08A9DC009A6C86 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFB29E1A9880061C241 /* LoginView.swift */; };
+		6E75D20B2A08A9DC009A6C86 /* ScanCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */; };
+		6E75D20C2A08A9DC009A6C86 /* DevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFC29E1A9880061C241 /* DevicesView.swift */; };
+		6E75D20D2A08A9DC009A6C86 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */; };
+		6E75D20E2A08A9DC009A6C86 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045CFE29E1A9880061C241 /* DeviceRow.swift */; };
+		6E75D20F2A08A9DC009A6C86 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAFD3529E2981D00DE7BB8 /* MessageRow.swift */; };
+		6E75D2102A08A9DC009A6C86 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17B2A082288009A6C86 /* TitleRow.swift */; };
+		6E75D2112A08A9DC009A6C86 /* SubtitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D1929E1ADD60061C241 /* SubtitleRow.swift */; };
+		6E75D2132A08A9E6009A6C86 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 6E75D2122A08A9E6009A6C86 /* KeychainAccess */; };
+		6E75D2152A08A9E6009A6C86 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 6E75D2142A08A9E6009A6C86 /* SFSafeSymbols */; };
 		6EAF8EC12A07267000F44AEC /* DeviceMetadataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */; };
 		6EAF8EC22A07267000F44AEC /* DeviceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */; };
 		6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */; };
@@ -78,7 +113,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				6E75D1942A089C53009A6C86 /* SwarmWatchApp Watch App.app in Embed Watch Content */,
+				6E75D1942A089C53009A6C86 /* SwarmWatchApp.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,8 +148,8 @@
 		6E75D17B2A082288009A6C86 /* TitleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
 		6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCodeView.swift; sourceTree = "<group>"; };
 		6E75D1822A088BA8009A6C86 /* SwarmApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwarmApp-Info.plist"; sourceTree = "<group>"; };
-		6E75D1872A089C51009A6C86 /* SwarmWatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwarmWatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E75D1892A089C51009A6C86 /* SwarmWatchAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmWatchAppApp.swift; sourceTree = "<group>"; };
+		6E75D1872A089C51009A6C86 /* SwarmWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwarmWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E75D1892A089C51009A6C86 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		6E75D18B2A089C51009A6C86 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6E75D18D2A089C53009A6C86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E75D1902A089C53009A6C86 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -156,6 +191,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E75D2152A08A9E6009A6C86 /* SFSafeSymbols in Frameworks */,
+				6E75D2132A08A9E6009A6C86 /* KeychainAccess in Frameworks */,
+				6E75D1F12A08A869009A6C86 /* Swarm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +206,7 @@
 				6E75D1822A088BA8009A6C86 /* SwarmApp-Info.plist */,
 				6E045D0F29E1AA6F0061C241 /* Packages */,
 				6E045CDD29E1A8970061C241 /* Swarm */,
-				6E75D1882A089C51009A6C86 /* SwarmWatchApp Watch App */,
+				6E75D1882A089C51009A6C86 /* SwarmWatchApp */,
 				6E045CDC29E1A8970061C241 /* Products */,
 				6E045D1129E1AA8C0061C241 /* Frameworks */,
 			);
@@ -178,7 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				6E045CDB29E1A8970061C241 /* SwarmApp.app */,
-				6E75D1872A089C51009A6C86 /* SwarmWatchApp Watch App.app */,
+				6E75D1872A089C51009A6C86 /* SwarmWatchApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,15 +313,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6E75D1882A089C51009A6C86 /* SwarmWatchApp Watch App */ = {
+		6E75D1882A089C51009A6C86 /* SwarmWatchApp */ = {
 			isa = PBXGroup;
 			children = (
-				6E75D1892A089C51009A6C86 /* SwarmWatchAppApp.swift */,
+				6E75D1892A089C51009A6C86 /* App.swift */,
 				6E75D18B2A089C51009A6C86 /* ContentView.swift */,
 				6E75D18D2A089C53009A6C86 /* Assets.xcassets */,
 				6E75D18F2A089C53009A6C86 /* Preview Content */,
 			);
-			path = "SwarmWatchApp Watch App";
+			path = SwarmWatchApp;
 			sourceTree = "<group>";
 		};
 		6E75D18F2A089C53009A6C86 /* Preview Content */ = {
@@ -429,9 +467,9 @@
 			productReference = 6E045CDB29E1A8970061C241 /* SwarmApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6E75D1862A089C51009A6C86 /* SwarmWatchApp Watch App */ = {
+		6E75D1862A089C51009A6C86 /* SwarmWatchApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E75D1952A089C53009A6C86 /* Build configuration list for PBXNativeTarget "SwarmWatchApp Watch App" */;
+			buildConfigurationList = 6E75D1952A089C53009A6C86 /* Build configuration list for PBXNativeTarget "SwarmWatchApp" */;
 			buildPhases = (
 				6E75D1832A089C51009A6C86 /* Sources */,
 				6E75D1842A089C51009A6C86 /* Frameworks */,
@@ -441,9 +479,14 @@
 			);
 			dependencies = (
 			);
-			name = "SwarmWatchApp Watch App";
+			name = SwarmWatchApp;
+			packageProductDependencies = (
+				6E75D1F02A08A869009A6C86 /* Swarm */,
+				6E75D2122A08A9E6009A6C86 /* KeychainAccess */,
+				6E75D2142A08A9E6009A6C86 /* SFSafeSymbols */,
+			);
 			productName = "SwarmWatchApp Watch App";
-			productReference = 6E75D1872A089C51009A6C86 /* SwarmWatchApp Watch App.app */;
+			productReference = 6E75D1872A089C51009A6C86 /* SwarmWatchApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -484,7 +527,7 @@
 			projectRoot = "";
 			targets = (
 				6E045CDA29E1A8970061C241 /* SwarmApp */,
-				6E75D1862A089C51009A6C86 /* SwarmWatchApp Watch App */,
+				6E75D1862A089C51009A6C86 /* SwarmWatchApp */,
 			);
 		};
 /* End PBXProject section */
@@ -563,8 +606,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E75D18C2A089C51009A6C86 /* ContentView.swift in Sources */,
-				6E75D18A2A089C51009A6C86 /* SwarmWatchAppApp.swift in Sources */,
+				6E75D1F22A08A9DC009A6C86 /* InfoPlist.swift in Sources */,
+				6E75D1F32A08A9DC009A6C86 /* LocalizedError.swift in Sources */,
+				6E75D1F42A08A9DC009A6C86 /* CoreLocation.swift in Sources */,
+				6E75D1F52A08A9DC009A6C86 /* Hexadecimal.swift in Sources */,
+				6E75D1F62A08A9DC009A6C86 /* Task.swift in Sources */,
+				6E75D1F72A08A9DC009A6C86 /* Shortcuts.swift in Sources */,
+				6E75D1F82A08A9DC009A6C86 /* PacketStatusAppEnum.swift in Sources */,
+				6E75D1F92A08A9DC009A6C86 /* DeviceMetadataEntity.swift in Sources */,
+				6E75D1FA2A08A9DC009A6C86 /* DeviceEntity.swift in Sources */,
+				6E75D1FB2A08A9DC009A6C86 /* MessageEntity.swift in Sources */,
+				6E75D1FC2A08A9DC009A6C86 /* PacketEntity.swift in Sources */,
+				6E75D1FD2A08A9DC009A6C86 /* DeviceQuery.swift in Sources */,
+				6E75D1FE2A08A9DC009A6C86 /* PacketQuery.swift in Sources */,
+				6E75D1FF2A08A9DC009A6C86 /* FetchMessagesIntent.swift in Sources */,
+				6E75D2002A08A9DC009A6C86 /* Preferences.swift in Sources */,
+				6E75D2012A08A9DC009A6C86 /* Store.swift in Sources */,
+				6E75D2022A08A9DC009A6C86 /* StoreKeychain.swift in Sources */,
+				6E75D2032A08A9DC009A6C86 /* StoreLog.swift in Sources */,
+				6E75D2042A08A9DC009A6C86 /* StoreNetworking.swift in Sources */,
+				6E75D2052A08A9DC009A6C86 /* StorePreferences.swift in Sources */,
+				6E75D2062A08A9DC009A6C86 /* AssetTrackerMapView.swift in Sources */,
+				6E75D2072A08A9DC009A6C86 /* MessageDetailView.swift in Sources */,
+				6E75D2082A08A9DC009A6C86 /* DeviceInformationView.swift in Sources */,
+				6E75D2092A08A9DC009A6C86 /* ProfileView.swift in Sources */,
+				6E75D20A2A08A9DC009A6C86 /* LoginView.swift in Sources */,
+				6E75D20B2A08A9DC009A6C86 /* ScanCodeView.swift in Sources */,
+				6E75D20C2A08A9DC009A6C86 /* DevicesView.swift in Sources */,
+				6E75D20D2A08A9DC009A6C86 /* MessagesView.swift in Sources */,
+				6E75D20E2A08A9DC009A6C86 /* DeviceRow.swift in Sources */,
+				6E75D20F2A08A9DC009A6C86 /* MessageRow.swift in Sources */,
+				6E75D2102A08A9DC009A6C86 /* TitleRow.swift in Sources */,
+				6E75D2112A08A9DC009A6C86 /* SubtitleRow.swift in Sources */,
+				6E75D1ED2A08A742009A6C86 /* ContentView.swift in Sources */,
+				6E75D1EC2A08A740009A6C86 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,7 +649,7 @@
 		6E75D1932A089C53009A6C86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = 6E75D1862A089C51009A6C86 /* SwarmWatchApp Watch App */;
+			target = 6E75D1862A089C51009A6C86 /* SwarmWatchApp */;
 			targetProxy = 6E75D1922A089C53009A6C86 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -793,7 +868,6 @@
 				DEVELOPMENT_TEAM = 4W79SG34MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = SwarmWatchApp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.colemancda.Swarm;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -802,7 +876,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colemancda.Swarm.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwarmWatchApp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -823,7 +897,6 @@
 				DEVELOPMENT_TEAM = 4W79SG34MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = SwarmWatchApp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.colemancda.Swarm;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -832,7 +905,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.colemancda.Swarm.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwarmWatchApp;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -864,7 +937,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E75D1952A089C53009A6C86 /* Build configuration list for PBXNativeTarget "SwarmWatchApp Watch App" */ = {
+		6E75D1952A089C53009A6C86 /* Build configuration list for PBXNativeTarget "SwarmWatchApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E75D1962A089C53009A6C86 /* Debug */,
@@ -921,6 +994,20 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E75D17F2A08742A009A6C86 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		6E75D1F02A08A869009A6C86 /* Swarm */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Swarm;
+		};
+		6E75D2122A08A9E6009A6C86 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E045D1429E1AAD30061C241 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		6E75D2142A08A9E6009A6C86 /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E045D1D29E1B6FD0061C241 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
