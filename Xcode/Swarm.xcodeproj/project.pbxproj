@@ -32,6 +32,8 @@
 		6E045D2329E2428F0061C241 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2229E2428F0061C241 /* SettingsRowView.swift */; };
 		6E045D2529E24CCE0061C241 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2429E24CCE0061C241 /* ProfileView.swift */; };
 		6E75D17C2A082288009A6C86 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17B2A082288009A6C86 /* TitleRow.swift */; };
+		6E75D17E2A086A2B009A6C86 /* ScanCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */; };
+		6E75D1812A08742A009A6C86 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 6E75D1802A08742A009A6C86 /* CodeScanner */; };
 		6EAF8EC12A07267000F44AEC /* DeviceMetadataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */; };
 		6EAF8EC22A07267000F44AEC /* DeviceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */; };
 		6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */; };
@@ -80,6 +82,7 @@
 		6E045D2229E2428F0061C241 /* SettingsRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		6E045D2429E24CCE0061C241 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6E75D17B2A082288009A6C86 /* TitleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
+		6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCodeView.swift; sourceTree = "<group>"; };
 		6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMetadataEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E75D1812A08742A009A6C86 /* CodeScanner in Frameworks */,
 				6E045D1F29E1B6FD0061C241 /* SFSafeSymbols in Frameworks */,
 				6E045D1629E1AAD30061C241 /* KeychainAccess in Frameworks */,
 				6E045D1329E1AA8C0061C241 /* Swarm in Frameworks */,
@@ -312,6 +316,7 @@
 				6E045D1729E1AD1C0061C241 /* DeviceInformationView.swift */,
 				6E045D2429E24CCE0061C241 /* ProfileView.swift */,
 				6E045CFB29E1A9880061C241 /* LoginView.swift */,
+				6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				6E045D1229E1AA8C0061C241 /* Swarm */,
 				6E045D1529E1AAD30061C241 /* KeychainAccess */,
 				6E045D1E29E1B6FD0061C241 /* SFSafeSymbols */,
+				6E75D1802A08742A009A6C86 /* CodeScanner */,
 			);
 			productName = Swarm;
 			productReference = 6E045CDB29E1A8970061C241 /* SwarmApp.app */;
@@ -385,6 +391,7 @@
 			packageReferences = (
 				6E045D1429E1AAD30061C241 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				6E045D1D29E1B6FD0061C241 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				6E75D17F2A08742A009A6C86 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 6E045CDC29E1A8970061C241 /* Products */;
 			projectDirPath = "";
@@ -437,6 +444,7 @@
 				6EFAFD3429E2974500DE7BB8 /* MessagesView.swift in Sources */,
 				6EAF8ED12A073F9300F44AEC /* PacketQuery.swift in Sources */,
 				6EFAFD3629E2981D00DE7BB8 /* MessageRow.swift in Sources */,
+				6E75D17E2A086A2B009A6C86 /* ScanCodeView.swift in Sources */,
 				6E045D0229E1A9880061C241 /* StoreLog.swift in Sources */,
 				6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */,
 				6E045D2529E24CCE0061C241 /* ProfileView.swift in Sources */,
@@ -694,6 +702,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		6E75D17F2A08742A009A6C86 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -710,6 +726,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E045D1D29E1B6FD0061C241 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
+		};
+		6E75D1802A08742A009A6C86 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E75D17F2A08742A009A6C86 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
