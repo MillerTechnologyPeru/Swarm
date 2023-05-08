@@ -74,6 +74,8 @@
 		6E75D2112A08A9DC009A6C86 /* SubtitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D1929E1ADD60061C241 /* SubtitleRow.swift */; };
 		6E75D2132A08A9E6009A6C86 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 6E75D2122A08A9E6009A6C86 /* KeychainAccess */; };
 		6E75D2152A08A9E6009A6C86 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 6E75D2142A08A9E6009A6C86 /* SFSafeSymbols */; };
+		6E75D2182A08B0D1009A6C86 /* WatchConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */; };
+		6E75D2192A08D063009A6C86 /* WatchConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */; };
 		6EAF8EC12A07267000F44AEC /* DeviceMetadataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */; };
 		6EAF8EC22A07267000F44AEC /* DeviceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */; };
 		6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */; };
@@ -153,6 +155,7 @@
 		6E75D18B2A089C51009A6C86 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6E75D18D2A089C53009A6C86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E75D1902A089C53009A6C86 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivity.swift; sourceTree = "<group>"; };
 		6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMetadataEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
@@ -318,6 +321,7 @@
 			children = (
 				6E75D1892A089C51009A6C86 /* App.swift */,
 				6E75D18B2A089C51009A6C86 /* ContentView.swift */,
+				6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */,
 				6E75D18D2A089C53009A6C86 /* Assets.xcassets */,
 				6E75D18F2A089C53009A6C86 /* Preview Content */,
 			);
@@ -576,6 +580,7 @@
 				6EAF8ECD2A07329C00F44AEC /* MessageEntity.swift in Sources */,
 				6EAF8EE32A080A2400F44AEC /* ProgressIndicatorView.swift in Sources */,
 				6E045D0429E1A9880061C241 /* Store.swift in Sources */,
+				6E75D2192A08D063009A6C86 /* WatchConnectivity.swift in Sources */,
 				6E045D1829E1AD1C0061C241 /* DeviceInformationView.swift in Sources */,
 				6EFAFD3C29E2A56500DE7BB8 /* AssetTrackerMapView.swift in Sources */,
 				6EAF8ECB2A07319C00F44AEC /* PacketEntity.swift in Sources */,
@@ -631,6 +636,7 @@
 				6E75D2082A08A9DC009A6C86 /* DeviceInformationView.swift in Sources */,
 				6E75D2092A08A9DC009A6C86 /* ProfileView.swift in Sources */,
 				6E75D20A2A08A9DC009A6C86 /* LoginView.swift in Sources */,
+				6E75D2182A08B0D1009A6C86 /* WatchConnectivity.swift in Sources */,
 				6E75D20B2A08A9DC009A6C86 /* ScanCodeView.swift in Sources */,
 				6E75D20C2A08A9DC009A6C86 /* DevicesView.swift in Sources */,
 				6E75D20D2A08A9DC009A6C86 /* MessagesView.swift in Sources */,
