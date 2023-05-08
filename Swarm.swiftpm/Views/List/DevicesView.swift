@@ -37,6 +37,8 @@ struct DevicesView: View {
     private var showScanner = false
     #endif
     
+    init() { }
+    
     var body: some View {
         content
         .navigationTitle("Swarm")
@@ -195,14 +197,26 @@ extension DevicesView {
         var selection: DeviceID?
         
         var body: some View {
-            List(devices, selection: $selection) { device in
-                NavigationLink(destination: {
-                    DeviceInformationView(device: device)
-                }, label: {
-                    DeviceRow(device: device)
-                })
+            #if os(watchOS)
+            List(devices) {
+                row(for: $0)
             }
+            #else
+            List(devices, selection: $selection) {
+                row(for: $0)
+            }
+            #endif
         }
     }
 }
 
+private extension DevicesView.StateView {
+    
+    func row(for device: DeviceInformation) -> some View {
+        NavigationLink(destination: {
+            DeviceInformationView(device: device)
+        }, label: {
+            DeviceRow(device: device)
+        })
+    }
+}
