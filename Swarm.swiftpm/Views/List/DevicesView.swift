@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Swarm
+import SFSafeSymbols
 
 struct DevicesView: View {
     
