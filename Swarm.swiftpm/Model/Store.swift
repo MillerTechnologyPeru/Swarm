@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import SwiftUI
 import Swarm
-import KeychainAccess
 
 @MainActor
 public final class Store: ObservableObject {
@@ -31,9 +30,7 @@ public final class Store: ObservableObject {
     internal lazy var tokenKeychain = loadTokenKeychain()
     
     internal lazy var urlSession = loadURLSession()
-    
-    internal var token: AuthorizationToken?
-    
+        
     // MARK: - Initialization
     
     public init() {
@@ -43,6 +40,14 @@ public final class Store: ObservableObject {
         self.isKeychainEnabled = false
         #endif
     }
+    
+    internal init(isKeychainEnabled: Bool) {
+        self.isKeychainEnabled = isKeychainEnabled
+    }
+    
+    #if DEBUG
+    internal static let preview = Store(isKeychainEnabled: false)
+    #endif
     
     deinit {
         preferencesObserver?.cancel()
