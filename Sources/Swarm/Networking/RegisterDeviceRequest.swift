@@ -18,6 +18,8 @@ public struct RegisterDeviceRequest: Equatable, Hashable {
 
 extension RegisterDeviceRequest: SwarmURLRequest {
     
+    public static var method: HTTPMethod { .post }
+    
     public func url(for server: SwarmServer) -> URL {
         // /hive/api/v1/devices/register?authCode=1234
         URL(server: server)
