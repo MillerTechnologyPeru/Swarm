@@ -83,6 +83,7 @@
 		6E045D2429E24CCE0061C241 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6E75D17B2A082288009A6C86 /* TitleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
 		6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCodeView.swift; sourceTree = "<group>"; };
+		6E75D1822A088BA8009A6C86 /* SwarmApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwarmApp-Info.plist"; sourceTree = "<group>"; };
 		6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMetadataEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		6E045CD229E1A8970061C241 = {
 			isa = PBXGroup;
 			children = (
+				6E75D1822A088BA8009A6C86 /* SwarmApp-Info.plist */,
 				6E045D0F29E1AA6F0061C241 /* Packages */,
 				6E045CDD29E1A8970061C241 /* Swarm */,
 				6E045CDC29E1A8970061C241 /* Products */,
@@ -594,8 +596,10 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwarmApp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Swarm;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is needed to scan for QR Codes.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -636,8 +640,10 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwarmApp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Swarm;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is needed to scan for QR Codes.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
