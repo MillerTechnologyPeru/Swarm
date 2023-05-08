@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E75D1862A089C51009A6C86"
-               BuildableName = "Swarm.app"
+               BuildableName = "SwarmWatchApp.app"
                BlueprintName = "SwarmWatchApp"
                ReferencedContainer = "container:Swarm.xcodeproj">
             </BuildableReference>
