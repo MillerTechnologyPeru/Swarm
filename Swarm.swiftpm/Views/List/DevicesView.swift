@@ -18,6 +18,9 @@ struct DevicesView: View {
     private var devices = [DeviceInformation]()
     
     @State
+    private var selection: DeviceID?
+    
+    @State
     private var sortDescending = false
     
     @State
@@ -43,7 +46,7 @@ struct DevicesView: View {
         .toolbar {
             #if os(iOS)
             progressIndicator
-            addButton
+            scanButton
             #elseif os(macOS)
             Spacer()
             progressIndicator
@@ -54,12 +57,8 @@ struct DevicesView: View {
         #if os(iOS)
         .popover(isPresented: $showScanner) {
             NavigationView {
-                ScanCodeView { result in
-                    self.showScanner = false
-                    switch result {
-                    case let .registered(device):
-                        self.devices.insert(device, at: 0)
-                    }
+                ScanCodeView {
+                    scanResult($0)
                 }
             }
         }
@@ -77,6 +76,7 @@ extension DevicesView {
     }
     
     func reload() async {
+        self.error = nil
         // do nothing if not logged in
         guard store.username != nil else {
             return
@@ -86,12 +86,9 @@ extension DevicesView {
         self.isReloading = true
         defer { isReloading = false }
         
-        self.error = nil
+        // fetch devices
         do {
-            if store.username != nil {
-                // load devices
-                self.devices = try await store.devices(sortDescending: sortDescending)
-            }
+            self.devices = try await store.devices(sortDescending: sortDescending)
         }
         catch {
             store.log("Unable to reload devices. \(error)")
@@ -100,8 +97,17 @@ extension DevicesView {
         }
     }
     
-    func add() {
+    func scan() {
         self.showScanner = true
+    }
+    
+    func scanResult(_ result: ScanCodeView.Result) {
+        self.showScanner = false
+        switch result {
+        case let .registered(device):
+            self.devices.insert(device, at: 0)
+            self.selection = device.id
+        }
     }
     
     var content: some View {
@@ -122,7 +128,8 @@ extension DevicesView {
         } else if store.username != nil {
             return AnyView(
                 StateView(
-                    devices: devices
+                    devices: devices,
+                    selection: $selection
                 )
                 .refreshable {
                     await refresh()
@@ -166,11 +173,11 @@ extension DevicesView {
     }
     
     #if os(iOS)
-    var addButton: some View {
+    var scanButton: some View {
         Button(action: {
-            add()
+            scan()
         }, label: {
-            Image(systemSymbol: .plus)
+            Image(systemSymbol: .qrcode)
         })
     }
     #endif
@@ -182,15 +189,16 @@ extension DevicesView {
         
         let devices: [DeviceInformation]
         
+        @Binding
+        var selection: DeviceID?
+        
         var body: some View {
-            List {
-                ForEach(devices) { device in
-                    NavigationLink(destination: {
-                        DeviceInformationView(device: device)
-                    }, label: {
-                        DeviceRow(device: device)
-                    })
-                }
+            List(devices, selection: $selection) { device in
+                NavigationLink(destination: {
+                    DeviceInformationView(device: device)
+                }, label: {
+                    DeviceRow(device: device)
+                })
             }
         }
     }

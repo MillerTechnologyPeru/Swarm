@@ -84,7 +84,7 @@ private extension ScanCodeView {
         #if os(iOS) && targetEnvironment(simulator) && DEBUG
         return .registered(mockDevice)
         #else
-        let device = try await store.register(code)
+        let device = try await store.register(code.authenticationCode)
         return .registered(device)
         #endif
     }

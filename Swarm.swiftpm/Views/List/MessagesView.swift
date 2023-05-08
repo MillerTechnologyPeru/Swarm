@@ -37,15 +37,13 @@ struct MessagesView: View {
 extension MessagesView {
     
     func reload() async {
+        self.error = nil
         guard store.username != nil else {
             return
         }
-        self.error = nil
         do {
-            if store.username != nil {
-                // load devices
-                self.messages = try await store.messages(device: device)
-            }
+            // load messages
+            self.messages = try await store.messages(device: device)
         }
         catch {
             store.log("Unable to reload messages. \(error)")
