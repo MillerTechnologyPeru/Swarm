@@ -56,6 +56,7 @@ extension DeviceInformationView {
             }
             catch is CancellationError { }
             catch {
+                self.store.log("Unable to reload device \(id). \(error.localizedDescription)")
                 self.error = error.localizedDescription
             }
         }

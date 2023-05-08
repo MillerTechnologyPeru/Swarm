@@ -37,6 +37,9 @@ struct MessagesView: View {
 extension MessagesView {
     
     func reload() async {
+        guard store.username != nil else {
+            return
+        }
         self.error = nil
         do {
             if store.username != nil {

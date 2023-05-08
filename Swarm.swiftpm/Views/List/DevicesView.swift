@@ -29,6 +29,11 @@ struct DevicesView: View {
     @State
     private var isRefreshing = false
     
+    #if os(iOS)
+    @State
+    private var showScanner = false
+    #endif
+    
     var body: some View {
         content
         .navigationTitle("Swarm")
@@ -38,6 +43,7 @@ struct DevicesView: View {
         .toolbar {
             #if os(iOS)
             progressIndicator
+            addButton
             #elseif os(macOS)
             Spacer()
             progressIndicator
@@ -45,6 +51,19 @@ struct DevicesView: View {
             #endif
         }
         .frame(minWidth: 250)
+        #if os(iOS)
+        .popover(isPresented: $showScanner) {
+            NavigationView {
+                ScanCodeView { result in
+                    self.showScanner = false
+                    switch result {
+                    case let .registered(device):
+                        self.devices.insert(device, at: 0)
+                    }
+                }
+            }
+        }
+        #endif
     }
 }
 
@@ -79,6 +98,10 @@ extension DevicesView {
             self.error = error.localizedDescription
             self.devices = []
         }
+    }
+    
+    func add() {
+        self.showScanner = true
     }
     
     var content: some View {
@@ -141,6 +164,16 @@ extension DevicesView {
         })
         .disabled(isReloading)
     }
+    
+    #if os(iOS)
+    var addButton: some View {
+        Button(action: {
+            add()
+        }, label: {
+            Image(systemSymbol: .plus)
+        })
+    }
+    #endif
 }
 
 extension DevicesView {
