@@ -5,14 +5,20 @@ Swift library and SwiftUI app for Swarm IoT devices.
 
 - Swarm REST API
 - Serial UART communication (macOS and Linux only)
+- Register Devices
 - Fetch Devices
 - Fetch Messages
-- Asset Tracker Messages
+- Fetch User Profile
+- Decode Asset Tracker Messages
 - Siri Shortcuts
+
+## TestFlight
+
+- [Public Beta](https://testflight.apple.com/join/jBzNY0N6)
 
 ## Screenshots
 
-![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 05 33](https://user-images.githubusercontent.com/3419766/236698004-9b15a958-5e31-428d-a2fb-817defeb7a7a.png)
+![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 19 23 34](https://user-images.githubusercontent.com/3419766/236720094-9f5129dd-1b76-4355-816e-afb752e342e3.png)
 
 ![Simulator Screenshot - iPad mini (6th generation) - 2023-05-07 at 12 06 13](https://user-images.githubusercontent.com/3419766/236698011-6c54cf88-989f-460b-9c8e-793c3192cb1c.png)
 
