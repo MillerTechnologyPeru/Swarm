@@ -15,6 +15,10 @@ public struct QRCode: Equatable, Hashable, Codable {
     }
     
     public let authenticationCode: DeviceAuthenticationCode
+    
+    public init(authenticationCode: DeviceAuthenticationCode) {
+        self.authenticationCode = authenticationCode
+    }
 }
 
 public extension QRCode {
