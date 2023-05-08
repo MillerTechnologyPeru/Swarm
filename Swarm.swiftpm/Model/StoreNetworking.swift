@@ -137,4 +137,16 @@ public extension Store {
             )
         }
     }
+    
+    func register(
+        _ code: DeviceAuthenticationCode
+    ) async throws -> DeviceInformation {
+        try await authorized { token in
+            try await urlSession.register(
+                code,
+                authorization: token,
+                server: server
+            )
+        }
+    }
 }
