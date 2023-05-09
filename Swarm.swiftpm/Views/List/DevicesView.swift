@@ -46,6 +46,11 @@ struct DevicesView: View {
         .task {
             await reload()
         }
+        .onChange(of: store.username) { newValue in
+            Task {
+                await reload()
+            }
+        }
         .toolbar {
             #if os(iOS)
             progressIndicator
@@ -213,11 +218,19 @@ extension DevicesView {
 
 private extension DevicesView.StateView {
     
+    var showLastHeard: Bool {
+        #if os(watchOS)
+        return false
+        #else
+        return true
+        #endif
+    }
+    
     func row(for device: DeviceInformation) -> some View {
         NavigationLink(destination: {
             DeviceInformationView(device: device)
         }, label: {
-            DeviceRow(device: device)
+            DeviceRow(device: device, showLastHeard: showLastHeard)
         })
     }
 }
