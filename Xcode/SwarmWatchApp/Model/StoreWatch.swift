@@ -79,7 +79,8 @@ private extension Store {
             return nil
         case let .usernameResponse(username):
             self.username = username
-            return nil
+            // request password if username was provided
+            return username != nil ? .passwordRequest : nil
         case let .passwordResponse(password):
             Task.detached(priority: .userInitiated) {
                 if let username = await self.username {
