@@ -31,5 +31,26 @@ struct SwarmApp: App {
             ContentView()
                 .environmentObject(store)
         }
+        .onChange(of: phase) {
+            phaseChanged($0)
+        }
+    }
+}
+
+private extension SwarmApp {
+    
+    func phaseChanged(_ newValue: ScenePhase) {
+        switch newValue {
+        case .background:
+            break
+        case .inactive:
+            break
+        case .active:
+            Task {
+                await store.requestUsername()
+            }
+        default:
+            break
+        }
     }
 }

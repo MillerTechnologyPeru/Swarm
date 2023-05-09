@@ -28,6 +28,76 @@ internal extension Store {
 
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
+@available(watchOS, unavailable)
+internal extension Store {
+    
+    func sendUsernameToWatch() async {
+        let connection = watchConnection
+        // is supported
+        guard connection.isSupported else {
+            return
+        }
+        await activateWatchSession()
+        do {
+            guard try await connection.isReachable else {
+                return
+            }
+            try await connection.send(.usernameResponse(self.username))
+        }
+        catch {
+            log("Unable to send username. \(error)")
+        }
+    }
+}
+
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+public extension Store {
+    
+    func activateWatchSession() async {
+        let connection = watchConnection
+        // is supported
+        guard connection.isSupported else {
+            return
+        }
+        do {
+            if try await connection.state != .activated {
+                try await connection.activate()
+            }
+        }
+        catch {
+            log("Unable to activate session. \(error)")
+        }
+    }
+}
+
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(iOS, unavailable)
+public extension Store {
+    
+    /// Attempt to request username from iOS device.
+    func requestUsername() async {
+        let connection = watchConnection
+        // is supported
+        guard connection.isSupported else {
+            return
+        }
+        await activateWatchSession()
+        do {
+            guard try await connection.isReachable else {
+                return
+            }
+            try await connection.send(.usernameRequest)
+        }
+        catch {
+            log("Unable to request username. \(error)")
+        }
+    }
+}
+
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
 private extension Store {
     
     func recieveWatchMessages() {

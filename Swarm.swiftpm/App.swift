@@ -26,6 +26,9 @@ struct SwarmApp: App {
             ContentView()
                 .environmentObject(store)
         }
+        .onChange(of: phase) {
+            phaseChanged($0)
+        }
         
         #if os(macOS)
         Settings {
@@ -39,6 +42,24 @@ struct SwarmApp: App {
         let store = SwarmApp.store
         _store = .init(wrappedValue: store)
         store.log("Launching Swarm v\(Bundle.InfoPlist.shortVersion) (\(Bundle.InfoPlist.version))")
+    }
+}
+
+private extension SwarmApp {
+    
+    func phaseChanged(_ newValue: ScenePhase) {
+        switch newValue {
+        case .background:
+            break
+        case .inactive:
+            break
+        case .active:
+            Task {
+                await store.sendUsernameToWatch()
+            }
+        default:
+            break
+        }
     }
 }
 
