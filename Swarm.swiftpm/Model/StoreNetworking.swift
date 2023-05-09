@@ -50,6 +50,9 @@ private extension Store {
             }
         }
     }
+}
+
+internal extension Store {
     
     func refreshAuthorizationToken() async throws {
         guard let username = self.username else {
@@ -77,9 +80,12 @@ public extension Store {
             server: server
         )
         // store username in preferences and token and password in keychain
-        self.username = username
         await self.setToken(token, for: username)
         await self.setPassword(password, for: username)
+        self.username = username
+        #if os(iOS)
+        await self.sendUsernameToWatch()
+        #endif
     }
     
     func logout() async throws {
