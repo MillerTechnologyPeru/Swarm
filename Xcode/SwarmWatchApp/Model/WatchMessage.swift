@@ -21,6 +21,24 @@ enum WatchMessage: Equatable, Hashable, Codable {
     case passwordResponse(String?)
 }
 
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+extension WatchMessage {
+    
+    var logDescription: String {
+        var message = self
+        switch message {
+        case .errorResponse,
+            .usernameRequest,
+            .usernameResponse,
+            .passwordRequest:
+            break
+        case let .passwordResponse(response):
+            message = .passwordResponse(response.flatMap({ _ in "******" }) ?? "nil")
+        }
+        return "\(self)"
+    }
+}
 
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
