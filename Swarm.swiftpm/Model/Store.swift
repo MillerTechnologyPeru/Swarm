@@ -30,7 +30,15 @@ public final class Store: ObservableObject {
     internal lazy var tokenKeychain = loadTokenKeychain()
     
     internal lazy var urlSession = loadURLSession()
-        
+    
+    #if os(iOS) || os(watchOS)
+    internal lazy var watchConnection = loadWatchConnection()
+    
+    internal var watchObserver: AnyCancellable?
+    
+    internal var watchTasks = [Task<Void, Never>]()
+    #endif
+    
     // MARK: - Initialization
     
     public init() {
@@ -51,5 +59,9 @@ public final class Store: ObservableObject {
     
     deinit {
         preferencesObserver?.cancel()
+        #if os(iOS) || os(watchOS)
+        watchObserver?.cancel()
+        watchTasks.forEach { $0.cancel() }
+        #endif
     }
 }
