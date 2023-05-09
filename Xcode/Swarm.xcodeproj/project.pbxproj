@@ -76,6 +76,14 @@
 		6E75D2152A08A9E6009A6C86 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 6E75D2142A08A9E6009A6C86 /* SFSafeSymbols */; };
 		6E75D2182A08B0D1009A6C86 /* WatchConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */; };
 		6E75D2192A08D063009A6C86 /* WatchConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */; };
+		6E75D21B2A08E16C009A6C86 /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D21A2A08E16C009A6C86 /* WatchMessage.swift */; };
+		6E75D21E2A08E182009A6C86 /* WatchApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D21D2A08E182009A6C86 /* WatchApplicationContext.swift */; };
+		6E75D2212A0A0B72009A6C86 /* WatchConnection in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 6E75D2202A0A0B72009A6C86 /* WatchConnection */; };
+		6E75D2232A0A0B7B009A6C86 /* WatchConnection in Frameworks */ = {isa = PBXBuildFile; productRef = 6E75D2222A0A0B7B009A6C86 /* WatchConnection */; };
+		6E75D2242A0A0D38009A6C86 /* WatchApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D21D2A08E182009A6C86 /* WatchApplicationContext.swift */; };
+		6E75D2252A0A0DC0009A6C86 /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D21A2A08E16C009A6C86 /* WatchMessage.swift */; };
+		6E75D2272A0A1002009A6C86 /* StoreWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D2262A0A1002009A6C86 /* StoreWatch.swift */; };
+		6E75D2282A0A1098009A6C86 /* StoreWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D2262A0A1002009A6C86 /* StoreWatch.swift */; };
 		6EAF8EC12A07267000F44AEC /* DeviceMetadataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */; };
 		6EAF8EC22A07267000F44AEC /* DeviceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */; };
 		6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */; };
@@ -156,6 +164,9 @@
 		6E75D18D2A089C53009A6C86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E75D1902A089C53009A6C86 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivity.swift; sourceTree = "<group>"; };
+		6E75D21A2A08E16C009A6C86 /* WatchMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMessage.swift; sourceTree = "<group>"; };
+		6E75D21D2A08E182009A6C86 /* WatchApplicationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApplicationContext.swift; sourceTree = "<group>"; };
+		6E75D2262A0A1002009A6C86 /* StoreWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreWatch.swift; sourceTree = "<group>"; };
 		6EAF8EBB2A07267000F44AEC /* DeviceMetadataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMetadataEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBC2A07267000F44AEC /* DeviceEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceEntity.swift; sourceTree = "<group>"; };
 		6EAF8EBD2A07267000F44AEC /* Shortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
@@ -187,6 +198,7 @@
 				6E045D1F29E1B6FD0061C241 /* SFSafeSymbols in Frameworks */,
 				6E045D1629E1AAD30061C241 /* KeychainAccess in Frameworks */,
 				6E045D1329E1AA8C0061C241 /* Swarm in Frameworks */,
+				6E75D2212A0A0B72009A6C86 /* WatchConnection in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +208,7 @@
 			files = (
 				6E75D2152A08A9E6009A6C86 /* SFSafeSymbols in Frameworks */,
 				6E75D2132A08A9E6009A6C86 /* KeychainAccess in Frameworks */,
+				6E75D2232A0A0B7B009A6C86 /* WatchConnection in Frameworks */,
 				6E75D1F12A08A869009A6C86 /* Swarm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,7 +334,7 @@
 			children = (
 				6E75D1892A089C51009A6C86 /* App.swift */,
 				6E75D18B2A089C51009A6C86 /* ContentView.swift */,
-				6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */,
+				6E75D21C2A08E170009A6C86 /* Model */,
 				6E75D18D2A089C53009A6C86 /* Assets.xcassets */,
 				6E75D18F2A089C53009A6C86 /* Preview Content */,
 			);
@@ -334,6 +347,17 @@
 				6E75D1902A089C53009A6C86 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6E75D21C2A08E170009A6C86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E75D2172A08B0D1009A6C86 /* WatchConnectivity.swift */,
+				6E75D21A2A08E16C009A6C86 /* WatchMessage.swift */,
+				6E75D21D2A08E182009A6C86 /* WatchApplicationContext.swift */,
+				6E75D2262A0A1002009A6C86 /* StoreWatch.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6EAF8EB92A07267000F44AEC /* Intent */ = {
@@ -466,6 +490,7 @@
 				6E045D1529E1AAD30061C241 /* KeychainAccess */,
 				6E045D1E29E1B6FD0061C241 /* SFSafeSymbols */,
 				6E75D1802A08742A009A6C86 /* CodeScanner */,
+				6E75D2202A0A0B72009A6C86 /* WatchConnection */,
 			);
 			productName = Swarm;
 			productReference = 6E045CDB29E1A8970061C241 /* SwarmApp.app */;
@@ -488,6 +513,7 @@
 				6E75D1F02A08A869009A6C86 /* Swarm */,
 				6E75D2122A08A9E6009A6C86 /* KeychainAccess */,
 				6E75D2142A08A9E6009A6C86 /* SFSafeSymbols */,
+				6E75D2222A0A0B7B009A6C86 /* WatchConnection */,
 			);
 			productName = "SwarmWatchApp Watch App";
 			productReference = 6E75D1872A089C51009A6C86 /* SwarmWatchApp.app */;
@@ -525,6 +551,7 @@
 				6E045D1429E1AAD30061C241 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				6E045D1D29E1B6FD0061C241 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				6E75D17F2A08742A009A6C86 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				6E75D21F2A0A0B72009A6C86 /* XCRemoteSwiftPackageReference "WatchConnection" */,
 			);
 			productRefGroup = 6E045CDC29E1A8970061C241 /* Products */;
 			projectDirPath = "";
@@ -565,6 +592,7 @@
 				6EFAFD3829E29C7000DE7BB8 /* MessageDetailView.swift in Sources */,
 				6E045D1C29E1B67D0061C241 /* TabBarView.swift in Sources */,
 				6E045D1A29E1ADD60061C241 /* SubtitleRow.swift in Sources */,
+				6E75D2242A0A0D38009A6C86 /* WatchApplicationContext.swift in Sources */,
 				6E75D17C2A082288009A6C86 /* TitleRow.swift in Sources */,
 				6E045D0B29E1A9880061C241 /* DevicesView.swift in Sources */,
 				6E045D2129E1B7300061C241 /* SettingsView.swift in Sources */,
@@ -574,6 +602,7 @@
 				6E045D0929E1A9880061C241 /* App.swift in Sources */,
 				6EAF8EC12A07267000F44AEC /* DeviceMetadataEntity.swift in Sources */,
 				6E045D0C29E1A9880061C241 /* ContentView.swift in Sources */,
+				6E75D2282A0A1098009A6C86 /* StoreWatch.swift in Sources */,
 				6E045D0729E1A9880061C241 /* Task.swift in Sources */,
 				6EFAFD3A29E29D7B00DE7BB8 /* Hexadecimal.swift in Sources */,
 				6EAF8EC42A07267000F44AEC /* DeviceQuery.swift in Sources */,
@@ -590,6 +619,7 @@
 				6EFAFD3629E2981D00DE7BB8 /* MessageRow.swift in Sources */,
 				6E75D17E2A086A2B009A6C86 /* ScanCodeView.swift in Sources */,
 				6E045D0229E1A9880061C241 /* StoreLog.swift in Sources */,
+				6E75D2252A0A0DC0009A6C86 /* WatchMessage.swift in Sources */,
 				6EAF8EC32A07267000F44AEC /* Shortcuts.swift in Sources */,
 				6E045D2529E24CCE0061C241 /* ProfileView.swift in Sources */,
 				6E045D0329E1A9880061C241 /* StoreNetworking.swift in Sources */,
@@ -624,11 +654,13 @@
 				6E75D1FC2A08A9DC009A6C86 /* PacketEntity.swift in Sources */,
 				6E75D1FD2A08A9DC009A6C86 /* DeviceQuery.swift in Sources */,
 				6E75D1FE2A08A9DC009A6C86 /* PacketQuery.swift in Sources */,
+				6E75D21B2A08E16C009A6C86 /* WatchMessage.swift in Sources */,
 				6E75D1FF2A08A9DC009A6C86 /* FetchMessagesIntent.swift in Sources */,
 				6E75D2002A08A9DC009A6C86 /* Preferences.swift in Sources */,
 				6E75D2012A08A9DC009A6C86 /* Store.swift in Sources */,
 				6E75D2022A08A9DC009A6C86 /* StoreKeychain.swift in Sources */,
 				6E75D2032A08A9DC009A6C86 /* StoreLog.swift in Sources */,
+				6E75D21E2A08E182009A6C86 /* WatchApplicationContext.swift in Sources */,
 				6E75D2042A08A9DC009A6C86 /* StoreNetworking.swift in Sources */,
 				6E75D2052A08A9DC009A6C86 /* StorePreferences.swift in Sources */,
 				6E75D2062A08A9DC009A6C86 /* AssetTrackerMapView.swift in Sources */,
@@ -642,6 +674,7 @@
 				6E75D20D2A08A9DC009A6C86 /* MessagesView.swift in Sources */,
 				6E75D20E2A08A9DC009A6C86 /* DeviceRow.swift in Sources */,
 				6E75D20F2A08A9DC009A6C86 /* MessageRow.swift in Sources */,
+				6E75D2272A0A1002009A6C86 /* StoreWatch.swift in Sources */,
 				6E75D2102A08A9DC009A6C86 /* TitleRow.swift in Sources */,
 				6E75D2112A08A9DC009A6C86 /* SubtitleRow.swift in Sources */,
 				6E75D1ED2A08A742009A6C86 /* ContentView.swift in Sources */,
@@ -870,7 +903,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwarmWatchApp Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwarmWatchApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4W79SG34MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -899,7 +932,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwarmWatchApp Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwarmWatchApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4W79SG34MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -979,6 +1012,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		6E75D21F2A0A0B72009A6C86 /* XCRemoteSwiftPackageReference "WatchConnection" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MillerTechnologyPeru/WatchConnection.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1014,6 +1055,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E045D1D29E1B6FD0061C241 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
+		};
+		6E75D2202A0A0B72009A6C86 /* WatchConnection */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E75D21F2A0A0B72009A6C86 /* XCRemoteSwiftPackageReference "WatchConnection" */;
+			productName = WatchConnection;
+		};
+		6E75D2222A0A0B7B009A6C86 /* WatchConnection */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E75D21F2A0A0B72009A6C86 /* XCRemoteSwiftPackageReference "WatchConnection" */;
+			productName = WatchConnection;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

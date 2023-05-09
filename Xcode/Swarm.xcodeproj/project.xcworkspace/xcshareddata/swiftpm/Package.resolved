@@ -35,6 +35,15 @@
         "revision" : "fee6933f37fde9a5e12a1e4aeaa93fe60116ff2a",
         "version" : "1.2.2"
       }
+    },
+    {
+      "identity" : "watchconnection",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MillerTechnologyPeru/WatchConnection.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "3947a00f128a8396a13f5770d28c93b8873f9876"
+      }
     }
   ],
   "version" : 2
