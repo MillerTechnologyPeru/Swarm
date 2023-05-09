@@ -3,6 +3,7 @@ Swift library and SwiftUI app for Swarm IoT devices.
 
 ## Features
 
+- SwiftUI App (iOS, macOS, watchOS)
 - Swarm REST API
 - Serial UART communication (macOS and Linux only)
 - Register Devices
