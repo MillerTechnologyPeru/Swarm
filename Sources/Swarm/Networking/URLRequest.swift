@@ -70,7 +70,7 @@ public extension HTTPClient {
             fatalError("Invalid response type \(urlResponse)")
         }
         guard httpResponse.statusCode == statusCode else {
-            let errorResponse = try? ErrorResponse(from: data)
+            let errorResponse = data.isEmpty ? nil : try? ErrorResponse(from: data)
             throw SwarmNetworkingError.invalidStatusCode(httpResponse.statusCode, errorResponse)
         }
         return data
