@@ -16,7 +16,8 @@ struct MessageRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(verbatim: message.status.description)
-            Text(verbatim: "\(message.length) bytes")
+            Text("\(message.length) bytes")
+            #if !os(watchOS)
             Text("Packet \(message.id.description)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
@@ -26,6 +27,7 @@ struct MessageRow: View {
             Text(verbatim: message.hiveRxTime.formatted())
                 .font(.subheadline)
                 .foregroundColor(.gray)
+            #endif
         }
     }
 }
