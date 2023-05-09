@@ -13,6 +13,13 @@ struct DeviceRow: View {
     
     let device: DeviceInformation
     
+    let showLastHeard: Bool
+    
+    init(device: DeviceInformation, showLastHeard: Bool = false) {
+        self.device = device
+        self.showLastHeard = showLastHeard
+    }
+    
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
             image
@@ -35,6 +42,14 @@ private extension DeviceRow {
             Text(verbatim: device.id.description)
                 .font(.subheadline)
                 .foregroundColor(.gray)
+            if showLastHeard {
+                HStack(spacing: 5) {
+                    Text("Last Seen")
+                    Text(device.hiveLastheardTime, style: .relative)
+                }
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            }
         }
     }
 }
@@ -46,7 +61,7 @@ struct DeviceRow_Previews: PreviewProvider {
         [
           {
             "deviceType": 1,
-            "deviceId": 27662,
+            "deviceId": 12345,
             "deviceName": "My Swarm Device",
             "comments": "Tracker",
             "hiveCreationTime": "2022-10-04T18:46:02",
@@ -76,8 +91,9 @@ struct DeviceRow_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            List(devices) {
-                DeviceRow(device: $0)
+            List {
+                DeviceRow(device: devices[0], showLastHeard: false)
+                DeviceRow(device: devices[0], showLastHeard: true)
             }
             .navigationTitle("Swarm")
         }
