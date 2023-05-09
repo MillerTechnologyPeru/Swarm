@@ -19,9 +19,11 @@ internal extension Store {
     
     func loadPreferences() -> Preferences {
         let preferences = Preferences.standard
-        preferencesObserver = preferences.objectWillChange.sink { [unowned self] in
-            self.objectWillChange.send()
-        }
+        preferencesObserver = preferences.objectWillChange
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] in
+                self.objectWillChange.send()
+            }
         return preferences
     }
 }
