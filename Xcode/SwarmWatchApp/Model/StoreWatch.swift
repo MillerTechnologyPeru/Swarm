@@ -5,6 +5,7 @@
 //  Created by Alsey Coleman Miller on 5/8/23.
 //
 
+#if canImport(WatchConnection)
 import Foundation
 import Swarm
 import WatchConnection
@@ -169,3 +170,4 @@ private extension Store {
     }
 }
 
+#endif

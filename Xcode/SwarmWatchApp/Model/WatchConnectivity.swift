@@ -5,6 +5,7 @@
 //  Created by Alsey Coleman Miller on 5/7/23.
 //
 
+#if canImport(WatchConnection)
 import Foundation
 import Combine
 import WatchConnection
@@ -33,3 +34,4 @@ extension WatchConnection {
         return try WatchMessage(from: data)
     }
 }
+#endif

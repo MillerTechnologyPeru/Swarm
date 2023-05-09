@@ -55,7 +55,9 @@ private extension SwarmApp {
             break
         case .active:
             Task {
-                await store.sendUsernameToWatch()
+                #if canImport(WatchConnection) && os(iOS)
+                await self.store.sendUsernameToWatch()
+                #endif
             }
         default:
             break
