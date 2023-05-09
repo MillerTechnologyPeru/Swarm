@@ -12,6 +12,11 @@ import XCTest
 @available(macOS 13, iOS 16, *)
 final class SerialTests: XCTestCase {
     
+    func testChecksum() {
+        XCTAssertEqual(NMEAChecksum(calculate: "M138 BOOT,RUNNING"), 0x2a)
+        XCTAssertEqual(SerialMessage(type: .m138, body: "BOOT,RUNNING").rawValue, "$M138 BOOT,RUNNING*2a")
+    }
+    
     func testSerialMessage() {
         
         let messages = [

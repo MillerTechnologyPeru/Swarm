@@ -4,8 +4,9 @@ import XCTest
 
 final class SwarmTests: XCTestCase {
     
-    func testChecksum() {
-        XCTAssertEqual(NMEAChecksum(calculate: "M138 BOOT,RUNNING"), 0x2a)
-        XCTAssertEqual(SerialMessage(type: .m138, body: "BOOT,RUNNING").rawValue, "$M138 BOOT,RUNNING*2a")
+    func testQRCode() throws {
+        let scanString = #"{"ac":"12345"}"#
+        let result = try QRCode(from: scanString)
+        XCTAssertEqual(result.authenticationCode, "12345")
     }
 }
