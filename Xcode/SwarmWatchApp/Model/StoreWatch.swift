@@ -57,6 +57,7 @@ private extension Store {
     }
     
     func didRecieve(_ message: WatchMessage) -> WatchMessage? {
+        log("Recieved Watch message: \(message.logDescription)")
         #if os(iOS)
         switch message {
         case .errorResponse(let error):
@@ -69,7 +70,7 @@ private extension Store {
             return .passwordResponse(password)
         case .passwordResponse,
             .usernameResponse:
-            log("Unexpected Watch message: \(message)")
+            log("Unexpected Watch message: \(message.logDescription)")
             return nil
         }
         #elseif os(watchOS)
@@ -85,12 +86,13 @@ private extension Store {
             Task.detached(priority: .userInitiated) {
                 if let username = await self.username {
                     await self.setPassword(password, for: username)
+                    try? await self.refreshAuthorizationToken()
                 }
             }
             return nil
         case .passwordRequest,
             .usernameRequest:
-            log("Unexpected iOS message: \(message)")
+            log("Unexpected iOS message: \(message.logDescription)")
             return nil
         }
         #endif

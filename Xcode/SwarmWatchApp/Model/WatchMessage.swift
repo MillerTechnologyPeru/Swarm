@@ -36,7 +36,7 @@ extension WatchMessage {
         case let .passwordResponse(response):
             message = .passwordResponse(response.flatMap({ _ in "******" }) ?? "nil")
         }
-        return "\(self)"
+        return "\(message)"
     }
 }
 
