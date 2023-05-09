@@ -83,7 +83,7 @@ public extension Store {
         await self.setToken(token, for: username)
         await self.setPassword(password, for: username)
         self.username = username
-        #if os(iOS)
+        #if os(iOS) && canImport(WatchConnection)
         await self.sendUsernameToWatch()
         #endif
     }
@@ -95,6 +95,9 @@ public extension Store {
             self.username = nil
             await self.setPassword(nil, for: username)
             await self.setToken(nil, for: username)
+            #if os(iOS) && canImport(WatchConnection)
+            await self.sendUsernameToWatch()
+            #endif
         }
         // invalidate token for server
         try await urlSession.logout(authorization: token, server: server)
