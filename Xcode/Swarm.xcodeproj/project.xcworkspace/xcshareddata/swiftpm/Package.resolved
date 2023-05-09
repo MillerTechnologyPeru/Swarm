@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/CodeScanner.git",
       "state" : {
-        "revision" : "d8f10d992ef32a4187b78a6df320facf75d631d8",
-        "version" : "2.3.1"
+        "revision" : "4b2f9c57d03bfe94e6b45572e0c908c1433c32b2",
+        "version" : "2.3.2"
       }
     },
     {
@@ -42,7 +42,7 @@
       "location" : "https://github.com/MillerTechnologyPeru/WatchConnection.git",
       "state" : {
         "branch" : "master",
-        "revision" : "3947a00f128a8396a13f5770d28c93b8873f9876"
+        "revision" : "1c15e7a2a176cbb58ee11829c49761231efa9d51"
       }
     }
   ],
