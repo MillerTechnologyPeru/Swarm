@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import Swarm
-#if os(iOS)
+#if os(iOS) && canImport(CodeScanner)
 import CodeScanner
 #endif
 
@@ -50,7 +50,7 @@ private extension ScanCodeView {
         self.state = .camera
     }
     
-    #if os(iOS)
+    #if os(iOS) && canImport(CodeScanner)
     func scanResult(_ result: Swift.Result<ScanResult, ScanError>) {
         switch result {
         case let .success(scanResult):
@@ -137,7 +137,7 @@ extension ScanCodeView {
 
 extension ScanCodeView {
     
-    #if os(iOS)
+    #if os(iOS) && canImport(CodeScanner)
     struct CameraView: View {
         
         let completion: ((Swift.Result<ScanResult, ScanError>) -> ())
