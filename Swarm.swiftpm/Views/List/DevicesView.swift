@@ -61,7 +61,9 @@ struct DevicesView: View {
             refreshButton
             #endif
         }
+        #if os(macOS)
         .frame(minWidth: 250)
+        #endif
         #if os(iOS)
         .popover(isPresented: $showScanner) {
             NavigationView {
