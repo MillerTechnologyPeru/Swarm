@@ -98,7 +98,9 @@ extension DevicesView {
         
         // fetch devices
         do {
-            self.devices = try await store.devices(sortDescending: sortDescending)
+            self.devices = try await store.devices(
+                sortDescending: sortDescending
+            )
         }
         catch {
             store.log("Unable to reload devices. \(error)")

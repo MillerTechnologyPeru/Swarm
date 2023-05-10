@@ -9,9 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject
+    private var store: Store
+    
     var body: some View {
         NavigationView {
-            DevicesView()
+            if let username = store.username,
+               store[password: username] == nil {
+                Text("Open iPhone app to sync credentials")
+            } else {
+                DevicesView()
+            }
         }
     }
 }
@@ -19,6 +27,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(Store())
+            .environmentObject(Store.preview)
     }
 }
