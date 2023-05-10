@@ -31,7 +31,7 @@ public final class Store: ObservableObject {
     
     internal lazy var urlSession = loadURLSession()
     
-    #if os(iOS) || os(watchOS)
+    #if (os(iOS) || os(watchOS)) && canImport(WatchConnection)
     internal lazy var watchConnection = loadWatchConnection()
     
     internal var watchObserver: AnyCancellable?
@@ -59,7 +59,7 @@ public final class Store: ObservableObject {
     
     deinit {
         preferencesObserver?.cancel()
-        #if os(iOS) || os(watchOS)
+        #if (os(iOS) || os(watchOS)) && canImport(WatchConnection)
         watchObserver?.cancel()
         watchTasks.forEach { $0.cancel() }
         #endif
