@@ -29,16 +29,29 @@ struct SerialDeviceView: View {
     @State
     private var readTask: Task<Void, Never>?
     
+    @State
+    private var sendMessage: String = ""
+    
     var body: some View {
-        ScrollViewReader { scrollView in
-            List(messages) { message in
-                row(for: message)
-            }
-            .onChange(of: messages) { newValue in
-                if let message = newValue.last {
-                    scrollView.scrollTo(message.id)
+        VStack {
+            ScrollViewReader { scrollView in
+                List(messages) { message in
+                    row(for: message)
+                }
+                .onChange(of: messages) { newValue in
+                    if let message = newValue.last {
+                        scrollView.scrollTo(message.id)
+                    }
                 }
             }
+            HStack {
+                TextField("Type message", text: $sendMessage)
+                Button("Send") {
+                    send()
+                }
+                .disabled(!canSend)
+            }
+            .padding(.all)
         }
         .navigationTitle("Serial")
         .task {
@@ -56,7 +69,6 @@ struct SerialDeviceView: View {
 
 private extension SerialDeviceView {
     
-    @MainActor
     func loadDevice() async {
         guard self.device == nil || self.error != nil else {
             return
@@ -76,7 +88,7 @@ private extension SerialDeviceView {
             do {
                 while let device = self.device {
                     let line = try await device.recieve()
-                    let message = Message(date: Date(), contents: line)
+                    let message = Message(contents: line)
                     self.messages.append(message)
                 }
             }
@@ -85,6 +97,10 @@ private extension SerialDeviceView {
                 self.error = error.localizedDescription
             }
         }
+    }
+    
+    func send() {
+        //let message = Message(contents: )
     }
     
     func row(for message: Message) -> some View {
@@ -104,6 +120,10 @@ private extension SerialDeviceView {
             }
         })
     }
+    
+    var canSend: Bool {
+        sendMessage.isEmpty == false
+    }
 }
 
 // MARK: - Supporting Types
@@ -112,7 +132,7 @@ extension SerialDeviceView {
     
     struct Message: Equatable, Hashable {
         
-        let date: Date
+        let date = Date()
         
         let contents: String
     }
