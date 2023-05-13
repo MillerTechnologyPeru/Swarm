@@ -22,11 +22,19 @@ struct SerialDevicesView: View {
     @State
     private var error: String?
     
+    @State
+    private var selection: URL?
+    
     var body: some View {
-        List(devices, id: \.absoluteString) { url in
+        List(devices, id: \.self, selection: $selection) { url in
             row(for: url)
         }
+        .frame(minWidth: 150)
         .navigationTitle("Serial")
+        .toolbar {
+            Spacer()
+            refreshButton
+        }
         .onAppear {
             reload()
         }
@@ -39,6 +47,7 @@ private extension SerialDevicesView {
         self.error = nil
         do {
             self.devices = try SerialDevice.devices
+            self.selection = nil
         }
         catch {
             store.log("Unable to load serial devices. \(error)")
