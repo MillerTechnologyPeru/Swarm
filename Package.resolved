@@ -1,12 +1,30 @@
 {
   "pins" : [
     {
+      "identity" : "socket",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/PureSwift/Socket",
+      "state" : {
+        "branch" : "main",
+        "revision" : "322cd722b28525e26101c60f111a0c75ad841ca9"
+      }
+    },
+    {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser",
       "state" : {
         "revision" : "fee6933f37fde9a5e12a1e4aeaa93fe60116ff2a",
         "version" : "1.2.2"
+      }
+    },
+    {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/PureSwift/swift-system",
+      "state" : {
+        "branch" : "feature/dynamic-lib",
+        "revision" : "0abad32db1fc3bf5c7008b523d267c71390df3ac"
       }
     }
   ],

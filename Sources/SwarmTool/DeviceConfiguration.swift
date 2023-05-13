@@ -12,7 +12,7 @@ import Swarm
 @available(macOS 13.0, *)
 extension SwarmTool {
     
-    struct DeviceConfiguration: ParsableCommand {
+    struct DeviceConfiguration: AsyncParsableCommand {
         
         static let configuration = CommandConfiguration(
             commandName: "configuration",
@@ -22,10 +22,10 @@ extension SwarmTool {
         @Option(help: "The path to the Swarm device serial interface.")
         var device: String = "/dev/ttyUSB0"
         
-        func run() throws {
-            let device = try Swarm.SerialDevice(path: device)
-            try device.send(SerialMessage(type: .configuration))
-            let response = try device.recieve(SerialMessage.DeviceConfiguration.self)
+        func run() async throws {
+            let device = try await Swarm.SerialDevice(path: device)
+            try await device.send(SerialMessage(type: .configuration))
+            let response = try await device.recieve(SerialMessage.DeviceConfiguration.self)
             print("ID: \(response.id)")
             print("Type: \(response.type)")
         }

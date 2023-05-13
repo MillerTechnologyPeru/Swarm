@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "Swarm",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v13),
         .iOS(.v13),
         .watchOS(.v6),
         .tvOS(.v13),
@@ -23,6 +23,10 @@ let package = Package(
         .package(
             url: "https://github.com/apple/swift-argument-parser",
             from: "1.2.0"
+        ),
+        .package(
+            url: "https://github.com/PureSwift/Socket",
+            branch: "main"
         )
     ],
     targets: [
@@ -37,7 +41,14 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Swarm"
+            name: "Swarm",
+            dependencies: [
+                .product(
+                    name: "Socket",
+                    package: "Socket",
+                    condition: .when(platforms: [.macOS, .macCatalyst, .linux, .android])
+                )
+            ]
         ),
         .testTarget(
             name: "SwarmTests",

@@ -1,4 +1,6 @@
+#if canImport(Socket)
 import Foundation
+import Socket
 
 #if os(Linux)
 internal enum BaudRate {
@@ -205,24 +207,33 @@ internal enum ParityType {
 
 internal typealias PortError = SerialDevice.Error
 
-internal class SerialPort {
+internal actor SerialPort {
 
-    var path: String
-    var fileDescriptor: Int32?
-
-    public init(path: String) {
-        self.path = path
+    public let path: String
+    internal var socket: Socket?
+    
+    deinit {
+        if let socket = self.socket {
+            Task {
+                await socket.close()
+            }
+        }
     }
-
-    public func openPort() throws {
-        try openPort(toReceive: true, andTransmit: true)
-    }
-
-    public func openPort(toReceive receive: Bool, andTransmit transmit: Bool) throws {
+    
+    public init(path: String) throws {
         guard !path.isEmpty else {
             throw PortError.invalidPath
         }
+        
+        self.path = path
+    }
 
+    public func openPort() async throws {
+        try await openPort(toReceive: true, andTransmit: true)
+    }
+
+    public func openPort(toReceive receive: Bool, andTransmit transmit: Bool) async throws {
+        
         guard receive || transmit else {
             throw PortError.mustReceiveOrTransmit
         }
@@ -240,15 +251,17 @@ internal class SerialPort {
         }
 
     #if os(Linux)
-        fileDescriptor = open(path, readWriteParam | O_NOCTTY)
+        let fileDescriptor = open(path, readWriteParam | O_NOCTTY)
     #elseif os(OSX)
-        fileDescriptor = open(path, readWriteParam | O_NOCTTY | O_EXLOCK)
+        let fileDescriptor = open(path, readWriteParam | O_NOCTTY | O_EXLOCK)
     #endif
 
         // Throw error if open() failed
         if fileDescriptor == -1 {
             throw PortError.failedToOpen
         }
+        
+        self.socket = await Socket(fileDescriptor: .init(rawValue: fileDescriptor))
     }
 
     public func setSettings(receiveRate: BaudRate,
@@ -262,10 +275,9 @@ internal class SerialPort {
                             useSoftwareFlowControl: Bool = false,
                             processOutput: Bool = false) {
 
-        guard let fileDescriptor = fileDescriptor else {
+        guard let fileDescriptor = socket?.fileDescriptor.rawValue else {
             return
         }
-
 
         // Set up the control structure
         var settings = termios()
@@ -301,7 +313,7 @@ internal class SerialPort {
         } else {
             settings.c_cflag &= ~tcflag_t(CRTSCTS)
         }
-    #elseif os(OSX)
+    #elseif canImport(Darwin)
         if useHardwareFlowControl {
             settings.c_cflag |= tcflag_t(CRTS_IFLOW)
             settings.c_cflag |= tcflag_t(CCTS_OFLOW)
@@ -351,11 +363,9 @@ internal class SerialPort {
         tcsetattr(fileDescriptor, TCSANOW, &settings)
     }
 
-    public func closePort() {
-        if let fileDescriptor = fileDescriptor {
-            close(fileDescriptor)
-        }
-        fileDescriptor = nil
+    public func closePort() async {
+        await self.socket?.close()
+        self.socket = nil
     }
 }
 
@@ -363,47 +373,19 @@ internal class SerialPort {
 
 extension SerialPort {
 
-    public func readBytes(into buffer: UnsafeMutablePointer<UInt8>, size: Int) throws -> Int {
-        guard let fileDescriptor = fileDescriptor else {
+    public nonisolated func readData(ofLength length: Int) async throws -> Data {
+        guard let socket = await self.socket else {
             throw PortError.mustBeOpen
         }
-
-        var s: stat = stat()
-        fstat(fileDescriptor, &s)
-        if s.st_nlink != 1 {
-            throw PortError.deviceNotConnected
-        }
-
-        let bytesRead = read(fileDescriptor, buffer, size)
-        return bytesRead
+        return try await socket.read(length)
     }
-
-    public func readData(ofLength length: Int) throws -> Data {
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
-        defer {
-            buffer.deallocate()
-        }
-
-        let bytesRead = try readBytes(into: buffer, size: length)
-
-        var data : Data
-
-        if bytesRead > 0 {
-            data = Data(bytes: buffer, count: bytesRead)
-        } else {
-            //This is to avoid the case where bytesRead can be negative causing problems allocating the Data buffer
-            data = Data(bytes: buffer, count: 0)
-        }
-
-        return data
-    }
-
-    public func readString(ofLength length: Int) throws -> String {
+    
+    public nonisolated func readString(ofLength length: Int) async throws -> String {
         var remainingBytesToRead = length
         var result = ""
 
         while remainingBytesToRead > 0 {
-            let data = try readData(ofLength: remainingBytesToRead)
+            let data = try await readData(ofLength: remainingBytesToRead)
 
             if let string = String(data: data, encoding: String.Encoding.utf8) {
                 result += string
@@ -416,26 +398,22 @@ extension SerialPort {
         return result
     }
 
-    public func readUntilChar(_ terminator: CChar) throws -> String {
+    public nonisolated func readUntilChar(_ terminator: CChar) async throws -> String {
         var data = Data()
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
-        defer {
-            buffer.deallocate()
-        }
 
         while true {
-            let bytesRead = try readBytes(into: buffer, size: 1)
+            let bytesRead = try await readData(ofLength: 1)
 
-            if bytesRead > 0 {
-                if ( buffer[0] > 127) {
+            if bytesRead.count > 0 {
+                if ( bytesRead[0] > 127) {
                     throw PortError.unableToConvertByteToCharacter
                 }
-                let character = CChar(buffer[0])
+                let character = CChar(bytesRead[0])
 
                 if character == terminator {
                     break
                 } else {
-                    data.append(buffer, count: 1)
+                    data.append(bytesRead.prefix(1))
                 }
             }
         }
@@ -447,29 +425,23 @@ extension SerialPort {
         }
     }
 
-    public func readLine() throws -> String {
+    public nonisolated func readLine() async throws -> String {
         let newlineChar = CChar(10) // Newline/Line feed character `\n` is 10
-        return try readUntilChar(newlineChar)
+        return try await readUntilChar(newlineChar)
     }
 
-    public func readByte() throws -> UInt8 {
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
-
-        defer {
-            buffer.deallocate()
-        }
+    public nonisolated func readByte() async throws -> UInt8 {
 
         while true {
-            let bytesRead = try readBytes(into: buffer, size: 1)
-
-            if bytesRead > 0 {
-                return buffer[0]
+            let bytesRead = try await readData(ofLength: 1)
+            if bytesRead.count > 0 {
+                return bytesRead[0]
             }
         }
     }
 
-    public func readChar() throws -> UnicodeScalar {
-        let byteRead = try readByte()
+    public nonisolated func readChar() async throws -> UnicodeScalar {
+        let byteRead = try await readByte()
         let character = UnicodeScalar(byteRead)
         return character
     }
@@ -480,36 +452,23 @@ extension SerialPort {
 
 extension SerialPort {
 
-    public func writeBytes(from buffer: UnsafeMutablePointer<UInt8>, size: Int) throws -> Int {
-        guard let fileDescriptor = fileDescriptor else {
+    public nonisolated func writeData(_ data: Data) async throws -> Int {
+        guard let socket = await socket else {
             throw PortError.mustBeOpen
         }
-
-        let bytesWritten = write(fileDescriptor, buffer, size)
+        let bytesWritten = try await socket.write(data)
         return bytesWritten
     }
 
-    public func writeData(_ data: Data) throws -> Int {
-        let size = data.count
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
-        defer {
-            buffer.deallocate()
-        }
-
-        data.copyBytes(to: buffer, count: size)
-
-        let bytesWritten = try writeBytes(from: buffer, size: size)
-        return bytesWritten
-    }
-
-    public func writeString(_ string: String) throws -> Int {
+    public nonisolated func writeString(_ string: String) async throws -> Int {
         let data = Data(string.utf8)
-        return try writeData(data)
+        return try await writeData(data)
     }
     
-    public func writeChar(_ character: UnicodeScalar) throws -> Int{
+    public nonisolated func writeChar(_ character: UnicodeScalar) async throws -> Int {
         let stringEquiv = String(character)
-        let bytesWritten = try writeString(stringEquiv)
+        let bytesWritten = try await writeString(stringEquiv)
         return bytesWritten
     }
 }
+#endif
