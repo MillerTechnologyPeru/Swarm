@@ -30,9 +30,16 @@ struct SerialDeviceView: View {
     private var readTask: Task<Void, Never>?
     
     var body: some View {
+        ScrollViewReader { scrollView in
             List(messages) { message in
                 row(for: message)
             }
+            .onChange(of: messages) { newValue in
+                if let message = newValue.last {
+                    scrollView.scrollTo(message.id)
+                }
+            }
+        }
         .navigationTitle("Serial")
         .task {
             await loadDevice()
@@ -81,10 +88,11 @@ private extension SerialDeviceView {
     }
     
     func row(for message: Message) -> some View {
-        HStack {
+        HStack(alignment: .firstTextBaseline, spacing: nil) {
             Text(verbatim: message.date.formatted(date: .numeric, time: .standard))
             Text(verbatim: message.contents)
         }
+        .tag(message.id)
     }
     
     var showError: Binding<Bool> {
