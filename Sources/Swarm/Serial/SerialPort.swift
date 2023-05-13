@@ -252,13 +252,13 @@ internal actor SerialPort {
 
     #if os(Linux)
         let fileDescriptor = open(path, readWriteParam | O_NOCTTY)
-    #elseif os(OSX)
+    #elseif canImport(Darwin)
         let fileDescriptor = open(path, readWriteParam | O_NOCTTY | O_EXLOCK)
     #endif
 
         // Throw error if open() failed
         if fileDescriptor == -1 {
-            throw PortError.failedToOpen
+            throw Errno(rawValue: errno)
         }
         
         self.socket = await Socket(fileDescriptor: .init(rawValue: fileDescriptor))
