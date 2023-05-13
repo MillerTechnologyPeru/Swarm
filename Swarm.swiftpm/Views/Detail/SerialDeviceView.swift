@@ -5,6 +5,7 @@
 //  Created by Alsey Coleman Miller on 5/13/23.
 //
 
+#if os(macOS)
 import Foundation
 import SwiftUI
 import Swarm
@@ -29,9 +30,9 @@ struct SerialDeviceView: View {
     private var readTask: Task<Void, Never>?
     
     var body: some View {
-        List(messages) { message in
-            row(for: message)
-        }
+            List(messages) { message in
+                row(for: message)
+            }
         .navigationTitle("Serial")
         .task {
             await loadDevice()
@@ -115,3 +116,4 @@ extension SerialDeviceView.Message: Identifiable {
         date.timeIntervalSinceReferenceDate
     }
 }
+#endif

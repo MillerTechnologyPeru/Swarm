@@ -5,6 +5,7 @@
 //  Created by Alsey Coleman Miller on 5/13/23.
 //
 
+#if os(macOS)
 import Foundation
 import SwiftUI
 import Swarm
@@ -62,3 +63,4 @@ private extension SerialDevicesView {
         })
     }
 }
+#endif
