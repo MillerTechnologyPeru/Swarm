@@ -42,39 +42,50 @@ struct SerialDeviceView: View {
     @State
     private var isPinned = true
     
+    @State
+    private var showSendMessagePopover = false
+    
     private let messageLimit = 500
     
     var body: some View {
         VStack {
             ScrollViewReader { scrollView in
-                Table(messages, columns: {
-                    
-                    // Date
-                    TableColumn("Date") { message in
-                        Text(verbatim: message.date.formatted(date: .omitted, time: .standard))
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .tag(message.id)
-                    }
-                    .width(min: 80, ideal: 100, max: 120)
-                    
-                    // Type
-                    TableColumn("Type") { message in
-                        if let serialMessage = SerialMessage(rawValue: message.contents) {
-                            Text(verbatim: serialMessage.type.rawValue)
-                                .tag(message.id)
-                        } else {
-                            EmptyView()
+                VStack {
+                    Table(of: Message.self, columns: {
+                        // Date
+                        TableColumn("Date") { message in
+                            Text(verbatim: message.date.formatted(date: .omitted, time: .standard))
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
                         }
-                    }
-                    .width(min: 80, ideal: 100, max: 120)
-                    
-                    // Message
-                    TableColumn("Message") { message in
-                        Text(verbatim: SerialMessage(rawValue: message.contents)?.body ?? message.contents)
-                            .tag(message.id)
-                    }
-                })
+                        .width(min: 80, ideal: 90, max: 100)
+                        
+                        // Direction
+                        TableColumn("Direction") { message in
+                            Image(systemSymbol: message.direction.symbol)
+                        }
+                        .width(min: 40, ideal: 50, max: 80)
+                                                
+                        // Type
+                        TableColumn("Type") { message in
+                            if let serialMessage = SerialMessage(rawValue: message.contents) {
+                                Text(verbatim: serialMessage.type.rawValue)
+                            } else {
+                                EmptyView()
+                            }
+                        }
+                        .width(min: 80, ideal: 90, max: 100)
+                        
+                        // Message
+                        TableColumn("Message") { message in
+                            Text(verbatim: SerialMessage(rawValue: message.contents)?.body ?? message.contents)
+                        }
+                    }, rows: {
+                        ForEach(messages) { message in
+                            TableRow(message)
+                        }
+                    })
+                }
                 .onChange(of: messages) { newValue in
                     if isPinned, let message = newValue.last {
                         scrollView.scrollTo(message.id)
@@ -82,6 +93,19 @@ struct SerialDeviceView: View {
                 }
             }
             HStack {
+                Button(action: {
+                    showSendMessagePopover.toggle()
+                }, label: {
+                    showSendMessagePopover ? Image(systemSymbol: .plusCircleFill) : Image(systemSymbol: .plusCircle)
+                })
+                .buttonStyle(.plain)
+                .popover(isPresented: $showSendMessagePopover) {
+                    MessageTemplateView { message in
+                        self.sendMessageType = message.type.rawValue
+                        self.sendMessageBody = message.body ?? ""
+                        self.showSendMessagePopover = false
+                    }
+                }
                 TextField("Message Type", text: $sendMessageType)
                     .frame(width: 120)
                 TextField("Type message", text: $sendMessageBody)
@@ -133,7 +157,10 @@ private extension SerialDeviceView {
                     guard line.isEmpty == false else {
                         continue
                     }
-                    let message = Message(contents: line)
+                    let message = Message(
+                        direction: .incoming,
+                        contents: line
+                    )
                     insert(message)
                 }
             }
@@ -157,7 +184,10 @@ private extension SerialDeviceView {
             defer { self.sendTask = nil }
             do {
                 try await device.send(serialMessage)
-                let message = Message(contents: serialMessage.rawValue)
+                let message = Message(
+                    direction: .outgoing,
+                    contents: serialMessage.rawValue
+                )
                 insert(message)
             }
             catch {
@@ -199,7 +229,6 @@ private extension SerialDeviceView {
     
     var canSend: Bool {
         sendMessageType.isEmpty == false &&
-        sendMessageBody.isEmpty == false &&
         sendTask == nil &&
         device != nil
     }
@@ -216,6 +245,20 @@ private extension SerialDeviceView {
             }
         })
     }
+    
+    var sendTemplates: [(title: LocalizedStringKey, message: SerialMessage)] {
+        [
+            ("Configuration", SerialMessage(type: .configuration)),
+            ("Date Time", SerialMessage.DateTimeCommand.repeat.message),
+            ("Firmware Version", SerialMessage(type: .firmwareVersion))
+        ]
+    }
+    
+    var sendTemplatesView: some View {
+        List(sendTemplates, id: \.message.rawValue) {
+            Text($0.title)
+        }
+    }
 }
 
 // MARK: - Supporting Types
@@ -225,6 +268,8 @@ extension SerialDeviceView {
     struct Message: Equatable, Hashable {
         
         let date = Date()
+        
+        let direction: Direction
         
         let contents: String
     }
@@ -236,4 +281,50 @@ extension SerialDeviceView.Message: Identifiable {
         date.timeIntervalSinceReferenceDate
     }
 }
+
+extension SerialDeviceView.Message {
+    
+    enum Direction: Equatable, Hashable {
+        
+        case outgoing
+        case incoming
+    }
+}
+
+extension SerialDeviceView.Message.Direction {
+    
+    var symbol: SFSymbol {
+        switch self {
+        case .outgoing:
+            return .arrowUp
+        case .incoming:
+            return .arrowDown
+        }
+    }
+}
+
+extension SerialDeviceView {
+    
+    struct MessageTemplateView: View {
+        
+        let selection: (SerialMessage) -> ()
+        
+        var body: some View {
+            VStack(alignment: .leading, spacing: 15) {
+                Button("Configuration") {
+                    selection(SerialMessage(type: .configuration))
+                }
+                Button("Date Time") {
+                    selection(SerialMessage.DateTimeCommand.repeat.message)
+                }
+                Button("Firmware Version") {
+                    selection(SerialMessage(type: .firmwareVersion))
+                }
+            }
+            .padding()
+            .buttonStyle(.plain)
+        }
+    }
+}
+
 #endif
