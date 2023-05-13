@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import Swarm
+import SFSafeSymbols
 
 struct SerialDeviceView: View {
     
@@ -30,29 +31,60 @@ struct SerialDeviceView: View {
     private var readTask: Task<Void, Never>?
     
     @State
-    private var sendMessage: String = ""
+    private var sendTask: Task<Void, Never>?
     
-    private let messageLimit = 200
+    @State
+    private var sendMessageBody: String = ""
+    
+    @State
+    private var sendMessageType: String = ""
+    
+    @State
+    private var isPinned = true
+    
+    private let messageLimit = 500
     
     var body: some View {
         VStack {
             ScrollViewReader { scrollView in
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: nil) {
-                        ForEach(messages) { message in
-                            row(for: message)
+                Table(messages, columns: {
+                    
+                    // Date
+                    TableColumn("Date") { message in
+                        Text(verbatim: message.date.formatted(date: .omitted, time: .standard))
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .tag(message.id)
+                    }
+                    .width(min: 80, ideal: 100, max: 120)
+                    
+                    // Type
+                    TableColumn("Type") { message in
+                        if let serialMessage = SerialMessage(rawValue: message.contents) {
+                            Text(verbatim: serialMessage.type.rawValue)
+                                .tag(message.id)
+                        } else {
+                            EmptyView()
                         }
                     }
-                    .padding(.horizontal, nil)
-                }
+                    .width(min: 80, ideal: 100, max: 120)
+                    
+                    // Message
+                    TableColumn("Message") { message in
+                        Text(verbatim: SerialMessage(rawValue: message.contents)?.body ?? message.contents)
+                            .tag(message.id)
+                    }
+                })
                 .onChange(of: messages) { newValue in
-                    if let message = newValue.last {
+                    if isPinned, let message = newValue.last {
                         scrollView.scrollTo(message.id)
                     }
                 }
             }
             HStack {
-                TextField("Type message", text: $sendMessage)
+                TextField("Message Type", text: $sendMessageType)
+                    .frame(width: 120)
+                TextField("Type message", text: $sendMessageBody)
                 Button("Send") {
                     send()
                 }
@@ -113,14 +145,37 @@ private extension SerialDeviceView {
     }
     
     func send() {
-        //let message = Message(contents: )
+        guard let device = self.device else {
+            assertionFailure("Device not loaded")
+            return
+        }
+        assert(self.sendTask == nil)
+        let type = SerialMessageType(rawValue: sendMessageType)
+        let messageBody = sendMessageBody.isEmpty ? nil : sendMessageBody
+        let serialMessage = SerialMessage(type: type, body: messageBody)
+        self.sendTask = Task(priority: .userInitiated) {
+            defer { self.sendTask = nil }
+            do {
+                try await device.send(serialMessage)
+                let message = Message(contents: serialMessage.rawValue)
+                insert(message)
+            }
+            catch {
+                store.log("Unable to send message. \(error)")
+                self.error = error.localizedDescription
+            }
+        }
     }
     
     func insert(_ message: Message) {
+        // insert
         messages.append(message)
+        // limit at 200 messages
         if messages.count > messageLimit {
             _ = messages.dropLast(messages.count - messageLimit)
         }
+        // sort
+        messages.sort(by: { $0.date < $1.date })
     }
     
     func row(for message: Message) -> some View {
@@ -130,7 +185,6 @@ private extension SerialDeviceView {
                 .foregroundColor(.gray)
             Text(verbatim: message.contents)
         }
-        .tag(message.id)
     }
     
     var showError: Binding<Bool> {
@@ -144,14 +198,22 @@ private extension SerialDeviceView {
     }
     
     var canSend: Bool {
-        sendMessage.isEmpty == false
+        sendMessageType.isEmpty == false &&
+        sendMessageBody.isEmpty == false &&
+        sendTask == nil &&
+        device != nil
     }
     
     var pinButton: some View {
         Button(action: {
-            
+            isPinned.toggle()
         }, label: {
-            
+            if isPinned {
+                Image(systemSymbol: .arrowUpLeftCircleFill)
+                    .foregroundColor(.accentColor)
+            } else {
+                Image(systemSymbol: .arrowUpLeftCircle)
+            }
         })
     }
 }
