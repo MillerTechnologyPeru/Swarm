@@ -35,6 +35,14 @@ struct SwarmApp: App {
             PreferencesView()
                 .environmentObject(store)
         }
+        
+        Window("Serial", id: "serial") {
+            NavigationView {
+                SerialDevicesView()
+                Text("Open Serial Device")
+            }
+            .environmentObject(store)
+        }
         #endif
     }
     
