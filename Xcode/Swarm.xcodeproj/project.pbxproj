@@ -31,6 +31,9 @@
 		6E045D2129E1B7300061C241 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2029E1B7300061C241 /* SettingsView.swift */; };
 		6E045D2329E2428F0061C241 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2229E2428F0061C241 /* SettingsRowView.swift */; };
 		6E045D2529E24CCE0061C241 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E045D2429E24CCE0061C241 /* ProfileView.swift */; };
+		6E682A5E2A0FAF2D007D8FA6 /* SerialDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E682A5D2A0FAF2D007D8FA6 /* SerialDevicesView.swift */; };
+		6E682A602A0FAF75007D8FA6 /* SerialDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E682A5F2A0FAF75007D8FA6 /* SerialDevice.swift */; };
+		6E682A622A0FB21A007D8FA6 /* SerialDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E682A612A0FB21A007D8FA6 /* SerialDeviceView.swift */; };
 		6E75D17C2A082288009A6C86 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17B2A082288009A6C86 /* TitleRow.swift */; };
 		6E75D17E2A086A2B009A6C86 /* ScanCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */; };
 		6E75D1812A08742A009A6C86 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 6E75D1802A08742A009A6C86 /* CodeScanner */; };
@@ -155,6 +158,9 @@
 		6E045D2029E1B7300061C241 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6E045D2229E2428F0061C241 /* SettingsRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		6E045D2429E24CCE0061C241 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		6E682A5D2A0FAF2D007D8FA6 /* SerialDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SerialDevicesView.swift; path = ../Detail/SerialDevicesView.swift; sourceTree = "<group>"; };
+		6E682A5F2A0FAF75007D8FA6 /* SerialDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialDevice.swift; sourceTree = "<group>"; };
+		6E682A612A0FB21A007D8FA6 /* SerialDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialDeviceView.swift; sourceTree = "<group>"; };
 		6E75D17B2A082288009A6C86 /* TitleRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
 		6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCodeView.swift; sourceTree = "<group>"; };
 		6E75D1822A088BA8009A6C86 /* SwarmApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwarmApp-Info.plist"; sourceTree = "<group>"; };
@@ -295,6 +301,7 @@
 				6EAF8ED42A0759F100F44AEC /* CoreLocation.swift */,
 				6EFAFD3929E29D7B00DE7BB8 /* Hexadecimal.swift */,
 				6E045CF729E1A9880061C241 /* Task.swift */,
+				6E682A5F2A0FAF75007D8FA6 /* SerialDevice.swift */,
 			);
 			name = Extensions;
 			path = ../../Swarm.swiftpm/Extensions;
@@ -434,6 +441,7 @@
 				6E045CFC29E1A9880061C241 /* DevicesView.swift */,
 				6EFAFD3329E2974500DE7BB8 /* MessagesView.swift */,
 				6E045D2029E1B7300061C241 /* SettingsView.swift */,
+				6E682A5D2A0FAF2D007D8FA6 /* SerialDevicesView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -447,6 +455,7 @@
 				6E045D2429E24CCE0061C241 /* ProfileView.swift */,
 				6E045CFB29E1A9880061C241 /* LoginView.swift */,
 				6E75D17D2A086A2B009A6C86 /* ScanCodeView.swift */,
+				6E682A612A0FB21A007D8FA6 /* SerialDeviceView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -590,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EFAFD3829E29C7000DE7BB8 /* MessageDetailView.swift in Sources */,
+				6E682A5E2A0FAF2D007D8FA6 /* SerialDevicesView.swift in Sources */,
 				6E045D1C29E1B67D0061C241 /* TabBarView.swift in Sources */,
 				6E045D1A29E1ADD60061C241 /* SubtitleRow.swift in Sources */,
 				6E75D2242A0A0D38009A6C86 /* WatchApplicationContext.swift in Sources */,
@@ -607,6 +617,7 @@
 				6EFAFD3A29E29D7B00DE7BB8 /* Hexadecimal.swift in Sources */,
 				6EAF8EC42A07267000F44AEC /* DeviceQuery.swift in Sources */,
 				6EAF8ECD2A07329C00F44AEC /* MessageEntity.swift in Sources */,
+				6E682A602A0FAF75007D8FA6 /* SerialDevice.swift in Sources */,
 				6EAF8EE32A080A2400F44AEC /* ProgressIndicatorView.swift in Sources */,
 				6E045D0429E1A9880061C241 /* Store.swift in Sources */,
 				6E75D2192A08D063009A6C86 /* WatchConnectivity.swift in Sources */,
@@ -631,6 +642,7 @@
 				6E045D0129E1A9880061C241 /* StorePreferences.swift in Sources */,
 				6EAF8EDD2A0803E500F44AEC /* PreferencesView.swift in Sources */,
 				6E045D2329E2428F0061C241 /* SettingsRowView.swift in Sources */,
+				6E682A622A0FB21A007D8FA6 /* SerialDeviceView.swift in Sources */,
 				6E045D0A29E1A9880061C241 /* LoginView.swift in Sources */,
 				6EAF8ED32A07493E00F44AEC /* FetchMessagesIntent.swift in Sources */,
 				6E045D0029E1A9880061C241 /* Preferences.swift in Sources */,
