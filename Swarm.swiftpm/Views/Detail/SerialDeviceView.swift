@@ -32,11 +32,18 @@ struct SerialDeviceView: View {
     @State
     private var sendMessage: String = ""
     
+    private let messageLimit = 200
+    
     var body: some View {
         VStack {
             ScrollViewReader { scrollView in
-                List(messages) { message in
-                    row(for: message)
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: nil) {
+                        ForEach(messages) { message in
+                            row(for: message)
+                        }
+                    }
+                    .padding(.horizontal, nil)
                 }
                 .onChange(of: messages) { newValue in
                     if let message = newValue.last {
@@ -54,6 +61,9 @@ struct SerialDeviceView: View {
             .padding(.all)
         }
         .navigationTitle("Serial")
+        .toolbar {
+            pinButton
+        }
         .task {
             await loadDevice()
         }
@@ -88,8 +98,11 @@ private extension SerialDeviceView {
             do {
                 while let device = self.device {
                     let line = try await device.recieve()
+                    guard line.isEmpty == false else {
+                        continue
+                    }
                     let message = Message(contents: line)
-                    self.messages.append(message)
+                    insert(message)
                 }
             }
             catch {
@@ -103,9 +116,18 @@ private extension SerialDeviceView {
         //let message = Message(contents: )
     }
     
+    func insert(_ message: Message) {
+        messages.append(message)
+        if messages.count > messageLimit {
+            _ = messages.dropLast(messages.count - messageLimit)
+        }
+    }
+    
     func row(for message: Message) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: nil) {
-            Text(verbatim: message.date.formatted(date: .numeric, time: .standard))
+            Text(verbatim: message.date.formatted(date: .omitted, time: .standard))
+                .font(.subheadline)
+                .foregroundColor(.gray)
             Text(verbatim: message.contents)
         }
         .tag(message.id)
@@ -123,6 +145,14 @@ private extension SerialDeviceView {
     
     var canSend: Bool {
         sendMessage.isEmpty == false
+    }
+    
+    var pinButton: some View {
+        Button(action: {
+            
+        }, label: {
+            
+        })
     }
 }
 
